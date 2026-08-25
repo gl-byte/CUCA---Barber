@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- Indica que este archivo contiene una pagina web actual. -->
+<html lang="es">
+<!-- Aqui comienza la pagina y se indica que el contenido esta escrito en español. -->
+<head>
+  <!-- Permite mostrar correctamente la letra ñ, acentos y simbolos. -->
+  <meta charset="UTF-8">
+  <!-- Adapta el ancho de la pagina a celulares y computadoras. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Este texto aparece en la pestaña del navegador. -->
+  <title>Reservar cita</title>
+
+  <style>
+    /* Mantiene los tamaños de los elementos faciles de controlar. */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Da fondo oscuro, letras blancas y el mismo tipo de letra a toda la pagina. */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: white;
+    }
+
+    /* Forma las franjas oscuras del menu y del pie de pagina. */
+    header,
+    footer {
+      background: #080808;
+      text-align: center;
+      padding: 20px;
+      border-block: 1px solid #333;
+    }
+
+    /* Ordena el logo y todas las opciones del menu. */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Define el tamaño del logo sin deformar su imagen. */
+    nav img {
+      width: 100px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    /* Deja las opciones del menu blancas, marcadas y sin subrayado. */
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Pinta una opcion de rojo cuando el puntero pasa sobre ella. */
+    nav a:hover {
+      color: #c8191e;
+    }
+
+    /* Oculta la casilla que controla el menu para celular. */
+    .menu-toggle {
+      display: none;
+    }
+
+    /* Oculta la hamburguesa mientras se vea la pagina en computadora. */
+    .menu-icon {
+      display: none;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Coloca las opciones una al lado de otra en pantallas amplias. */
+    .menu-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Centra el formulario y evita que quede demasiado ancho. */
+    main {
+      max-width: 750px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    /* Da tamaño y color rojo al titulo principal. */
+    h1 {
+      font-size: 45px;
+      color: #c8191e;
+    }
+        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
+    .redes-sociales {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    /* Cada red social está dentro de un círculo.
+       Si quieres iconos más grandes, cambia width y height. */
+    .icono-red {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #c8191e;
+      border-radius: 50%;
+      background: #111;
+      text-decoration: none;
+      box-shadow: 0 0 14px rgba(200, 25, 30, .25);
+    }
+
+    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
+    .icono-red:hover {
+      background: #c8191e;
+    }
+
+    /* Esta regla controla la imagen SVG que está dentro del círculo.
+       Los SVG están guardados en assets/icons. */
+    .icono-red img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      display: block;
+    }
+    /* Forma la caja oscura que contiene todos los campos de la reserva. */
+    form {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    /* Separa y resalta el nombre que aparece encima de cada campo. */
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    /* Hace que los campos ocupen todo el ancho y compartan el mismo aspecto. */
+    input,
+    select,
+    /* Reserva suficiente altura para escribir un comentario. */
+    textarea {
+      width: 100%;
+      padding: 11px;
+      margin-top: 6px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #050505;
+      color: white;
+    }
+
+    textarea {
+      min-height: 90px;
+    }
+
+    /* Presenta las acciones finales como botones rojos. */
+    button,
+    .boton {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 16px;
+      background: #c8191e;
+      color: white;
+      border: 0;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Muestra la aclaracion del formulario con letras pequeñas y suaves. */
+    .aviso {
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    /* Estas reglas cambian el menu cuando la pagina se abre en un celular. */
+    @media (max-width: 700px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        justify-content: space-between;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .menu-links {
+        display: none;
+        width: 100%;
+        padding-top: 15px;
+      }
+
+      .menu-toggle:checked ~ .menu-links {
+        display: flex;
+      }
+
+      .menu-links a {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid #222;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Esta parte superior contiene el logo y el menu principal. -->
+  <header>
+    <!-- El menu permite visitar las otras paginas del sitio. -->
+    <nav>
+      <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo"></a>
+      <input type="checkbox" id="menu-principal" class="menu-toggle">
+      <label for="menu-principal" class="menu-icon">☰</label>
+
+      <!-- Aqui se agrupan las opciones que se muestran en el menu. -->
+      <div class="menu-links">
+        <!-- Abre la pagina que muestra los cortes para varones. -->
+        <a href="cortes-varones.html">Varones</a>
+        <a href="cortes-ninos.html">Niños</a>
+        <a href="tintes-bases.html">Tintes</a>
+        <a href="disenios-cortes.html">Diseños</a>
+        <!-- Abre la pagina que muestra los servicios para barba. -->
+        <a href="barbeados.html">Barbeados</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="reservar.html">Reservar</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Aqui comienza la zona donde el cliente completa su reserva. -->
+  <main>
+    <!-- Este titulo identifica el formulario de la pagina. -->
+    <h1>Reservar cita</h1>
+    <!-- Este formulario agrupa todos los datos necesarios para pedir una cita. -->
+    <form>
+      <!-- Pide el nombre de la persona que desea reservar. -->
+      <label>Nombre completo</label>
+      <!-- Esta caja permite escribir el nombre completo. -->
+      <input type="text">
+
+      <!-- Pide un numero para poder confirmar la cita. -->
+      <label>Teléfono / WhatsApp</label>
+      <!-- Esta caja esta preparada para escribir un numero telefonico. -->
+      <input type="tel">
+
+      <!-- Presenta una lista para elegir solamente un servicio. -->
+      <label>Servicio</label>
+      <!-- Esta lista contiene los servicios que siguen disponibles. -->
+      <select>
+        <!-- Primera opcion disponible dentro de la lista. -->
+        <option>Corte para varones</option>
+        <!-- Segunda opcion disponible dentro de la lista. -->
+        <option>Corte para niños</option>
+        <!-- Tercera opcion disponible dentro de la lista. -->
+        <option>Tintes y bases</option>
+        <!-- Cuarta opcion disponible dentro de la lista. -->
+        <option>Diseños + cortes</option>
+        <!-- Quinta opcion disponible dentro de la lista. -->
+        <option>Barbeados</option>
+      </select>
+
+      <!-- Pide el dia en que se desea recibir la atencion. -->
+      <label>Fecha</label>
+      <!-- Abre el calendario del navegador para escoger una fecha. -->
+      <input type="date">
+
+      <!-- Pide la hora preferida para la cita. -->
+      <label>Hora</label>
+      <!-- Abre el selector de hora del navegador. -->
+      <input type="time">
+
+      <!-- Permite dejar una indicacion adicional para la barberia. -->
+      <label>Comentario</label>
+      <!-- Esta caja grande sirve para escribir el comentario. -->
+      <textarea></textarea>
+
+      <!-- Este boton es solo una muestra visual porque todavia no se usa JavaScript. -->
+      <button type="button">Guardar visualmente</button>
+      <!-- Recuerda que la confirmacion verdadera se realiza por WhatsApp. -->
+      <p class="aviso">Para confirmar de verdad, usa el botón de WhatsApp.</p>
+      <!-- Abre una conversacion con el numero de CUCA Barber en otra pestaña. -->
+      <a class="boton" href="https://wa.me/59174110827" target="_blank">Confirmar por WhatsApp</a>
+    </form>
+  </main>
+  <footer>
+    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
+    <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
+
+    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
+    <div class="redes-sociales">
+      <!-- este icono lleva al perfil de Facebook. -->
+      <a class="icono-red" href="#" aria-label="Facebook">
+        <img src="assets/icons/facebook.svg" alt="Facebook">
+      </a>
+
+      <!-- Este icono lleva al perfil de instagram -->
+      <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
+        <img src="assets/icons/instagram.svg" alt="Instagram">
+      </a>
+
+      <!-- Este enlace lleva al perfil de WhatsApp. -->
+      <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
+        <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
+      </a>
+
+      <!-- Este icono lleva al perfil de tiktok-->
+      <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
+        <img src="assets/icons/tiktok.svg" alt="TikTok">
+      </a>
+    </div>
+    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
+    <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
+  </footer>
+</body>
+</html>

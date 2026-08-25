@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tintes y Bases</title>
+
+  <style>
+    /* Esta regla hace que los tamaños sean más faciles de manejar en toda la página. */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Aqui se define el aspecto general: fondo oscuro, letras blancas y fuente sencilla. */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #050505;
+      color: white;
+    }
+
+    /* El encabezado y el pie de página comparten el mismo estilo oscuro. */
+    header,
+    footer {
+      background: #080808;
+      text-align: center;
+      padding: 20px;
+      border-block: 1px solid #333;
+    }
+
+    /* El nav acomoda el logo y las opciones del menú en una sola zona. */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Esta regla controla el tamaño del logo para que no se vea gigante. */
+    nav img {
+      width: 100px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    /* Estos son los enlaces del menú: color blanco, sin subrayado y en negrita. */
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Cuando el mouse pasa encima de un enlace, se pinta rojo. */
+    nav a:hover {
+      color: #c8191e;
+    }
+
+    /* Este checkbox no se ve, pero ayuda a abrir y cerrar el menú en celular. */
+    .menu-toggle {
+      display: none;
+    }
+
+    /* Este es el botón de hamburguesa que aparece en celular. */
+    .menu-icon {
+      display: none;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Aqui se agrupan las opciones del menú principal. */
+    .menu-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* El main guarda el contenido principal y evita que se pegue a los bordes. */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    /* Título grande de cada página. */
+    h1 {
+      font-size: 45px;
+      color: #c8191e;
+    }
+
+    /* La galería ordena los cards en columnas automáticas. */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    /* Cada card es una caja para mostrar imagen, nombre, detalles y precio. */
+    .card {
+      background: #101010;
+      border: 2px solid #2c2c2c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(200, 25, 30, .18);
+    }
+
+    /* La imagen se muestra completa dentro del card, sin recortarse. */
+    .card img {
+      width: 100%;
+      height: 330px;
+      object-fit: contain;
+      background: #050505;
+      padding: 10px;
+    }
+
+    /* Esta parte da aire al texto que va debajo de cada imagen. */
+    .card div {
+      padding: 20px;
+    }
+
+    /* Nombre del servicio dentro del card. */
+    .card h2,
+    .card h3 {
+      margin-top: 0;
+      color: white;
+    }
+
+    /* Los puntos de detalle explican para quién sirve cada corte o servicio. */
+    .card li {
+      margin-bottom: 6px;
+      color: #dddddd;
+    }
+
+    /* El precio se resalta en rojo para que se encuentre rápido. */
+    .precio {
+      color: #c8191e;
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    /* Botón rojo usado para reservar o ver más información. */
+    .boton {
+      display: inline-block;
+      padding: 10px 12px;
+      background: #c8191e;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    /* Esta fila mantiene los iconos de redes sociales centrados. */
+    .redes-sociales {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    /* Cada icono va dentro de un círculo para que el footer se vea ordenado. */
+    .icono-red {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #c8191e;
+      border-radius: 50%;
+      background: #111;
+      text-decoration: none;
+      box-shadow: 0 0 14px rgba(200, 25, 30, .25);
+    }
+
+    /* Al pasar el mouse, el círculo se vuelve rojo. */
+    .icono-red:hover {
+      background: #c8191e;
+    }
+
+    /* Esta regla controla el tamaño de las imágenes SVG de redes sociales. */
+    .icono-red img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Estas reglas se aplican solamente en pantallas pequeñas, como celulares. */
+    @media (max-width: 700px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        justify-content: space-between;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .menu-links {
+        display: none;
+        width: 100%;
+        padding-top: 15px;
+      }
+
+      .menu-toggle:checked ~ .menu-links {
+        display: flex;
+      }
+
+      .menu-links a {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid #222;
+      }
+
+      .card img {
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Este bloque es el menú principal. Si quieres cambiar una opción, modifica los textos o los href de abajo. -->
+    <nav>
+      <!-- Este enlace usa el logo para volver a la página principal. -->
+      <a href="index.html">
+        <img src="assets/img/logo-cuca-barber.png" alt="Logo CUCA Barber">
+      </a>
+
+      <!-- Este checkbox oculto permite abrir el menú en celular sin usar JavaScript. -->
+      <input type="checkbox" id="menu-principal" class="menu-toggle">
+
+      <!-- Este símbolo es el botón de menú que se ve en celular. -->
+      <label for="menu-principal" class="menu-icon">☰</label>
+
+      <!-- Cada enlace lleva a una sección o página del proyecto. -->
+      <div class="menu-links">
+        <!-- Abre la pagina que muestra los cortes para varones. -->
+        <a href="cortes-varones.html">Varones</a>
+        <a href="cortes-ninos.html">Niños</a>
+        <a href="tintes-bases.html">Tintes</a>
+        <a href="disenios-cortes.html">Diseños</a>
+        <!-- Abre la pagina que muestra los servicios para barba. -->
+        <a href="barbeados.html">Barbeados</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="reservar.html">Reservar</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Este título explica de qué trata esta página. -->
+    <h1>Tintes y Bases</h1>
+
+    <!-- Este texto corto orienta al visitante antes de ver los cards. -->
+    <p>Servicios de color para renovar el cabello o mantener un tono parejo.</p>
+
+    <!-- La galería agrupa todos los cards de esta página. -->
+    <div class="galeria">
+      <!-- Este card muestra un servicio. Cambia la imagen, el título, los detalles o el precio según necesites. -->
+      <article class="card">
+        <!-- Esta imagen saldrá desde la carpeta assets/img. Solo debes poner ahí el archivo con el mismo nombre. -->
+        <img src="assets/img/Tinte_Base_1.jpg" alt="Tinte completo">
+
+        <!-- Aqui va la información escrita que acompaña a la imagen. -->
+        <div>
+          <h2>Tinte completo</h2>
+
+          <ul>
+            <li>Cambio total de color.</li>
+            <li>Incluye aplicación pareja.</li>
+            <li>Recomendado para tonos uniformes.</li>
+          </ul>
+
+          <p class="precio">Desde Bs 80</p>
+          <a class="boton" href="reservar.html">Reservar</a>
+        </div>
+      </article>
+      <!-- Este card muestra un servicio. Cambia la imagen, el título, los detalles o el precio según necesites. -->
+      <article class="card">
+        <!-- Esta imagen saldrá desde la carpeta assets/img. Solo debes poner ahí el archivo con el mismo nombre. -->
+        <img src="assets/img/Tinte_Base_2.jpg" alt="Retoque de raíz">
+
+        <!-- Aqui va la información escrita que acompaña a la imagen. -->
+        <div>
+          <h2>Retoque de raíz</h2>
+
+          <ul>
+            <li>Para mantener el color actual.</li>
+            <li>Ideal cuando crece la raíz.</li>
+            <li>Resultado limpio y natural.</li>
+          </ul>
+
+          <p class="precio">Desde Bs 50</p>
+          <a class="boton" href="reservar.html">Reservar</a>
+        </div>
+      </article>
+      <!-- Este card muestra un servicio. Cambia la imagen, el título, los detalles o el precio según necesites. -->
+      <article class="card">
+        <!-- Esta imagen saldrá desde la carpeta assets/img. Solo debes poner ahí el archivo con el mismo nombre. -->
+        <img src="assets/img/Tinte_Base_3.jpg" alt="Base de color">
+
+        <!-- Aqui va la información escrita que acompaña a la imagen. -->
+        <div>
+          <h2>Base de color</h2>
+
+          <ul>
+            <li>Prepara el cabello para otro tono.</li>
+            <li>Ayuda a emparejar colores.</li>
+            <li>Se recomienda evaluación previa.</li>
+          </ul>
+
+          <p class="precio">Desde Bs 90</p>
+          <a class="boton" href="reservar.html">Reservar</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+ <footer>
+    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
+    <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
+
+    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
+    <div class="redes-sociales">
+      <!-- este icono lleva al perfil de Facebook. -->
+      <a class="icono-red" href="#" aria-label="Facebook">
+        <img src="assets/icons/facebook.svg" alt="Facebook">
+      </a>
+
+      <!-- Este icono lleva al perfil de instagram -->
+      <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
+        <img src="assets/icons/instagram.svg" alt="Instagram">
+      </a>
+
+      <!-- Este enlace lleva al perfil de WhatsApp. -->
+      <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
+        <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
+      </a>
+
+      <!-- Este icono lleva al perfil de tiktok-->
+      <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
+        <img src="assets/icons/tiktok.svg" alt="TikTok">
+      </a>
+    </div>
+    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
+    <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
+  </footer>
+</body>
+</html>
