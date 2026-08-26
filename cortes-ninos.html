@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<!-- Indica que este archivo contiene una pagina web actual. -->
 <html lang="es">
-<!-- Aqui comienza la pagina y se indica que el contenido esta escrito en español. -->
 <head>
-  <!-- Permite mostrar correctamente la letra ñ, acentos y simbolos. -->
   <meta charset="UTF-8">
-  <!-- Adapta el ancho de la pagina a celulares y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>Cortes para Niños</title>
-
   <style>
-    /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
 
-    /* Da fondo oscuro, letras blancas y el mismo tipo de letra a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -24,7 +16,6 @@
       color: white;
     }
 
-    /* Forma las franjas oscuras del menu y del pie de pagina. */
     header,
     footer {
       background: #080808;
@@ -33,7 +24,7 @@
       border-block: 1px solid #333;
     }
 
-    /* Ordena el logo y todas las opciones del menu. */
+    
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -42,31 +33,31 @@
       align-items: center;
     }
 
-    /* Define el tamaño del logo sin deformar su imagen. */
+    
     nav img {
       width: 100px;
       height: 55px;
       object-fit: contain;
     }
 
-    /* Deja las opciones del menu blancas, marcadas y sin subrayado. */
+    
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
 
-    /* Pinta una opcion de rojo cuando el puntero pasa sobre ella. */
+    
     nav a:hover {
       color: #c8191e;
     }
 
-    /* Oculta la casilla que controla el menu para celular. */
+    
     .menu-toggle {
       display: none;
     }
 
-    /* Oculta la hamburguesa mientras se vea la pagina en computadora. */
+    
     .menu-icon {
       display: none;
       color: white;
@@ -75,7 +66,7 @@
       cursor: pointer;
     }
 
-    /* Coloca las opciones una al lado de otra en pantallas amplias. */
+    
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -84,19 +75,19 @@
       justify-content: center;
     }
 
-    /* Centra la informacion y limita su ancho para facilitar la lectura. */
+    
     main {
       max-width: 1200px;
       margin: auto;
       padding: 35px 20px;
     }
 
-    /* Da tamaño y color rojo al titulo principal. */
+    
     h1 {
       font-size: 45px;
       color: #c8191e;
     }
-        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
+        
     .redes-sociales {
       display: flex;
       justify-content: center;
@@ -104,8 +95,7 @@
       margin-top: 18px;
     }
 
-    /* Cada red social está dentro de un círculo.
-       Si quieres iconos más grandes, cambia width y height. */
+    
     .icono-red {
       width: 56px;
       height: 56px;
@@ -119,27 +109,26 @@
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
 
-    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
+    
     .icono-red:hover {
       background: #c8191e;
     }
 
-    /* Esta regla controla la imagen SVG que está dentro del círculo.
-       Los SVG están guardados en assets/icons. */
+    
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
-    /* Acomoda las tarjetas de cortes en columnas que se ajustan solas. */
+    
     .galeria {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 28px;
     }
 
-    /* Forma cada tarjeta con borde, fondo oscuro y sombra roja suave. */
+    
     .card {
       background: #101010;
       border: 2px solid #2c2c2c;
@@ -148,7 +137,7 @@
       box-shadow: 0 0 20px rgba(200, 25, 30, .18);
     }
 
-    /* Muestra completa la fotografia del corte sin deformarla. */
+    
     .card img {
       width: 100%;
       height: 330px;
@@ -157,25 +146,25 @@
       padding: 10px;
     }
 
-    /* Separa la informacion de los bordes de la tarjeta. */
+    
     .card div {
       padding: 20px;
     }
 
-    /* Evita un espacio innecesario encima del nombre de cada corte. */
+    
     .card h2 {
       margin-top: 0;
       color: #ffffff;
     }
 
-    /* Resalta el precio con color rojo y letras grandes. */
+    
     .precio {
       color: #c8191e;
       font-weight: bold;
       font-size: 22px;
     }
 
-    /* Convierte el enlace de reserva en un boton rojo. */
+    
     .boton {
       display: inline-block;
       padding: 10px 12px;
@@ -185,7 +174,7 @@
       border-radius: 5px;
     }
 
-    /* Estas reglas cambian la pagina cuando se abre en un celular. */
+    
     @media (max-width: 700px) {
       header {
         position: static;
@@ -224,21 +213,21 @@
 </head>
 
 <body>
-  <!-- Esta parte superior contiene el logo y el menu principal. -->
+  
   <header>
-    <!-- El menu permite visitar las otras paginas del sitio. -->
+    
     <nav>
       <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo"></a>
       <input type="checkbox" id="menu-principal" class="menu-toggle">
       <label for="menu-principal" class="menu-icon">☰</label>
 
       <div class="menu-links">
-        <!-- Abre la pagina que muestra los cortes para varones. -->
+        
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
         <a href="disenios-cortes.html">Diseños</a>
-        <!-- Abre la pagina que muestra los servicios para barba. -->
+        
         <a href="barbeados.html">Barbeados</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="reservar.html">Reservar</a>
@@ -247,94 +236,91 @@
     </nav>
   </header>
 
-  <!-- Aqui comienza la informacion principal sobre los cortes para niños. -->
+  
   <main>
-    <!-- Este titulo identifica la variedad de cortes de esta pagina. -->
+    
     <h1>Cortes para Niños</h1>
-    <!-- Esta frase explica de forma breve lo que se muestra debajo. -->
+    
     <p>Cortes cómodos para niños, pensados para colegio o para un estilo más moderno.</p>
 
-    <!-- Este grupo acomoda todas las tarjetas de cortes. -->
+    
     <div class="galeria">
-      <!-- Esta tarjeta presenta la fotografia y los datos del primer corte. -->
+      
       <article class="card">
-        <!-- Esta ruta usa Corte_Nino_1.jpg como fotografia del primer corte. -->
+        
         <img src="assets/img/Corte_Nino_1.jpg" alt="Corte escolar">
-        <!-- Aqui se agrupan el nombre, detalle, precio y boton de reserva. -->
+        
         <div>
-          <!-- Este es el nombre que se muestra para el primer corte. -->
+          
           <h2>Corte tradicional</h2>
-          <!-- Esta frase describe de manera breve el resultado del corte. -->
+          
           <p>Ordenado y práctico.</p>
-          <!-- Esta linea muestra el precio del primer corte. -->
+          
           <p class="precio">Bs 25</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
+          
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
-
-      <!-- Esta tarjeta presenta la fotografia y los datos del segundo corte. -->
+    
       <article class="card">
-        <!-- Esta ruta usa Corte_Nino_2.jpg como fotografia del segundo corte. -->
         <img src="assets/img/Corte_Nino_2.jpg" alt="Corte infantil moderno">
-        <!-- Aqui se agrupan el nombre, detalle, precio y boton de reserva. -->
         <div>
-          <!-- Este es el nombre que se muestra para el segundo corte. -->
+          
           <h2>Corte moderno</h2>
-          <!-- Esta frase describe de manera breve el resultado del corte. -->
+          
           <p>Estilo fresco para niños.</p>
-          <!-- Esta linea muestra el precio del segundo corte. -->
+          
           <p class="precio">Bs 30</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
+          
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
 
-      <!-- Esta tarjeta presenta la fotografia y los datos del tercer corte. -->
+      
       <article class="card">
-        <!-- Esta ruta usa Corte_Nino_3.jpg como fotografia del tercer corte. -->
+        
         <img src="assets/img/Corte_Nino_3.jpg" alt="Corte con diseño">
-        <!-- Aqui se agrupan el nombre, detalle, precio y boton de reserva. -->
+        
         <div>
-          <!-- Este es el nombre que se muestra para el tercer corte. -->
+          
           <h2>Diseño simple</h2>
-          <!-- Esta frase describe de manera breve el resultado del corte. -->
+          
           <p>Detalle lateral sencillo.</p>
-          <!-- Esta linea muestra el precio del tercer corte. -->
+          
           <p class="precio">Bs 25</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
+          
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
     </div>
   </main>
   <footer>
-    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
+    
     <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
 
-    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
+    
     <div class="redes-sociales">
-      <!-- este icono lleva al perfil de Facebook. -->
+      
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
 
-      <!-- Este icono lleva al perfil de instagram -->
+      
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
 
-      <!-- Este enlace lleva al perfil de WhatsApp. -->
+      
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
 
-      <!-- Este icono lleva al perfil de tiktok-->
+      
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
-    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
+    
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 </body>
