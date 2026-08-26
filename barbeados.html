@@ -1,25 +1,16 @@
 <!DOCTYPE html>
-<!-- Indica que este archivo contiene una pagina web actual. -->
+
 <html lang="es">
-<!-- Aqui comienza la pagina y se indica que el contenido esta escrito en español. -->
 
 <head>
-  <!-- Permite mostrar correctamente la letra ñ, los acentos y otros simbolos. -->
   <meta charset="UTF-8">
-
-  <!-- Adapta el ancho de la pagina a celulares y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>Barbeados | CUCA Barber</title>
 
   <style>
-    /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
-
-    /* Da fondo oscuro, letras blancas y una fuente sencilla a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -27,7 +18,6 @@
       color: white;
     }
 
-    /* Forma las franjas oscuras del menu y del pie de pagina. */
     header,
     footer {
       background: #080808;
@@ -35,8 +25,6 @@
       padding: 20px;
       border-block: 1px solid #333;
     }
-
-    /* Ordena el logo y todas las opciones del menu. */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -44,32 +32,22 @@
       justify-content: center;
       align-items: center;
     }
-
-    /* Define el tamaño del logo sin deformar su imagen. */
     nav img {
       width: 100px;
       height: 55px;
       object-fit: contain;
     }
-
-    /* Deja las opciones del menu blancas, marcadas y sin subrayado. */
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
-    /* Pinta una opcion de rojo cuando el puntero pasa sobre ella. */
     nav a:hover {
       color: #c8191e;
     }
-
-    /* Oculta la casilla que controla el menu para celular. */
     .menu-toggle {
       display: none;
     }
-
-    /* Oculta la hamburguesa mientras la pagina se vea en computadora. */
     .menu-icon {
       display: none;
       color: white;
@@ -77,8 +55,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    /* Coloca las opciones una al lado de otra en pantallas amplias. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -86,36 +62,26 @@
       align-items: center;
       justify-content: center;
     }
-
-    /* Centra la informacion y limita su ancho para facilitar la lectura. */
     main {
       max-width: 1200px;
       margin: auto;
       padding: 35px 20px 55px;
     }
-
-    /* Da tamaño y color rojo al titulo principal. */
     h1 {
       margin-bottom: 10px;
       font-size: 45px;
       color: #c8191e;
     }
-
-    /* Aclara el color del texto que presenta los servicios. */
     .introduccion {
       margin-bottom: 30px;
       color: #d8d8d8;
       line-height: 1.6;
     }
-
-    /* Acomoda las tres tarjetas en columnas que se ajustan solas. */
     .galeria {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 28px;
     }
-
-    /* Forma cada tarjeta con borde, fondo oscuro y sombra roja suave. */
     .card {
       display: flex;
       flex-direction: column;
@@ -125,8 +91,6 @@
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(200, 25, 30, .18);
     }
-
-    /* Muestra completa la fotografia del barbeado sin deformarla. */
     .card img {
       width: 100%;
       height: 340px;
@@ -135,7 +99,6 @@
       padding: 10px;
     }
 
-    /* Separa la informacion de los bordes y mantiene alineados los botones. */
     .card-info {
       display: flex;
       flex: 1;
@@ -143,35 +106,26 @@
       align-items: flex-start;
       padding: 20px;
     }
-
-    /* Presenta el nombre del servicio sin espacio innecesario encima. */
     .card h2 {
       margin-top: 0;
       margin-bottom: 10px;
       color: white;
     }
-
-    /* Ordena la lista de detalles y deja espacio para leer cada punto. */
     .card ul {
       flex: 1;
       padding-left: 20px;
       color: #dddddd;
       line-height: 1.5;
     }
-
-    /* Separa cada detalle dentro de la lista. */
     .card li {
       margin-bottom: 7px;
     }
-
-    /* Resalta el precio con color rojo y letras grandes. */
     .precio {
       color: #c8191e;
       font-weight: bold;
       font-size: 22px;
     }
 
-    /* Convierte el enlace de reserva en un boton rojo. */
     .boton {
       display: inline-block;
       padding: 10px 14px;
@@ -182,15 +136,12 @@
       font-weight: bold;
     }
 
-    /* Mantiene los iconos de redes sociales centrados. */
     .redes-sociales {
       display: flex;
       justify-content: center;
       gap: 18px;
       margin-top: 18px;
     }
-
-    /* Coloca cada icono dentro de un circulo con borde rojo. */
     .icono-red {
       width: 56px;
       height: 56px;
@@ -204,49 +155,40 @@
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
 
-    /* Pinta de rojo el circulo cuando el puntero pasa sobre el. */
     .icono-red:hover {
       background: #c8191e;
     }
 
-    /* Controla el tamaño de las imagenes SVG del footer. */
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
-
-    /* Estas reglas cambian la pagina cuando se abre en un celular. */
     @media (max-width: 700px) {
-      /* Permite que el menu desaparezca al bajar por la pagina. */
+
       header {
         position: static;
       }
 
-      /* Coloca el logo a un lado y la hamburguesa al otro. */
       nav {
         justify-content: space-between;
       }
 
-      /* Muestra el simbolo de hamburguesa. */
       .menu-icon {
         display: block;
       }
 
-      /* Mantiene ocultas las opciones hasta tocar la hamburguesa. */
       .menu-links {
         display: none;
         width: 100%;
         padding-top: 15px;
       }
 
-      /* Muestra las opciones cuando la casilla del menu queda marcada. */
       .menu-toggle:checked ~ .menu-links {
         display: flex;
       }
 
-      /* Coloca cada opcion del menu movil en una fila completa. */
       .menu-links a {
         width: 100%;
         padding: 10px;
@@ -254,7 +196,6 @@
         border-top: 1px solid #222;
       }
 
-      /* Ajusta la altura de las fotografias para pantallas pequeñas. */
       .card img {
         height: 290px;
       }
@@ -263,162 +204,99 @@
 </head>
 
 <body>
-  <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
-    <!-- El menu permite visitar las otras paginas del sitio. -->
     <nav>
-      <!-- Al tocar el logo se regresa a la pagina de inicio. -->
       <a href="index.html">
-        <!-- Esta ruta busca el logo dentro de la carpeta assets/img. -->
         <img src="assets/img/logo-cuca-barber.png" alt="Logo CUCA Barber">
       </a>
-
-      <!-- Esta casilla guarda si el menu del celular esta abierto o cerrado. -->
       <input type="checkbox" id="menu-principal" class="menu-toggle">
-
-      <!-- Al tocar este simbolo se muestran las opciones en un celular. -->
       <label for="menu-principal" class="menu-icon">☰</label>
-
-      <!-- Aqui se agrupan todas las opciones visibles del menu. -->
       <div class="menu-links">
-        <!-- Abre la pagina de cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
-
-        <!-- Abre la pagina de cortes para niños. -->
         <a href="cortes-ninos.html">Niños</a>
-
-        <!-- Abre la pagina de tintes y bases. -->
         <a href="tintes-bases.html">Tintes</a>
-
-        <!-- Abre la pagina de diseños en cortes. -->
         <a href="disenios-cortes.html">Diseños</a>
-
-        <!-- Mantiene al visitante en la pagina actual de barbeados. -->
         <a href="barbeados.html">Barbeados</a>
-
-        <!-- Abre la pagina que presenta al personal. -->
         <a href="nosotros.html">Nosotros</a>
-
-        <!-- Abre el formulario visual para reservar una cita. -->
         <a href="reservar.html">Reservar</a>
-
-        <!-- Abre la pagina con los datos de contacto. -->
         <a href="contacto.html">Contacto</a>
       </div>
     </nav>
   </header>
 
-  <!-- Aqui comienza la informacion principal sobre los barbeados. -->
   <main>
-    <!-- Este titulo identifica la pagina. -->
     <h1>Barbeados</h1>
-
-    <!-- Esta frase presenta las opciones disponibles antes de las tarjetas. -->
     <p> Galeria de servicios para barbeados.</p>
-
-    <!-- Este grupo acomoda las tres tarjetas de servicios. -->
     <div class="galeria">
-      <!-- Primera tarjeta: perfilado y orden de la forma de la barba. -->
       <article class="card">
-        <!-- Agrega barbeado_1.jpg dentro de assets/img para mostrar esta fotografia. -->
         <img src="assets/img/barbeado_1.jpg" alt="Perfilado clasico de barba">
-
-        <!-- Esta parte contiene el nombre, detalles, precio y boton. -->
         <div class="card-info">
-          <!-- Nombre del primer servicio. -->
           <h2>Perfilado clasico</h2>
 
-          <!-- Estos puntos explican lo que incluye el servicio. -->
           <ul>
             <li>Definicion de mejillas y cuello.</li>
             <li>Recorte para mantener una forma pareja.</li>
             <li>Acabado con maquina y navaja.</li>
           </ul>
 
-          <!-- Precio establecido para el primer servicio. -->
           <p class="precio">Bs 35</p>
 
-          <!-- Abre la pagina donde se puede reservar una cita. -->
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
 
-      <!-- Segunda tarjeta: retiro completo de la barba. -->
       <article class="card">
         <img src="assets/img/barbeado_2.jpg" alt="Afeitado completo">
 
-        <!-- Esta parte contiene el nombre, detalles, precio y boton. -->
         <div class="card-info">
-          <!-- Nombre del segundo servicio. -->
           <h2>Afeitado completo</h2>
 
-          <!-- Estos puntos explican lo que incluye el servicio. -->
           <ul>
             <li>Preparacion de la piel antes del afeitado.</li>
             <li>Afeitado cuidadoso con navaja.</li>
             <li>Limpieza y producto para despues del afeitado.</li>
           </ul>
 
-          <!-- Precio establecido para el segundo servicio. -->
           <p class="precio">Bs 40</p>
 
-          <!-- Abre la pagina donde se puede reservar una cita. -->
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
-
-      <!-- Tercera tarjeta: servicio completo para barba larga o abundante. -->
       <article class="card">
         <img src="assets/img/barbeado_3.jpg" alt="Perfilado italiano de barba">
-
-        <!-- Esta parte contiene el nombre, detalles, precio y boton. -->
         <div class="card-info">
-          <!-- Nombre del tercer servicio. -->
           <h2>Perfilado italiano de barba</h2>
-
-          <!-- Estos puntos explican lo que incluye el servicio. -->
           <ul>
             <li>Perfilado completo de la barba.</li>
             <li>Recorte y limpieza de bigote.</li>
             <li>Acabado con maquina y navaja.</li>
           </ul>
 
-          <!-- Precio establecido para el tercer servicio. -->
           <p class="precio">Bs 50</p>
-
-          <!-- Abre la pagina donde se puede reservar una cita. -->
           <a class="boton" href="reservar.html">Reservar</a>
         </div>
       </article>
     </div>
   </main>
 <footer>
-    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
-    <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
-
-    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
-    <div class="redes-sociales">
-      <!-- este icono lleva al perfil de Facebook. -->
+   <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
+     <div class="redes-sociales">
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
 
-      <!-- Este icono lleva al perfil de instagram -->
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
 
-      <!-- Este enlace lleva al perfil de WhatsApp. -->
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
 
-      <!-- Este icono lleva al perfil de tiktok-->
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
-    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 </body>
