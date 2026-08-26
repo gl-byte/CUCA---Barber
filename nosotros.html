@@ -1,33 +1,19 @@
 <!DOCTYPE html>
-<!-- Indica que este archivo contiene una pagina web actual. -->
 <html lang="es">
-<!-- Aqui comienza la pagina y se indica que su contenido esta escrito en español. -->
-
 <head>
-  <!-- Permite mostrar correctamente la letra ñ, los acentos y otros simbolos. -->
   <meta charset="UTF-8">
-
-  <!-- Hace que la pagina se acomode al ancho de un celular o una computadora. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>Nosotros | CUCA Barber</title>
-
   <style>
-    /* Mantiene los tamaños de todos los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
-
-    /* Da el fondo oscuro, el color blanco y el tipo de letra a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #050505;
       color: white;
     }
-
-    /* Forma las franjas oscuras de la parte superior y del pie de pagina. */
     header,
     footer {
       background: #080808;
@@ -35,8 +21,6 @@
       padding: 20px;
       border-block: 1px solid #333;
     }
-
-    /* Ordena el logo y las opciones del menu. */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -44,32 +28,22 @@
       justify-content: center;
       align-items: center;
     }
-
-    /* Define el espacio que ocupa el logo. */
     nav img {
       width: 100px;
       height: 55px;
       object-fit: contain;
     }
-
-    /* Presenta las opciones del menu con letras blancas y sin subrayado. */
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
-    /* Pinta de rojo una opcion cuando el puntero pasa sobre ella. */
     nav a:hover {
       color: #c8191e;
     }
-
-    /* Oculta la casilla que controla el menu del celular. */
     .menu-toggle {
       display: none;
     }
-
-    /* Oculta el simbolo de hamburguesa mientras se vea en computadora. */
     .menu-icon {
       display: none;
       color: white;
@@ -77,8 +51,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    /* Coloca las opciones del menu una al lado de otra en pantallas amplias. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -86,30 +58,22 @@
       align-items: center;
       justify-content: center;
     }
-
-    /* Centra el contenido y evita que se extienda demasiado. */
     main {
       max-width: 1200px;
       margin: auto;
       padding: 35px 20px 55px;
     }
-
-    /* Da color y tamaño al titulo principal de la pagina. */
     h1 {
       font-size: 45px;
       color: #c8191e;
       margin-bottom: 10px;
     }
-        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
     .redes-sociales {
       display: flex;
       justify-content: center;
       gap: 18px;
       margin-top: 18px;
     }
-
-    /* Cada red social está dentro de un círculo.
-       Si quieres iconos más grandes, cambia width y height. */
     .icono-red {
       width: 56px;
       height: 56px;
@@ -122,35 +86,25 @@
       text-decoration: none;
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
-
-    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
     .icono-red:hover {
       background: #c8191e;
     }
-
-    /* Esta regla controla la imagen SVG que está dentro del círculo.
-       Los SVG están guardados en assets/icons. */
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
-    /* Suaviza el color de la indicacion que aparece debajo del titulo. */
     .instruccion {
       color: #d5d5d5;
       line-height: 1.6;
       margin-bottom: 30px;
     }
-
-    /* Acomoda las cinco tarjetas del personal en columnas. */
     .personal {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 28px;
     }
-
-    /* Forma cada tarjeta con fondo oscuro, borde y sombra roja suave. */
     .empleado {
       overflow: hidden;
       background: #101010;
@@ -158,8 +112,6 @@
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(200, 25, 30, .18);
     }
-
-    /* Reserva un espacio amplio para ver completa la foto de cada empleado. */
     .empleado img {
       width: 100%;
       height: 360px;
@@ -167,101 +119,65 @@
       background: #050505;
       padding: 10px;
     }
-
-    /* Separa la informacion personal de los bordes de la tarjeta. */
     .empleado-info {
       padding: 20px;
     }
-
-    /* Presenta el nombre del empleado con buen tamaño y sin espacio superior. */
     .empleado h2 {
       margin-top: 0;
       margin-bottom: 15px;
       font-size: 25px;
     }
-
-    /* Separa cada dato personal para que sea facil de leer y modificar. */
     .empleado p {
       margin: 9px 0;
       color: #d8d8d8;
       line-height: 1.5;
     }
-
-    /* Resalta los nombres de cada dato, por ejemplo Cargo o Horario. */
     .empleado strong {
       color: #c8191e;
     }
-
-    /* Estas reglas se aplican solamente a pantallas de 700 pixeles o menos. */
     @media (max-width: 700px) {
-      /* Permite que el menu desaparezca al bajar por la pagina en un celular. */
       header {
         position: static;
       }
-
-      /* Coloca el logo a un lado y la hamburguesa al otro. */
       nav {
         justify-content: space-between;
       }
-
-      /* Muestra el simbolo de hamburguesa en celulares. */
       .menu-icon {
         display: block;
       }
-
-      /* Mantiene ocultas las opciones hasta tocar la hamburguesa. */
       .menu-links {
         display: none;
         width: 100%;
         padding-top: 15px;
       }
-
-      /* Muestra las opciones cuando la casilla del menu queda marcada. */
       .menu-toggle:checked ~ .menu-links {
         display: flex;
       }
-
-      /* Coloca cada opcion del menu movil en una fila completa. */
       .menu-links a {
         width: 100%;
         padding: 10px;
         text-align: center;
         border-top: 1px solid #222;
       }
-
-      /* Ajusta la altura de las fotos para que entren mejor en el celular. */
       .empleado img {
         height: 310px;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- Esta es la parte superior que contiene el logo y las opciones del sitio. -->
   <header>
-    <!-- El menu permite visitar las otras paginas de CUCA Barber. -->
     <nav>
-      <!-- Al tocar el logo se regresa a la pagina de inicio. -->
       <a href="index.html">
-        <!-- Esta ruta busca el logo dentro de la carpeta assets/img. -->
         <img src="assets/img/logo-cuca-barber.png" alt="Logo de CUCA Barber">
       </a>
-
-      <!-- Esta casilla guarda si el menu del celular esta cerrado o abierto. -->
       <input type="checkbox" id="menu-principal" class="menu-toggle">
-
-      <!-- Al tocar este simbolo se abre o se cierra el menu en un celular. -->
       <label for="menu-principal" class="menu-icon">☰</label>
-
-      <!-- Aqui se agrupan todas las opciones visibles del menu. -->
       <div class="menu-links">
-        <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
         <a href="disenios-cortes.html">Diseños</a>
-        <!-- Abre la pagina que muestra los servicios para barba. -->
         <a href="barbeados.html">Barbeados</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="reservar.html">Reservar</a>
@@ -269,165 +185,81 @@
       </div>
     </nav>
   </header>
-
-  <!-- Aqui comienza la informacion principal sobre el personal. -->
   <main>
-    <!-- Este titulo identifica la pagina. -->
     <h1>Nosotros</h1>
-
-    <!-- Esta indicacion recuerda exactamente que informacion se debe completar. -->
     <p>
-      Informacion de los empleados de CUCA Barber. 
+      Informacion de los empleados de CUCA Barber.
     </p>
-
-    <!-- Este grupo acomoda las cinco tarjetas del personal. -->
     <div class="personal">
-      <!-- Tarjeta reservada para el primer empleado. -->
       <article class="empleado">
-        <!-- Agrega la foto con el nombre Empleado_1.jpg dentro de assets/img. -->
         <img src="assets/img/Empleado_1.jpg" alt="LUIS 'EL PUPI'">
-
-        <!-- Esta parte contiene todos los datos que se deben cambiar. -->
         <div class="empleado-info">
-
           <h2>LUIS "EL PUPI"</h2>
-
-          <!-- Cambia los puntos por el cargo verdadero de esta persona. -->
           <p><strong>Cargo:</strong> ................................</p>
-
-          <!-- Escribe aqui los cortes o servicios que realiza mejor. -->
           <p><strong>Especialidad:</strong> ................................</p>
-
-          <!-- Indica aqui cuantos años o meses lleva trabajando. -->
           <p><strong>Experiencia:</strong> ................................</p>
-
-          <!-- Coloca aqui los dias y horas en los que atiende. -->
           <p><strong>Horario:</strong> ................................</p>
         </div>
       </article>
-
-      <!-- Tarjeta reservada para el segundo empleado. -->
       <article class="empleado">
-        <!-- Agrega la foto con el nombre Empleado_2.jpg dentro de assets/img. -->
         <img src="assets/img/Empleado_2.jpg" alt="DAVID 'EL CHIVOLIN'">
-
-        <!-- Esta parte contiene todos los datos que se deben cambiar. -->
         <div class="empleado-info">
           <h2>DAVID "EL CHIVOLIN"</h2>
-
-          <!-- Cambia los puntos por el cargo verdadero de esta persona. -->
           <p><strong>Cargo:</strong> ................................</p>
-
-          <!-- Escribe aqui los cortes o servicios que realiza mejor. -->
           <p><strong>Especialidad:</strong> ................................</p>
-
-          <!-- Indica aqui cuantos años o meses lleva trabajando. -->
           <p><strong>Experiencia:</strong> ................................</p>
-
-          <!-- Coloca aqui los dias y horas en los que atiende. -->
           <p><strong>Horario:</strong> ................................</p>
         </div>
       </article>
-
-      <!-- Tarjeta reservada para el tercer empleado. -->
       <article class="empleado">
-        <!-- Agrega la foto con el nombre Empleado_3.jpg dentro de assets/img. -->
         <img src="assets/img/Empleado_3.jpg" alt="BRAYAN 'EL CAMBA'">
-
-        <!-- Esta parte contiene todos los datos que se deben cambiar. -->
         <div class="empleado-info">
           <h2>BRAYAN "EL CAMBA"</h2>
-
-          <!-- Cambia los puntos por el cargo verdadero de esta persona. -->
           <p><strong>Cargo:</strong> ................................</p>
-
-          <!-- Escribe aqui los cortes o servicios que realiza mejor. -->
           <p><strong>Especialidad:</strong> ................................</p>
-
-          <!-- Indica aqui cuantos años o meses lleva trabajando. -->
           <p><strong>Experiencia:</strong> ................................</p>
-
-          <!-- Coloca aqui los dias y horas en los que atiende. -->
           <p><strong>Horario:</strong> ................................</p>
         </div>
       </article>
-
-      <!-- Tarjeta reservada para el cuarto empleado. -->
       <article class="empleado">
-        <!-- Agrega la foto con el nombre Empleado_4.jpg dentro de assets/img. -->
         <img src="assets/img/Empleado_4.jpg" alt="EPI 'EL POTER'">
-
-        <!-- Esta parte contiene todos los datos que se deben cambiar. -->
         <div class="empleado-info">
           <h2>EPI "EL POTER"</h2>
-
-          <!-- Cambia los puntos por el cargo verdadero de esta persona. -->
           <p><strong>Cargo:</strong> ................................</p>
-
-          <!-- Escribe aqui los cortes o servicios que realiza mejor. -->
           <p><strong>Especialidad:</strong> ................................</p>
-
-          <!-- Indica aqui cuantos años o meses lleva trabajando. -->
           <p><strong>Experiencia:</strong> ................................</p>
-
-          <!-- Coloca aqui los dias y horas en los que atiende. -->
           <p><strong>Horario:</strong> ................................</p>
         </div>
       </article>
-
-      <!-- Tarjeta reservada para el quinto empleado. -->
       <article class="empleado">
-        <!-- Agrega la foto con el nombre Empleado_5.jpg dentro de assets/img. -->
         <img src="assets/img/Empleado_5.jpg" alt="CARLITOS 'EL KISQUILIN'">
-
-        <!-- Esta parte contiene todos los datos que se deben cambiar. -->
         <div class="empleado-info">
           <h2>CARLITOS "EL KISQUILIN"</h2>
-
-          <!-- Cambia los puntos por el cargo verdadero de esta persona. -->
           <p><strong>Cargo:</strong> ................................</p>
-
-          <!-- Escribe aqui los cortes o servicios que realiza mejor. -->
           <p><strong>Especialidad:</strong> ................................</p>
-
-          <!-- Indica aqui cuantos años o meses lleva trabajando. -->
           <p><strong>Experiencia:</strong> ................................</p>
-
-          <!-- Coloca aqui los dias y horas en los que atiende. -->
           <p><strong>Horario:</strong> ................................</p>
         </div>
       </article>
     </div>
   </main>
- <footer>
-    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
+  <footer>
     <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
-
-    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
     <div class="redes-sociales">
-      <!-- este icono lleva al perfil de Facebook. -->
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
-
-      <!-- Este icono lleva al perfil de instagram -->
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
-
-      <!-- Este enlace lleva al perfil de WhatsApp. -->
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
-
-      <!-- Este icono lleva al perfil de tiktok-->
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
-    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 </body>
-
 </html>
