@@ -1,19 +1,32 @@
 <!DOCTYPE html>
+<!-- Indica que este archivo contiene una pagina web actual. -->
 <html lang="es">
+<!-- Aqui comienza la pagina y se indica que el contenido esta escrito en español. -->
 <head>
+  <!-- Permite mostrar correctamente la letra ñ, acentos y simbolos. -->
   <meta charset="UTF-8">
+  <!-- Adapta el ancho de la pagina a celulares y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Usa el logo de CUCA Barber como icono de la pestaña del navegador. -->
+  <link rel="icon" type="image/png" href="assets/img/logo-cuca-barber.png">
+  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>Contacto</title>
+
   <style>
+    /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
+
+    /* Da fondo oscuro, letras blancas y el mismo tipo de letra a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #050505;
       color: white;
     }
+
+    /* Forma las franjas oscuras del menu y del pie de pagina. */
     header,
     footer {
       background: #080808;
@@ -21,6 +34,8 @@
       padding: 20px;
       border-block: 1px solid #333;
     }
+
+    /* Ordena el logo y todas las opciones del menu. */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -28,24 +43,32 @@
       justify-content: center;
       align-items: center;
     }
+
+    /* Define el tamaño del logo sin deformar su imagen. */
     nav img {
       width: 100px;
       height: 55px;
       object-fit: contain;
     }
+
+    /* Deja las opciones del menu blancas, marcadas y sin subrayado. */
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
 
+    /* Pinta una opcion de rojo cuando el puntero pasa sobre ella. */
     nav a:hover {
       color: #c8191e;
     }
 
+    /* Oculta la casilla que controla el menu para celular. */
     .menu-toggle {
       display: none;
     }
+
+    /* Oculta la hamburguesa mientras se vea la pagina en computadora. */
     .menu-icon {
       display: none;
       color: white;
@@ -53,6 +76,8 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    /* Coloca las opciones una al lado de otra en pantallas amplias. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -61,16 +86,20 @@
       justify-content: center;
     }
 
+    /* Centra la informacion y limita su ancho para facilitar la lectura. */
     main {
       max-width: 900px;
       margin: auto;
       padding: 35px 20px;
     }
+
+    /* Da tamaño y color rojo al titulo principal. */
     h1 {
       font-size: 45px;
       color: #c8191e;
     }
 
+    /* Forma cada cuadro donde se agrupan datos relacionados. */
     .caja {
       background: #111;
       border: 1px solid #333;
@@ -78,6 +107,8 @@
       padding: 20px;
       margin-bottom: 20px;
     }
+
+    /* Convierte el enlace de WhatsApp en un boton rojo. */
     .boton {
       display: inline-block;
       padding: 12px 16px;
@@ -87,6 +118,13 @@
       border-radius: 5px;
       font-weight: bold;
     }
+
+    /* Agrupa los botones de contacto y permite que se acomoden en celular. */
+    .acciones-contacto { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+    /* Crea un botón alternativo con fondo transparente. */
+    .boton-secundario { border: 1px solid #ef233c; background: transparent; }
+        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
     .redes-sociales {
       display: flex;
       justify-content: center;
@@ -94,6 +132,8 @@
       margin-top: 18px;
     }
 
+    /* Cada red social está dentro de un círculo.
+       Si quieres iconos más grandes, cambia width y height. */
     .icono-red {
       width: 56px;
       height: 56px;
@@ -107,15 +147,20 @@
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
 
+    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
     .icono-red:hover {
       background: #c8191e;
     }
+
+    /* Esta regla controla la imagen SVG que está dentro del círculo.
+       Los SVG están guardados en assets/icons. */
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
+    /* Ajusta el espacio donde se mostrara el mapa o contenido insertado. */
     iframe {
       width: 100%;
       height: 300px;
@@ -123,6 +168,7 @@
       border-radius: 8px;
     }
 
+    /* Estas reglas cambian el menu cuando la pagina se abre en un celular. */
     @media (max-width: 700px) {
       header {
         position: static;
@@ -153,71 +199,222 @@
         border-top: 1px solid #222;
       }
     }
+
+    /* MEJORA VISUAL: estas variables guardan los colores principales. */
+    :root { --rojo: #ef233c; --gris: #b9bac1; --borde: #2b2b31; }
+
+    /* Suaviza el desplazamiento entre zonas de la página. */
+    html { scroll-behavior: smooth; }
+
+    /* Crea luces decorativas en el fondo sin necesitar más imágenes. */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(239, 35, 60, .15), transparent 25%),
+        radial-gradient(circle at 90% 70%, rgba(239, 35, 60, .08), transparent 24%),
+        #070708;
+    }
+
+    /* Dibuja una franja inspirada en el poste tradicional de barbería. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 4px;
+      background: repeating-linear-gradient(120deg, var(--rojo) 0 30px, white 30px 60px, #1515a8 60px 90px);
+    }
+
+    /* Mantiene el menú visible y crea un efecto de vidrio oscuro. */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 20px;
+      background: rgba(8, 8, 9, .9);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Evita que el menú se extienda demasiado en pantallas grandes. */
+    nav { max-width: 1200px; margin: auto; }
+    nav img { transition: transform .25s; }
+    nav img:hover { transform: rotate(-3deg) scale(1.04); }
+
+    /* Convierte los enlaces del menú en píldoras interactivas. */
+    .menu-links a {
+      padding: 9px 11px;
+      border-radius: 999px;
+      transition: color .25s, background .25s, transform .25s;
+    }
+
+    .menu-links a:hover,
+    .menu-links a:focus-visible,
+    .menu-links a[aria-current="page"] {
+      color: white;
+      background: var(--rojo);
+      transform: translateY(-2px);
+    }
+
+    /* Anima la entrada del contenido y mejora el título principal. */
+    main { animation: entrada-suave .7s ease both; }
+    h1 {
+      margin-bottom: 12px;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 0 0 32px rgba(239, 35, 60, .22);
+    }
+
+    /* Dibuja una línea decorativa debajo del título. */
+    h1::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 4px;
+      margin-top: 16px;
+      border-radius: 10px;
+      background: var(--rojo);
+    }
+
+    /* Mejora tarjetas, cajas y formulario con bordes redondeados y profundidad. */
+    .card, .caja, form {
+      border-radius: 18px;
+      border-color: var(--borde);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .card:hover, .caja:hover {
+      transform: translateY(-7px);
+      border-color: var(--rojo);
+      box-shadow: 0 20px 45px rgba(239, 35, 60, .18);
+    }
+
+    /* Acerca ligeramente las fotografías al pasar el puntero. */
+    .card img { transition: transform .4s, filter .4s; }
+    .card:hover img { transform: scale(1.035); filter: contrast(1.08) saturate(1.08); }
+
+    /* Da respuesta visual a los botones y enlaces principales. */
+    .boton, button {
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(239, 35, 60, .23);
+      transition: transform .25s, background .25s, box-shadow .25s;
+    }
+
+    .boton:hover, .boton:focus-visible, button:hover, button:focus-visible {
+      transform: translateY(-3px);
+      background: #ff344e;
+      box-shadow: 0 15px 34px rgba(239, 35, 60, .38);
+    }
+
+    /* Mejora la lectura y la interacción de los iconos del pie. */
+    footer { padding-block: 34px; color: var(--gris); }
+    .icono-red { transition: transform .25s, background .25s, border-color .25s; }
+    .icono-red:hover, .icono-red:focus-visible { transform: translateY(-4px) rotate(-4deg); border-color: var(--rojo); }
+
+    /* Define la animación sencilla de entrada. */
+    @keyframes entrada-suave {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Conserva el aspecto de botón de menú en celulares. */
+    @media (max-width: 700px) {
+      .menu-links a { border-radius: 6px; }
+      main { padding-inline: 15px; }
+    }
+
+    /* Respeta a quienes prefieren una navegación sin movimientos. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
+
 <body>
+  <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
+    <!-- El menu permite visitar las otras paginas del sitio. -->
     <nav>
       <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo"></a>
       <input type="checkbox" id="menu-principal" class="menu-toggle">
-      <label for="menu-principal" class="menu-icon">☰</label> 
+      <label for="menu-principal" class="menu-icon">☰</label>
+
+      <!-- Aqui se agrupan las opciones que se muestran en el menu. -->
       <div class="menu-links">
-        
+        <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
         <a href="disenios-cortes.html">Diseños</a>
-        
+        <!-- Abre la pagina que muestra los servicios para barba. -->
         <a href="barbeados.html">Barbeados</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="reservar.html">Reservar</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="contacto.html" aria-current="page">Contacto</a>
       </div>
     </nav>
   </header>
+
+  <!-- Aqui comienza la informacion para contactar y ubicar la barberia. -->
   <main>
+    <!-- Este titulo identifica la pagina. -->
     <h1>Contactanos</h1>
+
+    <!-- Este cuadro contiene los datos principales de CUCA Barber. -->
     <div class="caja">
+      <!-- Muestra el nombre del negocio. -->
       <h2>CUCA Barber</h2>
+      <!-- Muestra el numero que se utiliza para consultas y reservas. -->
       <p><strong>WhatsApp:</strong> 74110827</p>
+      <!-- Muestra los dias y horas de atencion. -->
       <p><strong>Horario:</strong> Lunes a sábado, 10:00 a 20:00</p>
+      <!-- Muestra la ubicacion exacta. -->
       <p><strong>Ubicación:</strong> Av Ejercito Entre Tejerina y Tarapacá..</p>
-      <a class="boton" href="https://wa.me/59174110827" target="_blank">Escribir por WhatsApp</a>
+      <!-- Abre una conversacion de WhatsApp en otra pestaña. -->
+      <!-- Los tres botones realizan una acción útil sin JavaScript. -->
+      <div class="acciones-contacto">
+        <a class="boton" href="https://wa.me/59174110827" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="boton boton-secundario" href="tel:+59174110827">Llamar ahora</a>
+        <a class="boton boton-secundario" href="https://www.google.com/maps/search/?api=1&amp;query=-17.96906549941288%2C-67.10434542864489" target="_blank" rel="noopener">Abrir en Google Maps</a>
+      </div>
     </div>
+
+    <!-- Este cuadro reserva el espacio para mostrar una ubicacion o contenido insertado. -->
     <div class="caja">
+      <!-- Nombra el contenido que aparecera dentro del cuadro. -->
       <h2>Ubicacion en Google Maps</h2>
-      <map name="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d237.20041534560474!2d-67.10412838541417!3d-17.969120387077343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2b1006614e6f9%3A0x362ca915c3a139eb!2sCUCA%20Barber!5e0!3m2!1ses!2sbo!4v1787717422811!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      </map>
-    </div>
+      <!-- Aqui se muestra la ubicacion en google maps exacta. -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d266.24848446102936!2d-67.10407828303556!3d-17.969105639789895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2b1006614e6f9%3A0x362ca915c3a139eb!2sCUCA%20Barber!5e0!3m2!1ses-419!2sbo!4v1789019364985!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div> 
   </main>
   <footer>
-    
+    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
     <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
 
-    
+    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
     <div class="redes-sociales">
-      
+      <!-- este icono lleva al perfil de Facebook. -->
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
 
-      
+      <!-- Este icono lleva al perfil de instagram -->
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
 
-      
+      <!-- Este enlace lleva al perfil de WhatsApp. -->
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
 
-      
+      <!-- Este icono lleva al perfil de tiktok-->
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
-    
+    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 </body>

@@ -1,24 +1,43 @@
 <!DOCTYPE html>
+<!-- Indica que este archivo es una pagina web actual. -->
 <html lang="es">
+<!-- Aqui comienza la pagina y se indica que su contenido esta escrito en español. -->
+
 <head>
+  <!-- Permite mostrar correctamente la letra ñ, los acentos y otros simbolos. -->
   <meta charset="UTF-8">
+
+  <!-- Hace que la pagina use correctamente el ancho de celulares y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Usa el logo de CUCA Barber como icono de la pestaña del navegador. -->
+  <link rel="icon" type="image/png" href="assets/img/logo-cuca-barber.png">
+
+  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>CUCA Barber</title>
+
   <style>
+    /* Mantiene los tamaños de todos los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
+
+    /* Da el fondo oscuro, el color blanco y el tipo de letra a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: white;
       background: #050505;
     }
+
+    /* Forma la franja superior donde se encuentra el menu principal. */
     header {
       padding: 18px;
       background: #080808;
       border-bottom: 1px solid #333;
     }
+
+    /* Ordena el logo y las opciones del menu en una misma zona. */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -26,23 +45,33 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* Define el espacio que ocupa el logo dentro del menu. */
     nav img {
       width: 110px;
       height: 60px;
       object-fit: contain;
     }
+
+    /* Presenta las opciones del menu con letras blancas y sin subrayado. */
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
       font-size: 14px;
     }
+
+    /* Pinta de rojo una opcion cuando el puntero pasa sobre ella. */
     nav a:hover {
       color: #c8191e;
     }
+
+    /* Oculta la casilla que permite abrir y cerrar el menu del celular. */
     .menu-toggle {
       display: none;
     }
+
+    /* Oculta el dibujo de hamburguesa mientras la pagina se vea en computadora. */
     .menu-icon {
       display: none;
       color: white;
@@ -50,6 +79,8 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    /* Coloca las opciones del menu una al lado de otra en pantallas amplias. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -57,6 +88,8 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* Crea la portada y usa hero-cuca-barber.jpg como imagen de fondo. */
     .hero {
       min-height: 82vh;
       display: flex;
@@ -66,24 +99,34 @@
       padding: 30px;
       background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .85)), url("assets/img/hero-cuca-barber.jpg") center/cover;
     }
+
+    /* Hace grande el nombre principal de la barberia. */
     h1 {
       font-size: clamp(60px, 13vw, 150px);
       margin: 0;
       line-height: .85;
       font-style: italic;
     }
+
+    /* Deja la palabra CUCA de color blanco. */
     h1 span {
       color: #f5f5f5;
     }
+
+    /* Pinta la palabra BARBER de color rojo. */
     h1 strong {
       color: #c8191e;
     }
+        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
     .redes-sociales {
       display: flex;
       justify-content: center;
       gap: 18px;
       margin-top: 18px;
     }
+
+    /* Cada red social está dentro de un círculo.
+       Si quieres iconos más grandes, cambia width y height. */
     .icono-red {
       width: 56px;
       height: 56px;
@@ -96,26 +139,36 @@
       text-decoration: none;
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
+
+    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
     .icono-red:hover {
       background: #c8191e;
     }
+
+    /* Esta regla controla la imagen SVG que está dentro del círculo.
+       Los SVG están guardados en assets/icons. */
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
+    /* Separa las letras de la frase que aparece debajo del titulo. */
     .frase {
       letter-spacing: 8px;
       font-size: 18px;
       margin-top: 22px;
     }
+
+    /* Dibuja la linea roja decorativa de la portada. */
     .linea {
       width: 170px;
       height: 2px;
       background: #c8191e;
       margin: 22px auto;
     }
+
+    /* Convierte los enlaces principales de la portada en botones rojos. */
     .botones a,
     .boton-card {
       display: inline-block;
@@ -126,24 +179,34 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    /* Separa un poco los dos botones que aparecen en la portada. */
     .botones a {
       margin: 8px;
     }
+
+    /* Limita el ancho de la seccion para que el contenido no quede demasiado extendido. */
     section {
       padding: 45px 20px;
       max-width: 1200px;
       margin: auto;
     }
+
+    /* Da tamaño a los titulos de las secciones. */
     h2 {
       font-size: 38px;
       margin-bottom: 10px;
     }
+
+    /* Organiza las tarjetas en columnas que se acomodan solas. */
     .servicios {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 24px;
       margin-top: 28px;
     }
+
+    /* Forma cada tarjeta con fondo oscuro, borde y una sombra roja suave. */
     .card {
       display: flex;
       flex-direction: column;
@@ -153,6 +216,8 @@
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(200, 25, 30, .18);
     }
+
+    /* Muestra completa la fotografia del servicio sin deformarla. */
     .card img {
       width: 100%;
       height: 310px;
@@ -160,6 +225,8 @@
       background: #050505;
       padding: 10px;
     }
+
+    /* Separa el texto de los bordes de la tarjeta. */
     .card-info {
       display: flex;
       flex: 1;
@@ -167,15 +234,21 @@
       align-items: flex-start;
       padding: 20px;
     }
+
+    /* Evita un espacio innecesario encima del nombre del servicio. */
     .card h3 {
       margin-top: 0;
       font-size: 25px;
     }
+
+    /* Hace que el texto ocupe el espacio disponible y alinea los botones. */
     .card p {
       flex: 1;
       color: #d5d5d5;
       line-height: 1.5;
     }
+
+    /* Forma el pie de pagina con los datos basicos de la barberia. */
     footer {
       background: #080808;
       border-top: 1px solid #333;
@@ -183,112 +256,445 @@
       padding: 25px;
       color: #bbb;
     }
+
+    /* Estas reglas se aplican solamente a pantallas de 700 pixeles o menos. */
     @media (max-width: 700px) {
+      /* Permite que el menu desaparezca al bajar por la pagina en un celular. */
       header {
         position: static;
       }
+
+      /* Coloca el logo a un lado y la hamburguesa al otro. */
       nav {
         justify-content: space-between;
       }
+
+      /* Muestra el dibujo de hamburguesa en celulares. */
       .menu-icon {
         display: block;
       }
+
+      /* Mantiene ocultas las opciones hasta tocar la hamburguesa. */
       .menu-links {
         display: none;
         width: 100%;
         padding-top: 15px;
       }
+
+      /* Muestra las opciones cuando la casilla del menu queda marcada. */
       .menu-toggle:checked ~ .menu-links {
         display: flex;
       }
+
+      /* Coloca cada opcion del menu movil en una fila completa. */
       .menu-links a {
         width: 100%;
         padding: 10px;
         text-align: center;
         border-top: 1px solid #222;
       }
+
+      /* Reduce un poco la altura de las fotos para pantallas pequeñas. */
       .card img {
         height: 280px;
       }
     }
+
+    /* MEJORA VISUAL: estas variables guardan los colores principales en un solo lugar. */
+    :root {
+      --rojo: #ef233c;
+      --rojo-oscuro: #a30f23;
+      --crema: #fff4de;
+      --gris: #aeb0b8;
+    }
+
+    /* Crea luces decorativas en el fondo sin usar imágenes adicionales. */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(239, 35, 60, .15), transparent 28%),
+        radial-gradient(circle at 90% 70%, rgba(239, 35, 60, .09), transparent 25%),
+        #070708;
+    }
+
+    /* Marca la parte superior con una franja inspirada en los postes de barbería. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 4px;
+      background: repeating-linear-gradient(120deg, var(--rojo) 0 30px, white 30px 60px, #1515a8 60px 90px);
+    }
+
+    /* Mantiene el menú visible y crea un efecto de vidrio oscuro. */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 20px;
+      background: rgba(8, 8, 9, .9);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Limita el ancho del menú para que se mantenga ordenado. */
+    nav {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Convierte cada enlace del menú en un botón suave y animado. */
+    .menu-links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+      transition: color .25s, background .25s, transform .25s;
+    }
+
+    .menu-links a:hover,
+    .menu-links a:focus-visible {
+      color: white;
+      background: var(--rojo);
+      transform: translateY(-2px);
+    }
+
+    /* Agrega profundidad a la portada y evita que el texto quede muy ancho. */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 86vh;
+      background: linear-gradient(115deg, rgba(0, 0, 0, .9), rgba(0, 0, 0, .42)), url("assets/img/hero-cuca-barber.jpg") center/cover;
+    }
+
+    .hero-contenido {
+      max-width: 940px;
+      animation: entrada-suave .8s ease both;
+    }
+
+    /* La etiqueta pequeña crea una entrada juvenil antes del título. */
+    .etiqueta {
+      display: inline-block;
+      padding: 7px 13px;
+      color: var(--crema);
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .55);
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-shadow: 0 8px 35px rgba(0, 0, 0, .8);
+    }
+
+    /* Mejora los botones con movimiento, sombra y borde visible al usar teclado. */
+    .botones a,
+    .boton-card {
+      border: 1px solid transparent;
+      box-shadow: 0 10px 25px rgba(200, 25, 30, .25);
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+
+    .botones a:hover,
+    .boton-card:hover {
+      transform: translateY(-3px);
+      background: var(--rojo);
+      box-shadow: 0 14px 32px rgba(239, 35, 60, .38);
+    }
+
+    /* Muestra tres ventajas rápidas debajo de la portada. */
+    .ventajas {
+      max-width: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      padding: 0;
+      background: #29292d;
+    }
+
+    .ventaja {
+      padding: 22px;
+      text-align: center;
+      background: #101013;
+    }
+
+    .ventaja strong {
+      display: block;
+      color: var(--rojo);
+      font-size: 20px;
+    }
+
+    /* Hace que las tarjetas reaccionen al puntero sin dejar de ser sencillas. */
+    .card {
+      position: relative;
+      border-radius: 18px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--rojo);
+      box-shadow: 0 18px 45px rgba(239, 35, 60, .22);
+    }
+
+    .card img {
+      transition: transform .4s, filter .4s;
+    }
+
+    .card:hover img {
+      transform: scale(1.035);
+      filter: contrast(1.08) saturate(1.1);
+    }
+
+    /* Anima discretamente el contenido al abrir la página. */
+    @keyframes entrada-suave {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* En celular las ventajas se colocan una debajo de otra. */
+    @media (max-width: 700px) {
+      .ventajas { grid-template-columns: 1fr; }
+      .frase { letter-spacing: 4px; }
+      .menu-links a { border-radius: 6px; }
+
+      /* Muestra dos servicios por fila para una portada móvil más compacta. */
+      .servicios {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+      }
+
+      /* Reduce las fotografías sin deformarlas. */
+      .card img {
+        height: 155px;
+        padding: 5px;
+      }
+
+      /* Compacta el texto y los espacios internos de cada servicio. */
+      .card-info {
+        padding: 12px;
+      }
+
+      .card h3 {
+        margin-bottom: 7px;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .card p {
+        margin-top: 0;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      /* Hace más pequeño el botón para que entre cómodamente en la tarjeta. */
+      .boton-card {
+        width: 100%;
+        padding: 9px 7px;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+
+    /* Ajusta aún más las tarjetas en celulares muy estrechos. */
+    @media (max-width: 390px) {
+      .servicios { gap: 8px; }
+      .card img { height: 135px; }
+      .card-info { padding: 10px; }
+      .card h3 { font-size: 15px; }
+    }
+
+    /* Respeta a quienes prefieren navegar sin animaciones. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
+
 <body>
+  <!-- Esta es la parte superior que contiene el logo y todas las opciones del sitio. -->
   <header>
+    <!-- El menu ayuda a visitar las otras paginas sin volver atras manualmente. -->
     <nav>
+      <!-- Al tocar el logo se regresa a esta pagina de inicio. -->
       <a href="index.html">
+        <!-- Esta ruta busca el archivo del logo dentro de la carpeta assets/img. -->
         <img src="assets/img/logo-cuca-barber.png" alt="Logo de CUCA Barber">
       </a>
+
+      <!-- Esta casilla guarda si el menu del celular esta cerrado o abierto. -->
       <input type="checkbox" id="menu-principal" class="menu-toggle">
+
+      <!-- Al tocar este simbolo se abre o se cierra el menu en un celular. -->
       <label for="menu-principal" class="menu-icon">☰</label>
+
+      <!-- Aqui se agrupan todas las opciones visibles del menu. -->
       <div class="menu-links">
+        <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
+
+        <!-- Abre la pagina que muestra los cortes para niños. -->
         <a href="cortes-ninos.html">Niños</a>
+
+        <!-- Abre la pagina de Tintes y bases -->
         <a href="tintes-bases.html">Tintes</a>
+
+        <!-- Abre la pagina de Diseños. -->
         <a href="disenios-cortes.html">Diseños</a>
+
+        <!-- Abre la pagina que muestra los servicios para barba. -->
         <a href="barbeados.html">Barbeados</a>
+
+        <!-- Abre la pagina que presenta al personal de la barberia. -->
         <a href="nosotros.html">Nosotros</a>
+
+        <!-- Abre el formulario visual para reservar una cita. -->
         <a href="reservar.html">Reservar</a>
+
+        <!-- Abre la pagina con telefono, horario y ubicacion. -->
         <a href="contacto.html">Contacto</a>
       </div>
     </nav>
   </header>
+
+  <!-- Aqui comienza la informacion principal que se muestra en la pagina. -->
   <main>
+    <!-- Esta portada presenta el nombre de la barberia sobre una fotografia de fondo. -->
     <div class="hero">
-      <div>
+      <!-- Este grupo mantiene juntos el titulo, la frase y los botones. -->
+      <div class="hero-contenido">
+        <!-- Esta etiqueta presenta la propuesta de la barbería. -->
+        <p class="etiqueta">BARBERÍA URBANA · ORURO</p>
+        <!-- Este es el nombre principal que ve primero el visitante. -->
         <h1>
+          <!-- La primera palabra queda blanca gracias al estilo de arriba. -->
           <span>CUCA</span>
+
+          <!-- La segunda palabra queda roja para resaltar la marca. -->
           <strong>BARBER</strong>
         </h1>
+
+        <!-- Esta frase corta acompaña el nombre de la barberia. -->
         <p class="frase">TU ESTILO, TU ACTITUD</p>
+
+        <!-- Este espacio vacio se transforma en una linea roja decorativa. -->
         <div class="linea"></div>
+
+        <!-- Este grupo contiene las dos acciones principales de la portada. -->
         <div class="botones">
+          <!-- Lleva directamente al formulario de reserva. -->
           <a href="reservar.html">Reservar cita</a>
+
+          <!-- Lleva a la pagina de cortes para varones. -->
           <a href="cortes-varones.html">Ver servicios</a>
         </div>
       </div>
     </div>
+
+    <!-- Esta franja resume tres ventajas sin necesitar JavaScript. -->
+    <section class="ventajas" aria-label="Ventajas de CUCA Barber">
+      <div class="ventaja"><strong>Estilo actual</strong><span>Cortes pensados para ti</span></div>
+      <div class="ventaja"><strong>Atención cercana</strong><span>Te asesoramos antes de cortar</span></div>
+      <div class="ventaja"><strong>Reserva fácil</strong><span>Confirma por WhatsApp</span></div>
+    </section>
+
+    <!-- Esta seccion muestra los servicios mediante fotografias y no solo con texto. -->
     <section>
+      <!-- Presenta el nombre de la seccion. -->
       <h2>Servicios principales</h2>
+
+      <!-- Explica brevemente que se puede elegir una variedad. -->
       <p>Selecciona una variedad para conocer los cortes y servicios disponibles.</p>
+
+      <!-- Este grupo acomoda todas las tarjetas en columnas. -->
       <div class="servicios">
+        <!-- Primera tarjeta: cortes para varones. -->
         <article class="card">
+          <!-- Puedes cambiar Corte_Varon_1.jpg por otra foto de un corte para varon. -->
           <img src="assets/img/Corte_Varon_1.jpg" alt="Ejemplo de corte para varon">
+
+          <!-- Esta parte contiene el nombre, detalle y boton de la tarjeta. -->
           <div class="card-info">
+            <!-- Nombre del servicio presentado en esta tarjeta. -->
             <h3>Cortes para varones</h3>
+
+            <!-- Detalle corto que ayuda a reconocer esta variedad. -->
             <p>Cortes clasicos, desvanecidos y estilos modernos.</p>
+
+            <!-- Abre la pagina donde se encuentran los cortes para varones. -->
             <a class="boton-card" href="cortes-varones.html">Ver cortes</a>
           </div>
         </article>
+
+        <!-- Segunda tarjeta: cortes para niños. -->
         <article class="card">
+          <!-- Puedes cambiar Corte_Nino_1.jpg por otra foto de un corte infantil. -->
           <img src="assets/img/Corte_Nino_1.jpg" alt="Ejemplo de corte para niño">
+
+          <!-- Esta parte contiene el nombre, detalle y boton de la tarjeta. -->
           <div class="card-info">
+            <!-- Nombre del servicio presentado en esta tarjeta. -->
             <h3>Cortes para niños</h3>
+
+            <!-- Detalle corto que ayuda a reconocer esta variedad. -->
             <p>Cortes escolares, tradicionales y modernos para niños.</p>
+
+            <!-- Abre la pagina donde se encuentran los cortes para niños. -->
             <a class="boton-card" href="cortes-ninos.html">Ver cortes</a>
           </div>
         </article>
+
+        <!-- Tercera tarjeta: tintes y bases. -->
         <article class="card">
+          <!-- Puedes cambiar Tinte_Base_1.jpg por la fotografia que prefieras. -->
           <img src="assets/img/Tinte_Base_1.jpg" alt="Ejemplo de tinte y base">
+
+          <!-- Esta parte contiene el nombre, detalle y boton de la tarjeta. -->
           <div class="card-info">
+            <!-- Nombre del servicio presentado en esta tarjeta. -->
             <h3>Tintes y bases</h3>
+
+            <!-- Detalle corto que ayuda a reconocer esta variedad. -->
             <p>Aplicacion de color, tonos completos y bases para el cabello.</p>
-            <a class="boton-card" href="index.html">Ver servicio</a>
+
+            <!-- Mantiene el boton y regresa al inicio hasta agregar su pagina propia. -->
+            <a class="boton-card" href="tintes-bases.html">Ver servicio</a>
           </div>
         </article>
+
+        <!-- Cuarta tarjeta: diseños realizados junto al corte. -->
         <article class="card">
+          <!-- Puedes cambiar Diseno_Corte_1.jpg por otro diseño fotografiado. -->
           <img src="assets/img/Diseno_Corte_1.jpg" alt="Ejemplo de diseño en un corte">
+
+          <!-- Esta parte contiene el nombre, detalle y boton de la tarjeta. -->
           <div class="card-info">
+            <!-- Nombre del servicio presentado en esta tarjeta. -->
             <h3>Diseños</h3>
+
+            <!-- Detalle corto que ayuda a reconocer esta variedad. -->
             <p>Lineas, figuras y detalles personalizados sobre el corte.</p>
-            <a class="boton-card" href="index.html">Ver servicio</a>
+
+            <!-- Mantiene el boton y regresa al inicio hasta agregar su pagina propia. -->
+            <a class="boton-card" href="disenios-cortes.html">Ver servicio</a>
           </div>
         </article>
+
+        <!-- Quinta tarjeta: cuidado y perfilado de barba. -->
         <article class="card">
+          <!-- Puedes cambiar barbeado_1.jpg por otra fotografia de este servicio. -->
           <img src="assets/img/barbeado_1.jpg" alt="Ejemplo de barbeado">
+
+          <!-- Esta parte contiene el nombre, detalle y boton de la tarjeta. -->
           <div class="card-info">
+            <!-- Nombre del servicio presentado en esta tarjeta. -->
             <h3>Barbeados</h3>
+
+            <!-- Detalle corto que ayuda a reconocer esta variedad. -->
             <p>Perfilado, afeitado y arreglo completo de la barba.</p>
+
+            <!-- Abre la pagina donde se muestran las tres opciones de barbeado. -->
             <a class="boton-card" href="barbeados.html">Ver servicio</a>
           </div>
         </article>
@@ -296,22 +702,34 @@
     </section>
   </main>
   <footer>
+    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
     <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
+
+    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
     <div class="redes-sociales">
+      <!-- este icono lleva al perfil de Facebook. -->
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
+
+      <!-- Este icono lleva al perfil de instagram -->
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
+
+      <!-- Este enlace lleva al perfil de WhatsApp. -->
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
+
+      <!-- Este icono lleva al perfil de tiktok-->
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
+    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 </body>
+
 </html>

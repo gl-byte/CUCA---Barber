@@ -1,265 +1,616 @@
 <!DOCTYPE html>
+<!-- Indica que el documento usa la versión moderna de HTML. -->
 <html lang="es">
 <head>
+  <!-- Permite mostrar correctamente acentos, eñes y símbolos. -->
   <meta charset="UTF-8">
+  <!-- Adapta el diseño al ancho de celulares, tabletas y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Usa el logo de CUCA Barber como icono de la pestaña del navegador. -->
+  <link rel="icon" type="image/png" href="assets/img/logo-cuca-barber.png">
+  <!-- Resume el contenido para buscadores y enlaces compartidos. -->
+  <meta name="description" content="Conoce la historia, el equipo y la forma de trabajar de CUCA Barber en Oruro.">
+  <!-- Este texto se muestra en la pestaña del navegador. -->
   <title>Nosotros | CUCA Barber</title>
+
   <style>
-    * {
-      box-sizing: border-box;
+    /* VARIABLES: guardan los colores para poder cambiarlos fácilmente. */
+    :root {
+      --rojo: #ef233c;
+      --negro: #070708;
+      --tarjeta: #111114;
+      --blanco: #f7f7f8;
+      --gris: #b9bac1;
+      --borde: #2b2b31;
     }
+
+    /* Hace que el relleno y los bordes formen parte del tamaño de cada elemento. */
+    * { box-sizing: border-box; }
+
+    /* Activa un desplazamiento suave al navegar dentro de la página. */
+    html { scroll-behavior: smooth; }
+
+    /* Define el aspecto general y crea luces decorativas solo con CSS. */
     body {
+      min-height: 100vh;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #050505;
-      color: white;
+      overflow-x: hidden;
+      color: var(--blanco);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(239, 35, 60, .16), transparent 25%),
+        radial-gradient(circle at 92% 62%, rgba(239, 35, 60, .09), transparent 22%),
+        var(--negro);
+      font-family: Arial, Helvetica, sans-serif;
     }
-    header,
-    footer {
-      background: #080808;
-      text-align: center;
-      padding: 20px;
-      border-block: 1px solid #333;
+
+    /* Dibuja una franja superior inspirada en el poste clásico de barbería. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 4px;
+      background: repeating-linear-gradient(120deg, var(--rojo) 0 30px, white 30px 60px, #1515a8 60px 90px);
     }
+
+    /* Mantiene el encabezado visible y le da transparencia tipo vidrio. */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--borde);
+      background: rgba(8, 8, 9, .9);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Acomoda el logo y los enlaces dentro de un ancho cómodo. */
     nav {
+      max-width: 1200px;
+      margin: auto;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
       align-items: center;
+      justify-content: space-between;
+      gap: 18px;
     }
+
+    /* Controla el tamaño del logo sin deformarlo. */
     nav img {
-      width: 100px;
-      height: 55px;
+      width: 108px;
+      height: 58px;
+      display: block;
       object-fit: contain;
+      transition: transform .25s;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #c8191e;
-    }
-    .menu-toggle {
-      display: none;
-    }
+
+    /* Inclina el logo cuando pasa el puntero. */
+    nav img:hover { transform: rotate(-3deg) scale(1.04); }
+
+    /* Oculta la casilla que guarda el estado del menú móvil. */
+    .menu-toggle { display: none; }
+
+    /* El símbolo de menú permanece oculto en pantallas grandes. */
     .menu-icon {
       display: none;
-      color: white;
-      font-size: 32px;
-      font-weight: bold;
+      padding: 5px 10px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 28px;
     }
+
+    /* Agrupa y alinea los enlaces del menú principal. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
+      gap: 5px;
     }
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 35px 20px 55px;
-    }
-    h1 {
-      font-size: 45px;
-      color: #c8191e;
-      margin-bottom: 10px;
-    }
-    .redes-sociales {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-top: 18px;
-    }
-    .icono-red {
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #c8191e;
-      border-radius: 50%;
-      background: #111;
+
+    /* Convierte cada enlace del menú en una pequeña píldora. */
+    .menu-links a {
+      padding: 9px 11px;
+      border-radius: 999px;
+      color: var(--blanco);
       text-decoration: none;
-      box-shadow: 0 0 14px rgba(200, 25, 30, .25);
+      font-size: 14px;
+      font-weight: bold;
+      transition: color .25s, background .25s, transform .25s;
     }
-    .icono-red:hover {
-      background: #c8191e;
+
+    /* Resalta el enlace actual y el enlace señalado. */
+    .menu-links a:hover,
+    .menu-links a:focus-visible,
+    .menu-links a[aria-current="page"] {
+      color: white;
+      background: var(--rojo);
+      transform: translateY(-2px);
     }
-    .icono-red img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
+
+    /* Mantiene cada bloque centrado y con espacio lateral. */
+    .contenedor {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* Presenta la página con un título grande y un adorno circular. */
+    .hero-nosotros {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 92px 0 76px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    /* Crea un círculo decorativo sin usar imágenes. */
+    .hero-nosotros::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: 20px;
+      z-index: -1;
+      width: 360px;
+      height: 360px;
+      border: 55px solid rgba(239, 35, 60, .11);
+      border-radius: 50%;
+      box-shadow: 0 0 80px rgba(239, 35, 60, .16);
+    }
+
+    /* Da estilo de etiqueta al texto pequeño que antecede a los títulos. */
+    .etiqueta {
+      display: inline-block;
+      margin: 0 0 16px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 999px;
+      color: #ffe7bc;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Hace que el título se adapte a cada pantalla. */
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(48px, 9vw, 105px);
+      line-height: .92;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      animation: entrada .75s ease both;
+    }
+
+    /* Pinta una parte del título con el color de la marca. */
+    h1 span {
+      color: var(--rojo);
+      text-shadow: 0 0 35px rgba(239, 35, 60, .28);
+    }
+
+    /* Limita el ancho del texto introductorio. */
+    .bajada,
+    .texto-seccion {
+      max-width: 760px;
+      color: var(--gris);
+      line-height: 1.75;
+    }
+
+    .bajada { margin: 24px 0 0; font-size: 18px; }
+    .texto-seccion { margin: 0 0 32px; }
+
+    /* Da el mismo espacio vertical a las secciones principales. */
+    .seccion { padding: 76px 0; }
+
+    /* Crea títulos de sección claros y modernos. */
+    .titulo-seccion {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1;
+    }
+
+    /* Agrega una línea roja debajo de los títulos de sección. */
+    .titulo-seccion::after {
+      content: "";
       display: block;
+      width: 72px;
+      height: 4px;
+      margin-top: 17px;
+      border-radius: 10px;
+      background: var(--rojo);
     }
-    .instruccion {
-      color: #d5d5d5;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-    .personal {
+
+    /* Coloca la historia y sus cifras en dos columnas. */
+    .historia-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1.35fr .65fr;
       gap: 28px;
     }
+
+    /* Forma una caja común para historia y cifras. */
+    .caja {
+      padding: 30px;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(23, 23, 28, .96), rgba(12, 12, 15, .96));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .25);
+    }
+
+    .caja p { color: var(--gris); line-height: 1.75; }
+
+    /* Ordena las cifras rápidas en una pequeña cuadrícula. */
+    .datos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Resalta cada dato con borde y fondo propios. */
+    .dato {
+      min-height: 125px;
+      display: grid;
+      place-content: center;
+      padding: 16px;
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      text-align: center;
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .dato strong { color: var(--rojo); font-size: 27px; }
+    .dato span { margin-top: 5px; color: var(--gris); font-size: 13px; }
+
+    /* Organiza las tarjetas de valores y del equipo automáticamente. */
+    .valores,
+    .personal {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 22px;
+    }
+
+    /* Crea tarjetas con movimiento al pasar el puntero. */
+    .valor,
     .empleado {
+      position: relative;
       overflow: hidden;
-      background: #101010;
-      border: 2px solid #2c2c2c;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(200, 25, 30, .18);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      background: var(--tarjeta);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
     }
-    .empleado img {
+
+    .valor:hover,
+    .empleado:hover {
+      transform: translateY(-8px);
+      border-color: var(--rojo);
+      box-shadow: 0 20px 45px rgba(239, 35, 60, .16);
+    }
+
+    /* Separa el contenido interno de cada valor. */
+    .valor { padding: 26px; }
+    .valor-icono { font-size: 34px; }
+    .valor h3 { margin: 18px 0 8px; font-size: 21px; }
+    .valor p { margin: 0; color: var(--gris); line-height: 1.6; }
+
+    /* Muestra la fotografía real de cada integrante sin deformarla. */
+    .empleado > img {
       width: 100%;
-      height: 360px;
-      object-fit: contain;
-      background: #050505;
-      padding: 10px;
+      height: 260px;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      border-bottom: 1px solid var(--borde);
+      background: #0b0b0e;
+      transition: transform .4s, filter .4s;
     }
-    .empleado-info {
-      padding: 20px;
+
+    /* Acerca suavemente la fotografía cuando el puntero pasa por la tarjeta. */
+    .empleado:hover > img {
+      transform: scale(1.04);
+      filter: contrast(1.06) saturate(1.08);
     }
-    .empleado h2 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 25px;
+
+    /* Separa los datos del equipo del borde de las tarjetas. */
+    .empleado-info { padding: 22px; }
+    .empleado h3 { margin: 0 0 6px; font-size: 22px; }
+
+    .cargo {
+      margin: 0 0 15px;
+      color: var(--rojo);
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
-    .empleado p {
-      margin: 9px 0;
-      color: #d8d8d8;
-      line-height: 1.5;
+
+    /* Muestra las especialidades como etiquetas pequeñas. */
+    .habilidades { display: flex; flex-wrap: wrap; gap: 7px; }
+    .habilidades span {
+      padding: 6px 9px;
+      border: 1px solid var(--borde);
+      border-radius: 999px;
+      color: var(--gris);
+      background: #0a0a0c;
+      font-size: 12px;
     }
-    .empleado strong {
-      color: #c8191e;
+
+    /* Crea el bloque final que invita a reservar. */
+    .llamada {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 76px;
+      padding: 36px;
+      border: 1px solid rgba(239, 35, 60, .5);
+      border-radius: 22px;
+      background: linear-gradient(120deg, rgba(239, 35, 60, .2), rgba(17, 17, 20, .9));
     }
-    @media (max-width: 700px) {
-      header {
-        position: static;
+
+    .llamada h2 { margin: 0 0 7px; font-size: clamp(27px, 4vw, 40px); }
+    .llamada p { margin: 0; color: var(--gris); }
+
+    /* Convierte los enlaces importantes en botones visibles. */
+    .boton {
+      display: inline-block;
+      flex: 0 0 auto;
+      padding: 13px 20px;
+      border-radius: 9px;
+      color: white;
+      background: var(--rojo);
+      box-shadow: 0 12px 30px rgba(239, 35, 60, .25);
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform .25s, background .25s, box-shadow .25s;
+    }
+
+    .boton:hover,
+    .boton:focus-visible {
+      transform: translateY(-3px);
+      background: #ff344e;
+      box-shadow: 0 16px 35px rgba(239, 35, 60, .38);
+    }
+
+    /* Forma el pie de página y alinea los iconos sociales. */
+    footer {
+      padding: 34px 20px;
+      border-top: 1px solid var(--borde);
+      color: var(--gris);
+      text-align: center;
+      background: #080809;
+    }
+
+    .redes-sociales { display: flex; justify-content: center; gap: 14px; margin: 18px 0; }
+
+    /* Coloca cada red social dentro de un círculo interactivo. */
+    .icono-red {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--borde);
+      border-radius: 50%;
+      background: #111;
+      transition: transform .25s, border-color .25s, background .25s;
+    }
+
+    .icono-red:hover,
+    .icono-red:focus-visible { transform: translateY(-4px) rotate(-4deg); border-color: var(--rojo); background: var(--rojo); }
+    .icono-red img { width: 25px; height: 25px; }
+
+    /* Anima suavemente el título al cargar la página. */
+    @keyframes entrada {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cambia las columnas y el menú en celulares. */
+    @media (max-width: 760px) {
+      nav { flex-wrap: wrap; }
+      .menu-icon { display: block; }
+      .menu-links { display: none; width: 100%; }
+      .menu-toggle:checked ~ .menu-links { display: flex; }
+      .menu-links a { width: 100%; border-radius: 6px; text-align: center; }
+      .historia-grid { grid-template-columns: 1fr; }
+      .llamada { align-items: flex-start; flex-direction: column; }
+      h1 { letter-spacing: -2px; }
+
+      /* Coloca dos integrantes por fila para aprovechar mejor el ancho del celular. */
+      .personal,
+      .valores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
-      nav {
-        justify-content: space-between;
+
+      /* Compacta también las tarjetas que explican los valores de la barbería. */
+      .valor {
+        padding: 15px;
       }
-      .menu-icon {
-        display: block;
+
+      .valor-icono {
+        font-size: 26px;
       }
-      .menu-links {
-        display: none;
-        width: 100%;
-        padding-top: 15px;
+
+      .valor h3 {
+        margin: 10px 0 6px;
+        font-size: 16px;
       }
-      .menu-toggle:checked ~ .menu-links {
-        display: flex;
+
+      .valor p {
+        font-size: 11px;
+        line-height: 1.45;
       }
-      .menu-links a {
-        width: 100%;
-        padding: 10px;
-        text-align: center;
-        border-top: 1px solid #222;
+
+      /* Reduce la altura de las fotos para crear tarjetas móviles compactas. */
+      .empleado > img {
+        height: 165px;
       }
-      .empleado img {
-        height: 310px;
+
+      /* Reduce los espacios internos sin pegar el contenido a los bordes. */
+      .empleado-info {
+        padding: 13px;
       }
+
+      /* Ajusta el nombre para que los apodos largos puedan ocupar dos líneas. */
+      .empleado h3 {
+        min-height: 38px;
+        margin-bottom: 4px;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      /* Hace más pequeños el cargo y las etiquetas de especialidad. */
+      .cargo {
+        margin-bottom: 10px;
+        font-size: 10px;
+      }
+
+      .habilidades {
+        gap: 5px;
+      }
+
+      .habilidades span {
+        padding: 4px 6px;
+        font-size: 10px;
+      }
+    }
+
+    /* Deja las cifras en una columna en celulares estrechos. */
+    @media (max-width: 420px) {
+      /* Conserva dos datos por fila incluso en celulares estrechos. */
+      .datos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .dato { min-height: 105px; padding: 10px; }
+      .dato strong { font-size: 22px; }
+      .contenedor { width: min(100% - 20px, 1180px); }
+
+      /* En celulares estrechos conserva dos tarjetas y reduce un poco más las fotos. */
+      .personal,
+      .valores { gap: 9px; }
+      .empleado > img { height: 145px; }
+      .empleado-info { padding: 11px; }
+      .empleado h3 { font-size: 15px; }
+    }
+
+    /* Desactiva movimientos si el visitante prefiere menos animaciones. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
   </style>
 </head>
+
 <body>
+  <!-- ENCABEZADO: permite visitar todas las páginas sin JavaScript. -->
   <header>
-    <nav>
-      <a href="index.html">
-        <img src="assets/img/logo-cuca-barber.png" alt="Logo de CUCA Barber">
-      </a>
+    <nav aria-label="Navegación principal">
+      <!-- El logo regresa a la página de inicio. -->
+      <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo de CUCA Barber"></a>
+      <!-- Esta casilla invisible abre y cierra el menú móvil con HTML y CSS. -->
       <input type="checkbox" id="menu-principal" class="menu-toggle">
-      <label for="menu-principal" class="menu-icon">☰</label>
+      <label for="menu-principal" class="menu-icon" aria-label="Abrir o cerrar menú">☰</label>
+      <!-- Los enlaces conservan las rutas originales del proyecto. -->
       <div class="menu-links">
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
         <a href="disenios-cortes.html">Diseños</a>
         <a href="barbeados.html">Barbeados</a>
-        <a href="nosotros.html">Nosotros</a>
+        <a href="nosotros.html" aria-current="page">Nosotros</a>
         <a href="reservar.html">Reservar</a>
         <a href="contacto.html">Contacto</a>
       </div>
     </nav>
   </header>
+
+  <!-- CONTENIDO PRINCIPAL: reúne historia, valores, equipo y llamada a la acción. -->
   <main>
-    <h1>Nosotros</h1>
-    <p>
-      Informacion de los empleados de CUCA Barber.
-    </p>
-    <div class="personal">
-      <article class="empleado">
-        <img src="assets/img/Empleado_1.jpg" alt="LUIS 'EL PUPI'">
-        <div class="empleado-info">
-          <h2>LUIS "EL PUPI"</h2>
-          <p><strong>Cargo:</strong> ................................</p>
-          <p><strong>Especialidad:</strong> ................................</p>
-          <p><strong>Experiencia:</strong> ................................</p>
-          <p><strong>Horario:</strong> ................................</p>
-        </div>
-      </article>
-      <article class="empleado">
-        <img src="assets/img/Empleado_2.jpg" alt="DAVID 'EL CHIVOLIN'">
-        <div class="empleado-info">
-          <h2>DAVID "EL CHIVOLIN"</h2>
-          <p><strong>Cargo:</strong> ................................</p>
-          <p><strong>Especialidad:</strong> ................................</p>
-          <p><strong>Experiencia:</strong> ................................</p>
-          <p><strong>Horario:</strong> ................................</p>
-        </div>
-      </article>
-      <article class="empleado">
-        <img src="assets/img/Empleado_3.jpg" alt="BRAYAN 'EL CAMBA'">
-        <div class="empleado-info">
-          <h2>BRAYAN "EL CAMBA"</h2>
-          <p><strong>Cargo:</strong> ................................</p>
-          <p><strong>Especialidad:</strong> ................................</p>
-          <p><strong>Experiencia:</strong> ................................</p>
-          <p><strong>Horario:</strong> ................................</p>
-        </div>
-      </article>
-      <article class="empleado">
-        <img src="assets/img/Empleado_4.jpg" alt="EPI 'EL POTER'">
-        <div class="empleado-info">
-          <h2>EPI "EL POTER"</h2>
-          <p><strong>Cargo:</strong> ................................</p>
-          <p><strong>Especialidad:</strong> ................................</p>
-          <p><strong>Experiencia:</strong> ................................</p>
-          <p><strong>Horario:</strong> ................................</p>
-        </div>
-      </article>
-      <article class="empleado">
-        <img src="assets/img/Empleado_5.jpg" alt="CARLITOS 'EL KISQUILIN'">
-        <div class="empleado-info">
-          <h2>CARLITOS "EL KISQUILIN"</h2>
-          <p><strong>Cargo:</strong> ................................</p>
-          <p><strong>Especialidad:</strong> ................................</p>
-          <p><strong>Experiencia:</strong> ................................</p>
-          <p><strong>Horario:</strong> ................................</p>
-        </div>
-      </article>
-    </div>
+    <!-- PORTADA: presenta la personalidad de la barbería con adornos CSS. -->
+    <section class="hero-nosotros">
+      <div class="contenedor">
+        <p class="etiqueta">CONOCE A LA CREW</p>
+        <h1>Más que cortes, <span>creamos actitud.</span></h1>
+        <p class="bajada">Somos un equipo de barberos de Oruro que disfruta escuchar, asesorar y convertir cada visita en un momento para renovar tu estilo.</p>
+      </div>
+    </section>
+
+    <!-- HISTORIA: explica de forma breve qué busca ofrecer CUCA Barber. -->
+    <section class="seccion contenedor">
+      <div class="historia-grid">
+        <article class="caja">
+          <p class="etiqueta">NUESTRA HISTORIA</p>
+          <h2 class="titulo-seccion">De una idea a una comunidad</h2>
+          <p>CUCA Barber nace con una meta sencilla: crear un lugar donde cualquier persona pueda sentirse cómoda, conversar y salir con un estilo que realmente la represente.</p>
+          <p>Combinamos cortes clásicos con tendencias actuales, cuidando los detalles y explicando cada paso. Aquí no se trata de copiar un look: se trata de adaptarlo a tu rostro, tu cabello y tu personalidad.</p>
+        </article>
+        <!-- Estas cifras describen la variedad actual sin inventar años o clientes. -->
+        <aside class="caja datos" aria-label="Datos de CUCA Barber">
+          <div class="dato"><strong>5</strong><span>barberos en la crew</span></div>
+          <div class="dato"><strong>5</strong><span>tipos de servicio</span></div>
+          <div class="dato"><strong>6 días</strong><span>de atención semanal</span></div>
+          <div class="dato"><strong>100%</strong><span>actitud CUCA</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VALORES: comunica cómo se atiende al cliente. -->
+    <section class="seccion contenedor">
+      <h2 class="titulo-seccion">Nuestra forma de trabajar</h2>
+      <p class="texto-seccion">Cada servicio comienza escuchando lo que buscas y termina revisando juntos el resultado.</p>
+      <div class="valores">
+        <article class="valor"><span class="valor-icono" aria-hidden="true">✦</span><h3>Estilo personal</h3><p>Recomendamos opciones que encajen con tus gustos y sean fáciles de mantener.</p></article>
+        <article class="valor"><span class="valor-icono" aria-hidden="true">◎</span><h3>Detalle y limpieza</h3><p>Cuidamos líneas, contornos y acabados para entregar un resultado ordenado.</p></article>
+        <article class="valor"><span class="valor-icono" aria-hidden="true">⚡</span><h3>Buena energía</h3><p>Queremos que la visita sea cómoda, relajada y con una atención cercana.</p></article>
+      </div>
+    </section>
+
+    <!-- EQUIPO: presenta nombres y especialidades sin imágenes inexistentes. -->
+    <section class="seccion contenedor" id="equipo">
+      <h2 class="titulo-seccion">La crew de CUCA</h2>
+      <p class="texto-seccion">Cinco estilos, una misma meta: que salgas sintiéndote increíble.</p>
+      <div class="personal">
+        <article class="empleado">
+          <!-- Fotografía real del primer integrante del equipo. -->
+          <img src="assets/img/Empleado_1.jpg" alt="Luis El Pupi">
+          <div class="empleado-info"><h3>Luis “El Pupi”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Fades</span><span>Perfilado</span><span>Estilo urbano</span></div></div>
+        </article>
+        <article class="empleado">
+          <!-- Fotografía real del segundo integrante del equipo. -->
+          <img src="assets/img/Empleado_2.jpg" alt="David El Chivolín">
+          <div class="empleado-info"><h3>David “El Chivolín”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Corte clásico</span><span>Tijera</span><span>Acabados</span></div></div>
+        </article>
+        <article class="empleado">
+          <!-- Fotografía real del tercer integrante del equipo. -->
+          <img src="assets/img/Empleado_3.jpg" alt="Brayan El Camba">
+          <div class="empleado-info"><h3>Brayan “El Camba”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Diseños</span><span>Líneas</span><span>Color</span></div></div>
+        </article>
+        <article class="empleado">
+          <!-- Fotografía real del cuarto integrante del equipo. -->
+          <img src="assets/img/Empleado_4.jpg" alt="Epi El Poter">
+          <div class="empleado-info"><h3>Epi “El Poter”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Barba</span><span>Navaja</span><span>Contornos</span></div></div>
+        </article>
+        <article class="empleado">
+          <!-- Fotografía real del quinto integrante del equipo. -->
+          <img src="assets/img/Empleado_5.jpg" alt="Carlitos El Kisquilín">
+          <div class="empleado-info"><h3>Carlitos “El Kisquilín”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Corte infantil</span><span>Fade</span><span>Asesoría</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LLAMADA FINAL: el botón abre la página de reservas. -->
+    <section class="llamada contenedor">
+      <div><h2>¿Listo para un nuevo look?</h2><p>Elige tu servicio y reserva tu espacio con la crew.</p></div>
+      <a class="boton" href="reservar.html">Reservar mi cita</a>
+    </section>
   </main>
+
+  <!-- PIE DE PÁGINA: repite los datos y redes importantes. -->
   <footer>
-    <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
+    <p><strong>CUCA Barber</strong> | Tu estilo, tu actitud.</p>
     <div class="redes-sociales">
-      <a class="icono-red" href="#" aria-label="Facebook">
-        <img src="assets/icons/facebook.svg" alt="Facebook">
-      </a>
-      <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
-        <img src="assets/icons/instagram.svg" alt="Instagram">
-      </a>
-      <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
-        <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
-      </a>
-      <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
-        <img src="assets/icons/tiktok.svg" alt="TikTok">
-      </a>
+      <!-- Este enlace de Facebook se conserva en blanco tal como fue solicitado. -->
+      <a class="icono-red" href="#" aria-label="Facebook"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+      <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
+      <a class="icono-red" href="https://wa.me/59174110827" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"></a>
+      <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&amp;_t=ZS-98wT7evLjPg" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/icons/tiktok.svg" alt="TikTok"></a>
     </div>
-    <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
+    <p>WhatsApp: 74110827 | Oruro - Bolivia</p>
   </footer>
 </body>
 </html>
