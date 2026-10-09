@@ -14,6 +14,7 @@
   <title>Nosotros | CUCA Barber</title>
 
   <style>
+    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
     /* VARIABLES: guardan los colores para poder cambiarlos fácilmente. */
     :root {
       --rojo: #ef233c;
@@ -493,10 +494,42 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
+
+    /* FOTOS DEL LOCAL: el marco conserva el mismo aspecto oscuro del sitio. */
+    .espacio-barberia { padding-top: 20px; }
+    .secuencia-local { overflow: hidden; border: 1px solid #333; border-radius: 22px; background: #111114; }
+    .fotos-local { display: grid; gap: 18px; padding: 18px; }
+    .foto-local { margin: 0; }
+    .foto-local img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
+    .foto-local figcaption { padding: 20px 5px 8px; }
+    .foto-local h3 { margin: 0 0 8px; font-size: 25px; }
+    .foto-local p { margin: 0; color: #b9bac1; line-height: 1.6; }
+    .foto-local[hidden], .controles-local[hidden] { display: none; }
+
+    /* Los controles permiten recorrer las fotos al ritmo del visitante. */
+    .controles-local { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 0 23px 23px; }
+    .botones-local, .puntos-local { display: flex; align-items: center; gap: 8px; }
+    .controles-local button { border: 1px solid #555; border-radius: 8px; padding: 11px 14px; color: white; background: #18181d; font: inherit; cursor: pointer; min-height: 44px; }
+    .controles-local button:hover { border-color: #ef233c; }
+    .puntos-local button { width: 44px; padding: 8px; }
+    .puntos-local button[aria-pressed="true"] { background: #c8191e; border-color: #ef233c; }
+    .secuencia-local :focus-visible { outline: 3px solid #ffe7bc; outline-offset: 3px; }
+    #estado-local { margin: 0; color: #b9bac1; font-size: 13px; }
+
+    /* En móvil las imágenes siguen siendo grandes y los controles se acomodan debajo. */
+    @media (max-width: 600px) {
+      .fotos-local { padding: 10px; }
+      .foto-local img { aspect-ratio: 4 / 3; }
+      .foto-local h3 { font-size: 20px; }
+      .controles-local { padding: 0 15px 15px; }
+      .foto-local p { font-size: 13px; }
+      .botones-local { flex-wrap: wrap; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
   <!-- ENCABEZADO: permite visitar todas las páginas sin JavaScript. -->
   <header>
     <nav aria-label="Navegación principal">
@@ -507,6 +540,8 @@
       <label for="menu-principal" class="menu-icon" aria-label="Abrir o cerrar menú">☰</label>
       <!-- Los enlaces conservan las rutas originales del proyecto. -->
       <div class="menu-links">
+        <!-- La galería reúne estilos de todas las categorías. -->
+        <a href="index.html#galeria">Galería</a>
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
@@ -554,9 +589,77 @@
       <h2 class="titulo-seccion">Nuestra forma de trabajar</h2>
       <p class="texto-seccion">Cada servicio comienza escuchando lo que buscas y termina revisando juntos el resultado.</p>
       <div class="valores">
-        <article class="valor"><span class="valor-icono" aria-hidden="true">✦</span><h3>Estilo personal</h3><p>Recomendamos opciones que encajen con tus gustos y sean fáciles de mantener.</p></article>
-        <article class="valor"><span class="valor-icono" aria-hidden="true">◎</span><h3>Detalle y limpieza</h3><p>Cuidamos líneas, contornos y acabados para entregar un resultado ordenado.</p></article>
-        <article class="valor"><span class="valor-icono" aria-hidden="true">⚡</span><h3>Buena energía</h3><p>Queremos que la visita sea cómoda, relajada y con una atención cercana.</p></article>
+        <!-- Primer valor: explica que cada corte se adapta a la persona. -->
+        <article class="valor">
+          <!-- Símbolo decorativo que representa una idea o destello de estilo. -->
+          <span class="valor-icono" aria-hidden="true">✦</span>
+          <!-- Nombre corto del valor que representa la barbería. -->
+          <h3>Estilo personal</h3>
+          <!-- Texto educativo que explica cómo se aplica este valor. -->
+          <p>Recomendamos opciones que encajen con tus gustos y sean fáciles de mantener.</p>
+        </article>
+
+        <!-- Segundo valor: destaca el cuidado de los detalles del servicio. -->
+        <article class="valor">
+          <!-- El círculo representa precisión y atención. -->
+          <span class="valor-icono" aria-hidden="true">◎</span>
+          <!-- Título visible de la tarjeta. -->
+          <h3>Detalle y limpieza</h3>
+          <!-- Descripción sencilla para el visitante. -->
+          <p>Cuidamos líneas, contornos y acabados para entregar un resultado ordenado.</p>
+        </article>
+
+        <!-- Tercer valor: muestra el ambiente cercano de CUCA Barber. -->
+        <article class="valor">
+          <!-- El rayo comunica energía y una experiencia dinámica. -->
+          <span class="valor-icono" aria-hidden="true">⚡</span>
+          <!-- Título visible de la tarjeta. -->
+          <h3>Buena energía</h3>
+          <!-- Descripción de la experiencia que se quiere ofrecer. -->
+          <p>Queremos que la visita sea cómoda, relajada y con una atención cercana.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- SECUENCIA DEL LOCAL: estas imágenes generadas sirven como presentación ilustrativa. -->
+    <section class="seccion contenedor espacio-barberia" aria-labelledby="titulo-local">
+      <p class="etiqueta">UN ESPACIO CON ACTITUD</p>
+      <h2 id="titulo-local" class="titulo-seccion">Un vistazo a la barbería</h2>
+      <p class="texto-seccion">Recorre esta propuesta visual del ambiente. Imágenes ilustrativas generadas, pendientes de reemplazar por fotos reales del local.</p>
+      <div class="secuencia-local" role="region" aria-label="Fotografías ilustrativas de la barbería">
+        <div class="fotos-local">
+          <!-- Para poner una foto real, reemplaza assets/img/barberia-ambiente.jpg. -->
+          <figure class="foto-local">
+            <img src="assets/img/barberia-ambiente.jpg" alt="Vista ilustrativa de una barbería con sillones negros, espejos y detalles rojos" loading="lazy" width="960" height="640">
+            <figcaption><h3>El ambiente</h3><p>Una propuesta de espacio urbano, cálido y con personalidad.</p></figcaption>
+          </figure>
+          <!-- Para poner una foto real, reemplaza assets/img/barberia-detalles.jpg. -->
+          <figure class="foto-local">
+            <img src="assets/img/barberia-detalles.jpg" alt="Imagen ilustrativa de tijeras, máquinas y toallas sobre una estación de trabajo" loading="lazy" width="960" height="640">
+            <figcaption><h3>Los detalles</h3><p>Herramientas, texturas y pequeños elementos que cuentan la experiencia.</p></figcaption>
+          </figure>
+          <!-- Para poner una foto real, reemplaza assets/img/barberia-sillon.jpg. -->
+          <figure class="foto-local">
+            <img src="assets/img/barberia-sillon.jpg" alt="Imagen ilustrativa de un sillón de barbería junto a un espejo y una zona de espera" loading="lazy" width="960" height="640">
+            <figcaption><h3>Tu próximo cambio de look</h3><p>Un recorrido visual pensado para acompañar el estilo de CUCA.</p></figcaption>
+          </figure>
+        </div>
+
+        <!-- Estos botones aparecen cuando ya pueden cambiar las fotografías. -->
+        <div class="controles-local" hidden>
+          <div class="botones-local">
+            <button id="foto-anterior" type="button" aria-label="Ver fotografía anterior">←</button>
+            <button id="foto-siguiente" type="button" aria-label="Ver fotografía siguiente">→</button>
+            <button id="reproducir-local" type="button" aria-pressed="false">Reproducir</button>
+          </div>
+          <div class="puntos-local" role="group" aria-label="Elegir fotografía">
+            <button type="button" data-foto="0" aria-label="Ver el ambiente" aria-pressed="true">1</button>
+            <button type="button" data-foto="1" aria-label="Ver los detalles" aria-pressed="false">2</button>
+            <button type="button" data-foto="2" aria-label="Ver el sillón" aria-pressed="false">3</button>
+          </div>
+          <p id="estado-local" aria-live="polite">Foto 1 de 3</p>
+        </div>
       </div>
     </section>
 
@@ -568,27 +671,87 @@
         <article class="empleado">
           <!-- Fotografía real del primer integrante del equipo. -->
           <img src="assets/img/Empleado_1.jpg" alt="Luis El Pupi">
-          <div class="empleado-info"><h3>Luis “El Pupi”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Fades</span><span>Perfilado</span><span>Estilo urbano</span></div></div>
+          <!-- Información que aparece debajo de la fotografía. -->
+          <div class="empleado-info">
+            <!-- Nombre o apodo que identifica al integrante. -->
+            <h3>Luis “El Pupi”</h3>
+            <!-- Cargo dentro de la barbería. -->
+            <p class="cargo">Barbero</p>
+            <!-- Estas etiquetas resumen los trabajos que realiza mejor. -->
+            <div class="habilidades">
+              <span>Fades</span>
+              <span>Perfilado</span>
+              <span>Estilo urbano</span>
+            </div>
+          </div>
         </article>
         <article class="empleado">
           <!-- Fotografía real del segundo integrante del equipo. -->
           <img src="assets/img/Empleado_2.jpg" alt="David El Chivolín">
-          <div class="empleado-info"><h3>David “El Chivolín”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Corte clásico</span><span>Tijera</span><span>Acabados</span></div></div>
+          <!-- Información que aparece debajo de la fotografía. -->
+          <div class="empleado-info">
+            <!-- Nombre o apodo que identifica al integrante. -->
+            <h3>David “El Chivolín”</h3>
+            <!-- Cargo dentro de la barbería. -->
+            <p class="cargo">Barbero</p>
+            <!-- Estas etiquetas resumen sus especialidades. -->
+            <div class="habilidades">
+              <span>Corte clásico</span>
+              <span>Tijera</span>
+              <span>Acabados</span>
+            </div>
+          </div>
         </article>
         <article class="empleado">
           <!-- Fotografía real del tercer integrante del equipo. -->
           <img src="assets/img/Empleado_3.jpg" alt="Brayan El Camba">
-          <div class="empleado-info"><h3>Brayan “El Camba”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Diseños</span><span>Líneas</span><span>Color</span></div></div>
+          <!-- Información que aparece debajo de la fotografía. -->
+          <div class="empleado-info">
+            <!-- Nombre o apodo que identifica al integrante. -->
+            <h3>Brayan “El Camba”</h3>
+            <!-- Cargo dentro de la barbería. -->
+            <p class="cargo">Barbero</p>
+            <!-- Estas etiquetas resumen sus especialidades. -->
+            <div class="habilidades">
+              <span>Diseños</span>
+              <span>Líneas</span>
+              <span>Color</span>
+            </div>
+          </div>
         </article>
         <article class="empleado">
           <!-- Fotografía real del cuarto integrante del equipo. -->
           <img src="assets/img/Empleado_4.jpg" alt="Epi El Poter">
-          <div class="empleado-info"><h3>Epi “El Poter”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Barba</span><span>Navaja</span><span>Contornos</span></div></div>
+          <!-- Información que aparece debajo de la fotografía. -->
+          <div class="empleado-info">
+            <!-- Nombre o apodo que identifica al integrante. -->
+            <h3>Epi “El Poter”</h3>
+            <!-- Cargo dentro de la barbería. -->
+            <p class="cargo">Barbero</p>
+            <!-- Estas etiquetas resumen sus especialidades. -->
+            <div class="habilidades">
+              <span>Barba</span>
+              <span>Navaja</span>
+              <span>Contornos</span>
+            </div>
+          </div>
         </article>
         <article class="empleado">
           <!-- Fotografía real del quinto integrante del equipo. -->
           <img src="assets/img/Empleado_5.jpg" alt="Carlitos El Kisquilín">
-          <div class="empleado-info"><h3>Carlitos “El Kisquilín”</h3><p class="cargo">Barbero</p><div class="habilidades"><span>Corte infantil</span><span>Fade</span><span>Asesoría</span></div></div>
+          <!-- Información que aparece debajo de la fotografía. -->
+          <div class="empleado-info">
+            <!-- Nombre o apodo que identifica al integrante. -->
+            <h3>Carlitos “El Kisquilín”</h3>
+            <!-- Cargo dentro de la barbería. -->
+            <p class="cargo">Barbero</p>
+            <!-- Estas etiquetas resumen sus especialidades. -->
+            <div class="habilidades">
+              <span>Corte infantil</span>
+              <span>Fade</span>
+              <span>Asesoría</span>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -612,5 +775,68 @@
     </div>
     <p>WhatsApp: 74110827 | Oruro - Bolivia</p>
   </footer>
+
+  <script>
+    // Localiza las fotografías y los botones de la secuencia del local.
+    const secuencia = document.querySelector(".secuencia-local");
+    const fotografias = [...secuencia.querySelectorAll(".foto-local")];
+    const controles = secuencia.querySelector(".controles-local");
+    const puntos = [...secuencia.querySelectorAll("[data-foto]")];
+    const reproducir = document.getElementById("reproducir-local");
+    let fotoActual = 0;
+    let reloj = null;
+
+    // Muestra una foto y actualiza su número para que el visitante se ubique.
+    function mostrarFoto(numero) {
+      fotoActual = (numero + fotografias.length) % fotografias.length;
+      fotografias.forEach(function (foto, posicion) { foto.hidden = posicion !== fotoActual; });
+      puntos.forEach(function (boton, posicion) { boton.setAttribute("aria-pressed", String(posicion === fotoActual)); });
+      document.getElementById("estado-local").textContent = "Foto " + (fotoActual + 1) + " de " + fotografias.length;
+    }
+
+    // Detiene el recorrido automático cuando el visitante quiere controlar las fotos.
+    function pausarFotos() {
+      clearInterval(reloj);
+      reloj = null;
+      reproducir.textContent = "Reproducir";
+      reproducir.setAttribute("aria-pressed", "false");
+    }
+
+    // Las flechas y los números permiten ir directamente a la imagen deseada.
+    document.getElementById("foto-anterior").addEventListener("click", function () { pausarFotos(); mostrarFoto(fotoActual - 1); });
+    document.getElementById("foto-siguiente").addEventListener("click", function () { pausarFotos(); mostrarFoto(fotoActual + 1); });
+    puntos.forEach(function (boton) {
+      boton.addEventListener("click", function () { pausarFotos(); mostrarFoto(Number(boton.dataset.foto)); });
+    });
+
+    // El recorrido automático empieza solo si el visitante pulsa Reproducir.
+    reproducir.addEventListener("click", function () {
+      if (reloj !== null) { pausarFotos(); return; }
+      reproducir.textContent = "Pausar";
+      reproducir.setAttribute("aria-pressed", "true");
+      reloj = setInterval(function () { mostrarFoto(fotoActual + 1); }, 6000);
+    });
+
+    // Pausa cuando la pestaña queda oculta para no perder el lugar de la visita.
+    document.addEventListener("visibilitychange", function () { if (document.hidden) pausarFotos(); });
+
+    // Permite cambiar de foto deslizando el dedo sobre la imagen en móvil.
+    let inicioDeslizamiento = null;
+    secuencia.querySelector(".fotos-local").addEventListener("pointerdown", function (evento) {
+      if (evento.pointerType === "touch") inicioDeslizamiento = evento.clientX;
+    });
+    secuencia.querySelector(".fotos-local").addEventListener("pointerup", function (evento) {
+      if (inicioDeslizamiento === null) return;
+      const distancia = evento.clientX - inicioDeslizamiento;
+      inicioDeslizamiento = null;
+      if (Math.abs(distancia) > 50) { pausarFotos(); mostrarFoto(fotoActual + (distancia < 0 ? 1 : -1)); }
+    });
+    secuencia.querySelector(".fotos-local").addEventListener("pointercancel", function () { inicioDeslizamiento = null; });
+
+    // Si las funciones interactivas no están activas, todas las fotos se ven una debajo de otra.
+    mostrarFoto(0);
+    controles.hidden = false;
+  </script>
+
 </body>
 </html>

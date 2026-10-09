@@ -13,6 +13,7 @@
   <title>Cortes para Varones</title>
 
   <style>
+    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
     /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
@@ -465,6 +466,7 @@
 </head>
 
 <body>
+  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
   <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
     <!-- El menu permite visitar las otras paginas del sitio. -->
@@ -475,6 +477,8 @@
 
       <!-- Aqui se agrupan las opciones que se muestran en el menu. -->
       <div class="menu-links">
+        <!-- La galería reúne estilos de todas las categorías. -->
+        <a href="index.html#galeria">Galería</a>
         <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html" aria-current="page">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
@@ -518,8 +522,8 @@
           </ul>
           <!-- Esta linea muestra el precio del primer corte. -->
           <p class="precio">Bs 40</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=low-fade">Reservar</a>
         </div>
       </article>
 
@@ -543,8 +547,8 @@
           </ul>
           <!-- Esta linea muestra el precio del segundo corte. -->
           <p class="precio">Bs 40</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=mid-fade">Reservar</a>
         </div>
       </article>
 
@@ -566,8 +570,8 @@
           </ul>
           <!-- Esta linea muestra el precio del tercer corte. -->
           <p class="precio">Bs 30</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=clasico">Reservar</a>
         </div>
       </article>
 
@@ -587,8 +591,8 @@
           </ul>
           <!-- Esta linea muestra el precio del cuarto corte. -->
           <p class="precio">Bs 30</p>
-          <!-- Este boton abre la pagina para reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=escolar">Reservar</a>
         </div>
       </article>
     </div>
@@ -599,6 +603,7 @@
         <h2>¿Ya elegiste tu corte?</h2>
         <p>Reserva tu horario o pregúntanos cuál estilo combina mejor contigo.</p>
       </div>
+      <!-- Estos enlaces llevan a acciones reales del sitio. -->
       <div class="cta-botones">
         <a class="boton" href="reservar.html">Reservar cita</a>
         <a class="boton boton-secundario" href="contacto.html">Hacer una consulta</a>

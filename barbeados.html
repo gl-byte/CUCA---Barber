@@ -17,6 +17,7 @@
   <title>Barbeados | CUCA Barber</title>
 
   <style>
+    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
     /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
@@ -486,6 +487,7 @@
 </head>
 
 <body>
+  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
   <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
     <!-- El menu permite visitar las otras paginas del sitio. -->
@@ -504,6 +506,8 @@
 
       <!-- Aqui se agrupan todas las opciones visibles del menu. -->
       <div class="menu-links">
+        <!-- La galería reúne estilos de todas las categorías. -->
+        <a href="index.html#galeria">Galería</a>
         <!-- Abre la pagina de cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
 
@@ -561,8 +565,8 @@
           <!-- Precio establecido para el primer servicio. -->
           <p class="precio">Bs 35</p>
 
-          <!-- Abre la pagina donde se puede reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=perfilado-clasico">Reservar</a>
         </div>
       </article>
 
@@ -585,8 +589,8 @@
           <!-- Precio establecido para el segundo servicio. -->
           <p class="precio">Bs 40</p>
 
-          <!-- Abre la pagina donde se puede reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=afeitado-completo">Reservar</a>
         </div>
       </article>
 
@@ -609,8 +613,8 @@
           <!-- Precio establecido para el tercer servicio. -->
           <p class="precio">Bs 50</p>
 
-          <!-- Abre la pagina donde se puede reservar una cita. -->
-          <a class="boton" href="reservar.html">Reservar</a>
+          <!-- Lleva este servicio al formulario para que aparezca seleccionado. -->
+          <a class="boton" href="reservar.html?corte=perfilado-italiano">Reservar</a>
         </div>
       </article>
     </div>
@@ -621,6 +625,7 @@
         <h2>Dale forma a tu mejor versión</h2>
         <p>Reserva un perfilado o consulta qué servicio necesita tu barba.</p>
       </div>
+      <!-- Estos enlaces llevan a acciones reales del sitio. -->
       <div class="cta-botones">
         <a class="boton" href="reservar.html">Reservar cita</a>
         <a class="boton boton-secundario" href="contacto.html">Hacer una consulta</a>

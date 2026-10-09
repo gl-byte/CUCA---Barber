@@ -17,6 +17,7 @@
   <title>CUCA Barber</title>
 
   <style>
+    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
     /* Mantiene los tamaños de todos los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
@@ -509,10 +510,57 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
+
+    /* GALERÍA: el espacio superior permite ver el título al llegar desde el menú. */
+    .galeria-cortes { scroll-margin-top: 100px; padding-block: 70px; }
+    .galeria-cortes h2 { margin-top: 10px; font-size: clamp(30px, 5vw, 48px); }
+    .galeria-intro, .galeria-nota { color: #b9bac1; line-height: 1.6; }
+    .galeria-nota { font-size: 13px; }
+    .estilos-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    /* Los botones pequeños permiten ver solo una familia de estilos. */
+    .filtros-galeria { display: flex; flex-wrap: wrap; gap: 9px; margin: 25px 0 15px; }
+    .filtros-galeria button {
+      padding: 10px 15px; border: 1px solid #444; border-radius: 999px;
+      background: #111114; color: white; cursor: pointer; font: inherit;
+    }
+    .filtros-galeria button[aria-pressed="true"] { background: #c8191e; border-color: #ef233c; }
+    .filtros-galeria button:hover { border-color: #ef233c; }
+
+    /* Oculta las tarjetas que no pertenecen al tipo elegido. */
+    .filtros-galeria[hidden], .corte-card[hidden] { display: none; }
+    .corte-card { border-width: 1px; background: linear-gradient(155deg, #1c1c21, #101012); }
+
+    /* La fotografía llena su marco; el número y el tipo quedan sobre ella. */
+    .corte-foto { position: relative; overflow: hidden; }
+    .corte-foto img { height: auto; aspect-ratio: 1; padding: 0; object-fit: cover; display: block; }
+    .corte-numero { position: absolute; top: 14px; left: 14px; font-size: 14px; color: white; background: #000b; padding: 7px; border-radius: 8px; }
+    .corte-tipo { position: absolute; bottom: 14px; left: 14px; background: #c8191e; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: bold; }
+    .corte-precio { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: space-between; margin: 8px 0 18px; }
+    .corte-precio strong { color: #ffe7bc; font-size: 22px; }
+    .corte-precio small { color: #b9bac1; }
+    .corte-card .boton-card { width: 100%; text-align: center; }
+
+    /* Un borde claro ayuda a reconocer el botón elegido con el teclado. */
+    .galeria-cortes :focus-visible { outline: 3px solid #ffe7bc; outline-offset: 4px; }
+
+    /* Mantiene dos tarjetas por fila en móvil, como los otros catálogos. */
+    @media (max-width: 800px) {
+      .estilos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .corte-card .card-info { padding: 13px; }
+      .corte-card h3 { font-size: 17px; line-height: 1.25; }
+      .corte-card p { font-size: 12px; }
+      .corte-precio { flex-direction: column; align-items: flex-start; }
+      .corte-precio strong { font-size: 17px; }
+      .corte-precio small { font-size: 11px; }
+      .corte-card .boton-card { padding: 11px 7px; font-size: 12px; }
+      .filtros-galeria button { font-size: 13px; padding: 9px 12px; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
   <!-- Esta es la parte superior que contiene el logo y todas las opciones del sitio. -->
   <header>
     <!-- El menu ayuda a visitar las otras paginas sin volver atras manualmente. -->
@@ -531,6 +579,8 @@
 
       <!-- Aqui se agrupan todas las opciones visibles del menu. -->
       <div class="menu-links">
+        <!-- La galería reúne estilos de todas las categorías. -->
+        <a href="index.html#galeria">Galería</a>
         <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
 
@@ -587,7 +637,7 @@
           <a href="reservar.html">Reservar cita</a>
 
           <!-- Lleva a la pagina de cortes para varones. -->
-          <a href="cortes-varones.html">Ver servicios</a>
+          <a href="#galeria">Explorar estilos</a>
         </div>
       </div>
     </div>
@@ -700,6 +750,153 @@
         </article>
       </div>
     </section>
+
+    <!-- GALERÍA: reúne ejemplos de todas las categorías en un solo lugar. -->
+    <section id="galeria" class="galeria-cortes" aria-labelledby="titulo-galeria">
+      <p class="etiqueta">ENCUENTRA TU PRÓXIMO LOOK</p>
+      <h2 id="titulo-galeria">Cortes con personalidad</h2>
+      <p class="galeria-intro">Explora estilos, compara precios y reserva el que va contigo.</p>
+      <!-- Los filtros aparecen cuando la página puede responder al elegirlos. -->
+      <div class="filtros-galeria" role="group" aria-label="Filtrar estilos" hidden>
+        <button type="button" data-filtro="Todos" aria-pressed="true">Todos</button>
+        <button type="button" data-filtro="Varones" aria-pressed="false">Varones</button>
+        <button type="button" data-filtro="Niños" aria-pressed="false">Niños</button>
+        <button type="button" data-filtro="Diseños" aria-pressed="false">Diseños</button>
+        <button type="button" data-filtro="Tintes" aria-pressed="false">Tintes</button>
+        <button type="button" data-filtro="Barbeados" aria-pressed="false">Barba</button>
+      </div>
+      <!-- Esta frase informa cuántos estilos coinciden con el filtro elegido. -->
+      <p id="resultado-galeria" class="galeria-nota" aria-live="polite">7 estilos para descubrir</p>
+      <div class="servicios estilos-grid">
+        <!-- Tarjeta 1: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Varones">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-low-fade.jpg" alt="Low Fade: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">01</span>
+            <span class="corte-tipo">Varones</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Low Fade</h3>
+            <p>Degradado bajo y textura arriba. Un acabado limpio que acompaña tu estilo.</p>
+            <div class="corte-precio"><strong>Bs 40</strong><small>40 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=low-fade">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Varones">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-mid-fade.jpg" alt="Mid Fade: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">02</span>
+            <span class="corte-tipo">Varones</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Mid Fade</h3>
+            <p>Degradado medio con laterales definidos y volumen equilibrado.</p>
+            <div class="corte-precio"><strong>Bs 40</strong><small>40 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=mid-fade">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Varones">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-clasico.jpg" alt="Corte clásico · media melena: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">03</span>
+            <span class="corte-tipo">Varones</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Corte clásico · media melena</h3>
+            <p>Trabajo a tijera y un peinado versátil para un look clásico.</p>
+            <div class="corte-precio"><strong>Bs 30</strong><small>30 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=clasico">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 4: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Niños">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-infantil.jpg" alt="Corte infantil tradicional: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">04</span>
+            <span class="corte-tipo">Niños</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Corte infantil tradicional</h3>
+            <p>Cómodo, ordenado y fácil de peinar para el día a día.</p>
+            <div class="corte-precio"><strong>Bs 25</strong><small>30 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=infantil-tradicional">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 5: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Tintes">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-tinte.jpg" alt="Tinte completo: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">05</span>
+            <span class="corte-tipo">Tintes</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Tinte completo</h3>
+            <p>Renueva tu color con un tono uniforme. Evaluación previa del cabello.</p>
+            <div class="corte-precio"><strong>Desde Bs 80</strong><small>90 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=tinte-completo">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 6: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Diseños">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-diseno.jpg" alt="Línea lateral: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">06</span>
+            <span class="corte-tipo">Diseños</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Línea lateral</h3>
+            <p>Un detalle marcado para personalizar tu corte. El corte se cobra aparte.</p>
+            <div class="corte-precio"><strong>Bs 10 adicional</strong><small>30 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=linea-lateral">Reservar este estilo</a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 7: la fotografía es ilustrativa y se puede reemplazar conservando su nombre. -->
+        <article class="card corte-card" data-tipo="Barbeados">
+          <!-- Esta zona muestra el resultado del estilo antes de leer sus detalles. -->
+          <div class="corte-foto">
+            <img src="assets/img/galeria-barba.jpg" alt="Perfilado clásico: ejemplo ilustrativo del estilo" loading="lazy" width="640" height="640">
+            <span class="corte-numero" aria-hidden="true">07</span>
+            <span class="corte-tipo">Barbeados</span>
+          </div>
+          <!-- La información ayuda a comparar el estilo y su precio. -->
+          <div class="card-info">
+            <h3>Perfilado clásico</h3>
+            <p>Mejillas y cuello definidos, barba pareja y contornos cuidados.</p>
+            <div class="corte-precio"><strong>Bs 35</strong><small>30 min aprox.</small></div>
+            <!-- El nombre del corte viaja al formulario para que aparezca elegido. -->
+            <a class="boton-card" href="reservar.html?corte=perfilado-clasico">Reservar este estilo</a>
+          </div>
+        </article>
+      </div>
+      <p class="galeria-nota">Imágenes ilustrativas generadas. Los precios “desde” se confirman tras evaluar el cabello; los diseños son adicionales al corte. Tiempos orientativos.</p>
+    </section>
+
   </main>
   <footer>
     <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
@@ -730,6 +927,38 @@
     <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
+
+  <script>
+    // Busca los botones del filtro y las tarjetas que muestran los estilos.
+    const filtros = document.querySelector(".filtros-galeria");
+    const estilos = [...document.querySelectorAll(".corte-card")];
+    const resultado = document.getElementById("resultado-galeria");
+
+    // Muestra los filtros cuando ya están preparados para responder.
+    filtros.hidden = false;
+
+    // Al elegir una categoría, deja visibles únicamente sus tarjetas.
+    filtros.addEventListener("click", function (evento) {
+      const boton = evento.target.closest("button[data-filtro]");
+      if (!boton) return;
+      const elegido = boton.dataset.filtro;
+      let cantidad = 0;
+
+      // Cada tarjeta conoce la categoría a la que pertenece.
+      estilos.forEach(function (tarjeta) {
+        const mostrar = elegido === "Todos" || tarjeta.dataset.tipo === elegido;
+        tarjeta.hidden = !mostrar;
+        if (mostrar) cantidad++;
+      });
+
+      // Resalta el filtro actual y anuncia cuántos resultados se encontraron.
+      filtros.querySelectorAll("button").forEach(function (opcion) {
+        opcion.setAttribute("aria-pressed", String(opcion === boton));
+      });
+      resultado.textContent = cantidad + (cantidad === 1 ? " estilo disponible" : " estilos disponibles");
+    });
+  </script>
+
 </body>
 
 </html>

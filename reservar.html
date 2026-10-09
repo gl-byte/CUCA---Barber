@@ -13,6 +13,7 @@
   <title>Reservar cita</title>
 
   <style>
+    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
     /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
@@ -381,10 +382,32 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
+
+    /* RESERVA: acomoda la fecha y la hora una junto a otra. */
+    .fecha-hora { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    form input, form select, form textarea { font: inherit; color-scheme: dark; }
+    form label { line-height: 1.5; }
+    form :focus-visible { outline: 3px solid #ffe7bc; outline-offset: 3px; }
+    form textarea { resize: vertical; }
+
+    /* El resumen separa los datos que el cliente está por enviar. */
+    .resumen-reserva { margin-top: 24px; padding: 20px; border: 1px solid #6e2532; border-radius: 14px; background: linear-gradient(120deg, #3a131c, #17171c); }
+    .resumen-reserva h2 { margin: 0 0 12px; font-size: 23px; }
+    .resumen-reserva p { margin: 8px 0; line-height: 1.5; }
+    .estado-reserva { color: #ffe7bc; line-height: 1.5; }
+    .acciones-reserva button { min-height: 44px; font: inherit; font-weight: bold; }
+    .acciones-reserva button:disabled { opacity: .55; cursor: not-allowed; }
+
+    /* En celulares estrechos se evita comprimir el calendario del navegador. */
+    @media (max-width: 480px) {
+      .fecha-hora { grid-template-columns: 1fr; gap: 0; }
+      .acciones-reserva > * { width: 100%; text-align: center; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
   <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
     <!-- El menu permite visitar las otras paginas del sitio. -->
@@ -395,6 +418,8 @@
 
       <!-- Aqui se agrupan las opciones que se muestran en el menu. -->
       <div class="menu-links">
+        <!-- La galería reúne estilos de todas las categorías. -->
+        <a href="index.html#galeria">Galería</a>
         <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
@@ -409,71 +434,129 @@
     </nav>
   </header>
 
-  <!-- Aqui comienza la zona donde el cliente completa su reserva. -->
+  <!-- Aquí comienza la zona donde el cliente completa su solicitud de reserva. -->
   <main>
     <!-- Este titulo identifica el formulario de la pagina. -->
     <h1>Reservar cita</h1>
-    <!-- Estos pasos explican cómo confirmar una reserva sin JavaScript. -->
+    <!-- Estos pasos explican cómo solicitar y confirmar una cita. -->
     <div class="pasos-reserva">
       <div class="paso"><strong>01</strong>Revisa los servicios y elige tu favorito.</div>
       <div class="paso"><strong>02</strong>Anota el día y la hora que prefieres.</div>
       <div class="paso"><strong>03</strong>Confirma la disponibilidad por WhatsApp.</div>
     </div>
 
-    <!-- Este formulario sirve como guía para reunir los datos de la cita. -->
-    <form>
-      <!-- Pide el nombre de la persona que desea reservar. -->
+    <!-- Este formulario reúne los datos y prepara una solicitud para WhatsApp. -->
+    <form id="formulario-reserva" action="https://wa.me/59174110827" method="get">
+      <p class="aviso">Atendemos de lunes a sábado, de 10:00 a 20:00. El horario queda reservado cuando la barbería lo confirma.</p>
+
+      <!-- El nombre y el teléfono permiten identificar y responder al cliente. -->
       <label for="nombre">Nombre completo</label>
-      <!-- Esta caja permite escribir el nombre completo. -->
-      <input id="nombre" name="nombre" type="text" placeholder="Ejemplo: Juan Pérez" required>
-
-      <!-- Pide un numero para poder confirmar la cita. -->
+      <input id="nombre" name="nombre" type="text" placeholder="Ejemplo: Juan Pérez" autocomplete="name" maxlength="80" required>
       <label for="telefono">Teléfono / WhatsApp</label>
-      <!-- Esta caja esta preparada para escribir un numero telefonico. -->
-      <input id="telefono" name="telefono" type="tel" placeholder="Ejemplo: 74110827" required>
+      <input id="telefono" name="telefono" type="tel" placeholder="Ejemplo: 74110827" autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\(\)\-]{7,20}" title="Escribe un número de teléfono válido, con al menos 7 dígitos." maxlength="20" required>
 
-      <!-- Presenta una lista para elegir solamente un servicio. -->
-      <label for="servicio">Servicio</label>
-      <!-- Esta lista contiene los servicios que siguen disponibles. -->
+      <!-- Todas las opciones pertenecen a los servicios que ya ofrece el sitio. -->
+      <label for="servicio">Corte o servicio</label>
       <select id="servicio" name="servicio" required>
-        <!-- Primera opcion disponible dentro de la lista. -->
-        <option>Corte para varones</option>
-        <!-- Segunda opcion disponible dentro de la lista. -->
-        <option>Corte para niños</option>
-        <!-- Tercera opcion disponible dentro de la lista. -->
-        <option>Tintes y bases</option>
-        <!-- Cuarta opcion disponible dentro de la lista. -->
-        <option>Diseños + cortes</option>
-        <!-- Quinta opcion disponible dentro de la lista. -->
-        <option>Barbeados</option>
+        <option value="">Elige tu corte o servicio</option>
+        <optgroup label="Varones">
+          <!-- Low Fade: conserva el precio publicado en su catálogo. -->
+          <option value="low-fade" data-precio="Bs 40" data-minutos="40">Low Fade · Bs 40</option>
+          <!-- Mid Fade: conserva el precio publicado en su catálogo. -->
+          <option value="mid-fade" data-precio="Bs 40" data-minutos="40">Mid Fade · Bs 40</option>
+          <!-- Corte clásico · media melena: conserva el precio publicado en su catálogo. -->
+          <option value="clasico" data-precio="Bs 30" data-minutos="30">Corte clásico · media melena · Bs 30</option>
+          <!-- Corte escolar: conserva el precio publicado en su catálogo. -->
+          <option value="escolar" data-precio="Bs 30" data-minutos="30">Corte escolar · Bs 30</option>
+        </optgroup>
+        <optgroup label="Niños">
+          <!-- Corte infantil tradicional: conserva el precio publicado en su catálogo. -->
+          <option value="infantil-tradicional" data-precio="Bs 25" data-minutos="30">Corte infantil tradicional · Bs 25</option>
+          <!-- Corte infantil moderno: conserva el precio publicado en su catálogo. -->
+          <option value="infantil-moderno" data-precio="Bs 30" data-minutos="30">Corte infantil moderno · Bs 30</option>
+          <!-- Diseño infantil simple: conserva el precio publicado en su catálogo. -->
+          <option value="infantil-diseno" data-precio="Bs 25" data-minutos="30">Diseño infantil simple · Bs 25</option>
+        </optgroup>
+        <optgroup label="Tintes">
+          <!-- Tinte completo: conserva el precio publicado en su catálogo. -->
+          <option value="tinte-completo" data-precio="Desde Bs 80" data-minutos="90">Tinte completo · Desde Bs 80</option>
+          <!-- Retoque de raíz: conserva el precio publicado en su catálogo. -->
+          <option value="retoque-raiz" data-precio="Desde Bs 50" data-minutos="60">Retoque de raíz · Desde Bs 50</option>
+          <!-- Base de color: conserva el precio publicado en su catálogo. -->
+          <option value="base-color" data-precio="Desde Bs 90" data-minutos="90">Base de color · Desde Bs 90</option>
+        </optgroup>
+        <optgroup label="Diseños">
+          <!-- Línea lateral: conserva el precio publicado en su catálogo. -->
+          <option value="linea-lateral" data-precio="Bs 10 adicional" data-minutos="30">Línea lateral · Bs 10 adicional</option>
+          <!-- Diseño tribal: conserva el precio publicado en su catálogo. -->
+          <option value="diseno-tribal" data-precio="Bs 20 adicional" data-minutos="40">Diseño tribal · Bs 20 adicional</option>
+          <!-- Diseño personalizado: conserva el precio publicado en su catálogo. -->
+          <option value="diseno-personalizado" data-precio="Desde Bs 25 adicional" data-minutos="40">Diseño personalizado · Desde Bs 25 adicional</option>
+        </optgroup>
+        <optgroup label="Barbeados">
+          <!-- Perfilado clásico: conserva el precio publicado en su catálogo. -->
+          <option value="perfilado-clasico" data-precio="Bs 35" data-minutos="30">Perfilado clásico · Bs 35</option>
+          <!-- Afeitado completo: conserva el precio publicado en su catálogo. -->
+          <option value="afeitado-completo" data-precio="Bs 40" data-minutos="30">Afeitado completo · Bs 40</option>
+          <!-- Perfilado italiano de barba: conserva el precio publicado en su catálogo. -->
+          <option value="perfilado-italiano" data-precio="Bs 50" data-minutos="40">Perfilado italiano de barba · Bs 50</option>
+        </optgroup>
       </select>
 
-      <!-- Pide el dia en que se desea recibir la atencion. -->
-      <label for="fecha">Fecha preferida</label>
-      <!-- Abre el calendario del navegador para escoger una fecha. -->
-      <input id="fecha" name="fecha" type="date" required>
+      <!-- El cliente puede solicitar una persona o dejar que el local la asigne. -->
+      <label for="barbero">Barbero de preferencia</label>
+      <select id="barbero" name="barbero">
+        <option value="Sin preferencia">Sin preferencia</option>
+        <option>Luis “El Pupi”</option>
+        <option>David “El Chivolín”</option>
+        <option>Brayan “El Camba”</option>
+        <option>Epi “El Poter”</option>
+        <option>Carlitos “El Kisquilín”</option>
+      </select>
 
-      <!-- Pide la hora preferida para la cita. -->
-      <label for="hora">Hora preferida</label>
-      <!-- Abre el selector de hora del navegador. -->
-      <input id="hora" name="hora" type="time" min="10:00" max="20:00" required>
-
-      <!-- Permite dejar una indicacion adicional para la barberia. -->
-      <label for="comentario">Comentario</label>
-      <!-- Esta caja grande sirve para escribir el comentario. -->
-      <textarea id="comentario" name="comentario" placeholder="Cuéntanos qué estilo buscas o quién deseas que te atienda."></textarea>
-
-      <!-- Este boton es solo una muestra visual porque todavia no se usa JavaScript. -->
-      <!-- Esta aclaración explica cómo se completa la reserva sin JavaScript. -->
-      <!-- Recuerda que la confirmacion verdadera se realiza por WhatsApp. -->
-      <p class="aviso">Para confirmar de verdad, usa el botón de WhatsApp.</p>
-      <!-- Abre una conversacion con el numero de CUCA Barber en otra pestaña. -->
-      <div class="acciones-reserva">
-        <!-- Abre WhatsApp con un mensaje modelo listo para completar. -->
-        <a class="boton" href="https://wa.me/59174110827?text=Hola%20CUCA%20Barber%2C%20quiero%20reservar%20una%20cita.%20Mi%20nombre%20es%3A%20____.%20Servicio%3A%20____.%20Fecha%20y%20hora%3A%20____." target="_blank" rel="noopener">Confirmar por WhatsApp</a>
-        <!-- Permite regresar a revisar los servicios antes de reservar. -->
-        <a class="boton boton-secundario" href="cortes-varones.html">Volver a servicios</a>
+      <!-- La fecha y la hora se revisan antes de preparar el mensaje. -->
+      <div class="fecha-hora">
+        <div>
+          <label for="fecha">Fecha preferida</label>
+          <input id="fecha" name="fecha" type="date" aria-describedby="ayuda-horario" required>
+        </div>
+        <div>
+          <label for="hora">Hora preferida</label>
+          <select id="hora" name="hora" aria-describedby="ayuda-horario" required>
+            <option value="">Primero elige servicio y fecha</option>
+          </select>
+        </div>
       </div>
+      <p id="ayuda-horario" class="aviso">Horarios orientativos en hora de Bolivia. Consulta por WhatsApp la disponibilidad real.</p>
+
+      <!-- Aquí se pueden agregar detalles sobre el corte o una referencia. -->
+      <label for="comentario">Comentario (opcional)</label>
+      <textarea id="comentario" name="comentario" maxlength="500" placeholder="Cuéntanos qué estilo buscas o si quieres agregar otro servicio."></textarea>
+
+      <!-- El resumen cambia al elegir servicio, fecha, hora o barbero. -->
+      <div class="resumen-reserva" aria-labelledby="titulo-resumen">
+        <h2 id="titulo-resumen">Tu próxima visita</h2>
+        <p id="resumen-servicio">Elige un servicio para ver su precio.</p>
+        <p id="resumen-fecha">Selecciona fecha y hora.</p>
+        <p id="resumen-barbero">Barbero: sin preferencia.</p>
+        <p class="aviso">Los precios “desde” se confirman después de evaluar el cabello. Los diseños se suman al precio del corte.</p>
+      </div>
+
+      <!-- Los avisos explican qué dato falta corregir, sin borrar lo escrito. -->
+      <p id="estado-reserva" class="estado-reserva" role="status" aria-live="polite"></p>
+      <div class="acciones-reserva">
+        <!-- Solo se habilita cuando está lista la revisión de los datos. -->
+        <button id="enviar-reserva" type="submit" disabled>Solicitar cita por WhatsApp</button>
+        <button class="boton-secundario" type="reset">Limpiar formulario</button>
+        <a class="boton boton-secundario" href="index.html#galeria">Ver galería</a>
+      </div>
+      <p class="aviso">El botón abre WhatsApp con los datos completos. Revisa el mensaje y envíalo para solicitar tu cita.</p>
+
+      <!-- Ofrece una alternativa si el navegador tiene desactivadas las funciones interactivas. -->
+      <noscript>
+        <p class="aviso">Para solicitar tu cita, envía tu nombre, servicio, fecha y hora directamente por WhatsApp.</p>
+        <a class="boton" href="https://wa.me/59174110827">Contactar por WhatsApp</a>
+      </noscript>
     </form>
   </main>
   <footer>
@@ -505,5 +588,170 @@
     <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
+
+  <script>
+    // Reúne las partes del formulario para acompañar al cliente durante la reserva.
+    const formulario = document.getElementById("formulario-reserva");
+    const nombre = document.getElementById("nombre");
+    const telefono = document.getElementById("telefono");
+    const servicio = document.getElementById("servicio");
+    const barbero = document.getElementById("barbero");
+    const fecha = document.getElementById("fecha");
+    const hora = document.getElementById("hora");
+    const comentario = document.getElementById("comentario");
+    const estado = document.getElementById("estado-reserva");
+    const enviar = document.getElementById("enviar-reserva");
+
+    // Lee la hora de Bolivia, incluso si el visitante está en otro país.
+    function ahoraEnBolivia() {
+      const partes = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/La_Paz", year: "numeric", month: "2-digit",
+        day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+      }).formatToParts(new Date());
+      const datos = {};
+      partes.forEach(function (parte) { datos[parte.type] = parte.value; });
+      return {
+        dia: datos.year + "-" + datos.month + "-" + datos.day,
+        minutos: Number(datos.hour) * 60 + Number(datos.minute)
+      };
+    }
+
+    // Devuelve la opción elegida para conocer su nombre, precio y duración.
+    function opcionElegida() {
+      return servicio.value ? servicio.selectedOptions[0] : null;
+    }
+
+    // Escribe las fechas con palabras para que sea fácil revisar la solicitud.
+    function fechaLegible(dia) {
+      return new Intl.DateTimeFormat("es-BO", {
+        timeZone: "America/La_Paz", weekday: "long", day: "numeric", month: "long", year: "numeric"
+      }).format(new Date(dia + "T12:00:00-04:00"));
+    }
+
+    // Revisa que la fecha sea hoy o posterior y que el local atienda ese día.
+    function problemaDeFecha(ahora) {
+      if (!fecha.value) return "";
+      if (fecha.value < ahora.dia) return "Elige una fecha de hoy en adelante.";
+      const dia = new Date(fecha.value + "T12:00:00-04:00");
+      if (Number.isNaN(dia.getTime())) return "Elige una fecha válida.";
+      if (dia.getUTCDay() === 0) return "Los domingos no atendemos. Elige de lunes a sábado.";
+      return "";
+    }
+
+    // Ofrece horarios cada media hora y deja espacio para terminar antes del cierre.
+    function actualizarHorarios() {
+      const ahora = ahoraEnBolivia();
+      fecha.min = ahora.dia;
+      fecha.setCustomValidity("");
+      const anterior = hora.value;
+      const opcion = opcionElegida();
+      const problema = problemaDeFecha(ahora);
+      fecha.setCustomValidity(problema);
+      const aviso = !opcion || !fecha.value ? "Primero elige servicio y fecha" :
+        problema ? "Elige otra fecha" : "Elige una hora";
+      hora.replaceChildren(new Option(aviso, ""));
+      estado.textContent = problema;
+      if (!opcion || !fecha.value || problema) return;
+
+      // El tiempo de cada servicio es aproximado; el local confirma el turno real.
+      const duracion = Number(opcion.dataset.minutos);
+      for (let minutos = 600; minutos + duracion <= 1200; minutos += 30) {
+        if (fecha.value === ahora.dia && minutos <= ahora.minutos) continue;
+        const texto = String(Math.floor(minutos / 60)).padStart(2, "0") + ":" +
+          String(minutos % 60).padStart(2, "0");
+        hora.add(new Option(texto, texto));
+      }
+      if ([...hora.options].some(function (opcionHora) { return opcionHora.value === anterior; })) {
+        hora.value = anterior;
+      }
+      if (hora.options.length === 1) {
+        estado.textContent = "Hoy ya no quedan horarios orientativos para este servicio. Elige otro día.";
+      }
+    }
+
+    // Mantiene visible el resumen sin enviar ni guardar datos personales.
+    function actualizarResumen() {
+      const opcion = opcionElegida();
+      document.getElementById("resumen-servicio").textContent = opcion ?
+        opcion.textContent.trim() + " · " + opcion.dataset.minutos + " min aprox." :
+        "Elige un servicio para ver su precio.";
+      document.getElementById("resumen-fecha").textContent =
+        fecha.value && !fecha.validationMessage && hora.value ?
+        fechaLegible(fecha.value) + " a las " + hora.value : "Selecciona fecha y hora.";
+      document.getElementById("resumen-barbero").textContent = "Barbero: " + barbero.value + ".";
+    }
+
+    // La galería envía solamente el nombre del estilo; los precios vienen de esta lista.
+    const elegidoEnGaleria = new URLSearchParams(window.location.search).get("corte");
+    if ([...servicio.options].some(function (opcion) { return opcion.value === elegidoEnGaleria; })) {
+      servicio.value = elegidoEnGaleria;
+    }
+
+    // Cada cambio vuelve a revisar las horas y actualiza el resumen.
+    servicio.addEventListener("change", function () { actualizarHorarios(); actualizarResumen(); });
+    fecha.addEventListener("change", function () { actualizarHorarios(); actualizarResumen(); });
+    hora.addEventListener("change", actualizarResumen);
+    barbero.addEventListener("change", actualizarResumen);
+
+    // Comprueba datos completos y prepara el mensaje real con lo escrito por el cliente.
+    formulario.addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      nombre.setCustomValidity("");
+      telefono.setCustomValidity("");
+      if (nombre.value.trim().length < 2) nombre.setCustomValidity("Escribe tu nombre completo.");
+      if (telefono.value.replace(/\D/g, "").length < 7) {
+        telefono.setCustomValidity("Escribe un teléfono con al menos 7 dígitos.");
+      }
+
+      // Revisa nuevamente la hora porque el cliente pudo dejar la página abierta.
+      const horaSolicitada = hora.value;
+      actualizarHorarios();
+      actualizarResumen();
+      if (horaSolicitada && !hora.value) {
+        estado.textContent = "La hora elegida ya pasó o no permite terminar antes del cierre. Elige otra.";
+      }
+      if (!formulario.reportValidity()) return;
+
+      const opcion = opcionElegida();
+      const mensaje = [
+        "Hola CUCA Barber, quisiera solicitar una cita.",
+        "Nombre: " + nombre.value.trim(),
+        "Teléfono: " + telefono.value.trim(),
+        "Servicio: " + opcion.textContent.trim(),
+        "Duración orientativa: " + opcion.dataset.minutos + " minutos",
+        "Fecha: " + fechaLegible(fecha.value),
+        "Hora de Bolivia: " + hora.value,
+        "Barbero: " + barbero.value,
+        comentario.value.trim() ? "Comentario: " + comentario.value.trim() : "",
+        "¿Pueden confirmar la disponibilidad y el precio final?"
+      ].filter(Boolean).join("\n");
+
+      // Abre WhatsApp con el texto completo. El cliente decide cuándo enviarlo.
+      estado.textContent = "Tu solicitud está preparada. Envía el mensaje en WhatsApp para recibir la confirmación.";
+      window.location.assign("https://wa.me/59174110827?text=" + encodeURIComponent(mensaje));
+    });
+
+    // Cuando se corrige el nombre o el teléfono, permite volver a revisarlos.
+    nombre.addEventListener("input", function () { nombre.setCustomValidity(""); });
+    telefono.addEventListener("input", function () { telefono.setCustomValidity(""); });
+
+    // Limpiar espera a que se vacíen los campos y después renueva el resumen.
+    formulario.addEventListener("reset", function () {
+      setTimeout(function () {
+        nombre.setCustomValidity("");
+        telefono.setCustomValidity("");
+        actualizarHorarios();
+        actualizarResumen();
+        estado.textContent = "Formulario limpio. Puedes elegir una nueva visita.";
+      }, 0);
+    });
+
+    // Al regresar de WhatsApp, renueva las horas orientativas del día.
+    window.addEventListener("pageshow", function () { actualizarHorarios(); actualizarResumen(); });
+    actualizarHorarios();
+    actualizarResumen();
+    enviar.disabled = false;
+  </script>
+
 </body>
 </html>
