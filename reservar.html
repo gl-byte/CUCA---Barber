@@ -1,25 +1,16 @@
 <!DOCTYPE html>
-<!-- Indica que este archivo contiene una pagina web actual. -->
 <html lang="es">
-<!-- Aqui comienza la pagina y se indica que el contenido esta escrito en español. -->
 <head>
-  <!-- Permite mostrar correctamente la letra ñ, acentos y simbolos. -->
   <meta charset="UTF-8">
-  <!-- Adapta el ancho de la pagina a celulares y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Usa el logo de CUCA Barber como icono de la pestaña del navegador. -->
   <link rel="icon" type="image/png" href="assets/img/logo-cuca-barber.png">
-  <!-- Este texto aparece en la pestaña del navegador. -->
   <title>Reservar cita</title>
 
   <style>
-    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
-    /* Mantiene los tamaños de los elementos faciles de controlar. */
     * {
       box-sizing: border-box;
     }
 
-    /* Da fondo oscuro, letras blancas y el mismo tipo de letra a toda la pagina. */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -27,7 +18,6 @@
       color: white;
     }
 
-    /* Forma las franjas oscuras del menu y del pie de pagina. */
     header,
     footer {
       background: #080808;
@@ -36,7 +26,6 @@
       border-block: 1px solid #333;
     }
 
-    /* Ordena el logo y todas las opciones del menu. */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -45,31 +34,26 @@
       align-items: center;
     }
 
-    /* Define el tamaño del logo sin deformar su imagen. */
     nav img {
       width: 100px;
       height: 55px;
       object-fit: contain;
     }
 
-    /* Deja las opciones del menu blancas, marcadas y sin subrayado. */
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
 
-    /* Pinta una opcion de rojo cuando el puntero pasa sobre ella. */
     nav a:hover {
       color: #c8191e;
     }
 
-    /* Oculta la casilla que controla el menu para celular. */
     .menu-toggle {
       display: none;
     }
 
-    /* Oculta la hamburguesa mientras se vea la pagina en computadora. */
     .menu-icon {
       display: none;
       color: white;
@@ -78,7 +62,6 @@
       cursor: pointer;
     }
 
-    /* Coloca las opciones una al lado de otra en pantallas amplias. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -87,19 +70,16 @@
       justify-content: center;
     }
 
-    /* Centra el formulario y evita que quede demasiado ancho. */
     main {
       max-width: 750px;
       margin: auto;
       padding: 35px 20px;
     }
 
-    /* Da tamaño y color rojo al titulo principal. */
     h1 {
       font-size: 45px;
       color: #c8191e;
     }
-        /* Esta fila mantiene los iconos de redes sociales centrados dentro del footer. */
     .redes-sociales {
       display: flex;
       justify-content: center;
@@ -107,8 +87,6 @@
       margin-top: 18px;
     }
 
-    /* Cada red social está dentro de un círculo.
-       Si quieres iconos más grandes, cambia width y height. */
     .icono-red {
       width: 56px;
       height: 56px;
@@ -122,20 +100,16 @@
       box-shadow: 0 0 14px rgba(200, 25, 30, .25);
     }
 
-    /* Cuando el mouse pasa encima del icono, el círculo se rellena de rojo. */
     .icono-red:hover {
       background: #c8191e;
     }
 
-    /* Esta regla controla la imagen SVG que está dentro del círculo.
-       Los SVG están guardados en assets/icons. */
     .icono-red img {
       width: 30px;
       height: 30px;
       object-fit: contain;
       display: block;
     }
-    /* Forma la caja oscura que contiene todos los campos de la reserva. */
     form {
       background: #111;
       border: 1px solid #333;
@@ -143,17 +117,14 @@
       padding: 20px;
     }
 
-    /* Separa y resalta el nombre que aparece encima de cada campo. */
     label {
       display: block;
       margin-top: 14px;
       font-weight: bold;
     }
 
-    /* Hace que los campos ocupen todo el ancho y compartan el mismo aspecto. */
     input,
     select,
-    /* Reserva suficiente altura para escribir un comentario. */
     textarea {
       width: 100%;
       padding: 11px;
@@ -168,7 +139,6 @@
       min-height: 90px;
     }
 
-    /* Presenta las acciones finales como botones rojos. */
     button,
     .boton {
       display: inline-block;
@@ -182,13 +152,11 @@
       text-decoration: none;
     }
 
-    /* Muestra la aclaracion del formulario con letras pequeñas y suaves. */
     .aviso {
       color: #bbb;
       font-size: 14px;
     }
 
-    /* Organiza las instrucciones de reserva en tres pasos fáciles. */
     .pasos-reserva {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -196,7 +164,6 @@
       margin: 24px 0;
     }
 
-    /* Forma cada paso con un número destacado. */
     .paso {
       padding: 18px;
       border: 1px solid #333;
@@ -211,13 +178,10 @@
       font-size: 20px;
     }
 
-    /* Coloca los botones finales juntos y permite que bajen de línea. */
     .acciones-reserva { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
-    /* Crea una variante de botón transparente para regresar a servicios. */
     .boton-secundario { border: 1px solid #ef233c; background: transparent; }
 
-    /* Estas reglas cambian el menu cuando la pagina se abre en un celular. */
     @media (max-width: 700px) {
       header {
         position: static;
@@ -248,19 +212,15 @@
         border-top: 1px solid #222;
       }
 
-      /* Coloca dos pasos por fila para aprovechar mejor el ancho del celular. */
       .pasos-reserva { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
       .paso { padding: 13px; font-size: 12px; line-height: 1.4; }
       .paso strong { font-size: 17px; }
     }
 
-    /* MEJORA VISUAL: estas variables guardan los colores principales. */
     :root { --rojo: #ef233c; --gris: #b9bac1; --borde: #2b2b31; }
 
-    /* Suaviza el desplazamiento entre zonas de la página. */
     html { scroll-behavior: smooth; }
 
-    /* Crea luces decorativas en el fondo sin necesitar más imágenes. */
     body {
       min-height: 100vh;
       overflow-x: hidden;
@@ -270,7 +230,6 @@
         #070708;
     }
 
-    /* Dibuja una franja inspirada en el poste tradicional de barbería. */
     body::before {
       content: "";
       position: fixed;
@@ -280,7 +239,6 @@
       background: repeating-linear-gradient(120deg, var(--rojo) 0 30px, white 30px 60px, #1515a8 60px 90px);
     }
 
-    /* Mantiene el menú visible y crea un efecto de vidrio oscuro. */
     header {
       position: sticky;
       top: 0;
@@ -290,12 +248,10 @@
       backdrop-filter: blur(12px);
     }
 
-    /* Evita que el menú se extienda demasiado en pantallas grandes. */
     nav { max-width: 1200px; margin: auto; }
     nav img { transition: transform .25s; }
     nav img:hover { transform: rotate(-3deg) scale(1.04); }
 
-    /* Convierte los enlaces del menú en píldoras interactivas. */
     .menu-links a {
       padding: 9px 11px;
       border-radius: 999px;
@@ -310,7 +266,6 @@
       transform: translateY(-2px);
     }
 
-    /* Anima la entrada del contenido y mejora el título principal. */
     main { animation: entrada-suave .7s ease both; }
     h1 {
       margin-bottom: 12px;
@@ -320,7 +275,6 @@
       text-shadow: 0 0 32px rgba(239, 35, 60, .22);
     }
 
-    /* Dibuja una línea decorativa debajo del título. */
     h1::after {
       content: "";
       display: block;
@@ -331,7 +285,6 @@
       background: var(--rojo);
     }
 
-    /* Mejora tarjetas, cajas y formulario con bordes redondeados y profundidad. */
     .card, .caja, form {
       border-radius: 18px;
       border-color: var(--borde);
@@ -344,11 +297,9 @@
       box-shadow: 0 20px 45px rgba(239, 35, 60, .18);
     }
 
-    /* Acerca ligeramente las fotografías al pasar el puntero. */
     .card img { transition: transform .4s, filter .4s; }
     .card:hover img { transform: scale(1.035); filter: contrast(1.08) saturate(1.08); }
 
-    /* Da respuesta visual a los botones y enlaces principales. */
     .boton, button {
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(239, 35, 60, .23);
@@ -361,36 +312,30 @@
       box-shadow: 0 15px 34px rgba(239, 35, 60, .38);
     }
 
-    /* Mejora la lectura y la interacción de los iconos del pie. */
     footer { padding-block: 34px; color: var(--gris); }
     .icono-red { transition: transform .25s, background .25s, border-color .25s; }
     .icono-red:hover, .icono-red:focus-visible { transform: translateY(-4px) rotate(-4deg); border-color: var(--rojo); }
 
-    /* Define la animación sencilla de entrada. */
     @keyframes entrada-suave {
       from { opacity: 0; transform: translateY(22px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Conserva el aspecto de botón de menú en celulares. */
     @media (max-width: 700px) {
       .menu-links a { border-radius: 6px; }
       main { padding-inline: 15px; }
     }
 
-    /* Respeta a quienes prefieren una navegación sin movimientos. */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
 
-    /* RESERVA: acomoda la fecha y la hora una junto a otra. */
     .fecha-hora { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     form input, form select, form textarea { font: inherit; color-scheme: dark; }
     form label { line-height: 1.5; }
     form :focus-visible { outline: 3px solid #ffe7bc; outline-offset: 3px; }
     form textarea { resize: vertical; }
 
-    /* El resumen separa los datos que el cliente está por enviar. */
     .resumen-reserva { margin-top: 24px; padding: 20px; border: 1px solid #6e2532; border-radius: 14px; background: linear-gradient(120deg, #3a131c, #17171c); }
     .resumen-reserva h2 { margin: 0 0 12px; font-size: 23px; }
     .resumen-reserva p { margin: 8px 0; line-height: 1.5; }
@@ -398,7 +343,6 @@
     .acciones-reserva button { min-height: 44px; font: inherit; font-weight: bold; }
     .acciones-reserva button:disabled { opacity: .55; cursor: not-allowed; }
 
-    /* En celulares estrechos se evita comprimir el calendario del navegador. */
     @media (max-width: 480px) {
       .fecha-hora { grid-template-columns: 1fr; gap: 0; }
       .acciones-reserva > * { width: 100%; text-align: center; }
@@ -407,25 +351,18 @@
 </head>
 
 <body>
-  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
-  <!-- Esta parte superior contiene el logo y el menu principal. -->
   <header>
-    <!-- El menu permite visitar las otras paginas del sitio. -->
     <nav>
       <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo"></a>
       <input type="checkbox" id="menu-principal" class="menu-toggle">
       <label for="menu-principal" class="menu-icon">☰</label>
 
-      <!-- Aqui se agrupan las opciones que se muestran en el menu. -->
       <div class="menu-links">
-        <!-- La galería reúne estilos de todas las categorías. -->
         <a href="index.html#galeria">Galería</a>
-        <!-- Abre la pagina que muestra los cortes para varones. -->
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
         <a href="tintes-bases.html">Tintes</a>
         <a href="disenios-cortes.html">Diseños</a>
-        <!-- Abre la pagina que muestra los servicios para barba. -->
         <a href="barbeados.html">Barbeados</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="reservar.html" aria-current="page">Reservar</a>
@@ -434,76 +371,53 @@
     </nav>
   </header>
 
-  <!-- Aquí comienza la zona donde el cliente completa su solicitud de reserva. -->
   <main>
-    <!-- Este titulo identifica el formulario de la pagina. -->
     <h1>Reservar cita</h1>
-    <!-- Estos pasos explican cómo solicitar y confirmar una cita. -->
     <div class="pasos-reserva">
       <div class="paso"><strong>01</strong>Revisa los servicios y elige tu favorito.</div>
       <div class="paso"><strong>02</strong>Anota el día y la hora que prefieres.</div>
       <div class="paso"><strong>03</strong>Confirma la disponibilidad por WhatsApp.</div>
     </div>
 
-    <!-- Este formulario reúne los datos y prepara una solicitud para WhatsApp. -->
     <form id="formulario-reserva" action="https://wa.me/59174110827" method="get">
       <p class="aviso">Atendemos de lunes a sábado, de 10:00 a 20:00. El horario queda reservado cuando la barbería lo confirma.</p>
 
-      <!-- El nombre y el teléfono permiten identificar y responder al cliente. -->
       <label for="nombre">Nombre completo</label>
       <input id="nombre" name="nombre" type="text" placeholder="Ejemplo: Juan Pérez" autocomplete="name" maxlength="80" required>
       <label for="telefono">Teléfono / WhatsApp</label>
       <input id="telefono" name="telefono" type="tel" placeholder="Ejemplo: 74110827" autocomplete="tel" inputmode="tel" pattern="\+?[0-9\s\(\)\-]{7,20}" title="Escribe un número de teléfono válido, con al menos 7 dígitos." maxlength="20" required>
 
-      <!-- Todas las opciones pertenecen a los servicios que ya ofrece el sitio. -->
       <label for="servicio">Corte o servicio</label>
       <select id="servicio" name="servicio" required>
         <option value="">Elige tu corte o servicio</option>
         <optgroup label="Varones">
-          <!-- Low Fade: conserva el precio publicado en su catálogo. -->
           <option value="low-fade" data-precio="Bs 40" data-minutos="40">Low Fade · Bs 40</option>
-          <!-- Mid Fade: conserva el precio publicado en su catálogo. -->
           <option value="mid-fade" data-precio="Bs 40" data-minutos="40">Mid Fade · Bs 40</option>
-          <!-- Corte clásico · media melena: conserva el precio publicado en su catálogo. -->
           <option value="clasico" data-precio="Bs 30" data-minutos="30">Corte clásico · media melena · Bs 30</option>
-          <!-- Corte escolar: conserva el precio publicado en su catálogo. -->
           <option value="escolar" data-precio="Bs 30" data-minutos="30">Corte escolar · Bs 30</option>
         </optgroup>
         <optgroup label="Niños">
-          <!-- Corte infantil tradicional: conserva el precio publicado en su catálogo. -->
           <option value="infantil-tradicional" data-precio="Bs 25" data-minutos="30">Corte infantil tradicional · Bs 25</option>
-          <!-- Corte infantil moderno: conserva el precio publicado en su catálogo. -->
           <option value="infantil-moderno" data-precio="Bs 30" data-minutos="30">Corte infantil moderno · Bs 30</option>
-          <!-- Diseño infantil simple: conserva el precio publicado en su catálogo. -->
           <option value="infantil-diseno" data-precio="Bs 25" data-minutos="30">Diseño infantil simple · Bs 25</option>
         </optgroup>
         <optgroup label="Tintes">
-          <!-- Tinte completo: conserva el precio publicado en su catálogo. -->
           <option value="tinte-completo" data-precio="Desde Bs 80" data-minutos="90">Tinte completo · Desde Bs 80</option>
-          <!-- Retoque de raíz: conserva el precio publicado en su catálogo. -->
           <option value="retoque-raiz" data-precio="Desde Bs 50" data-minutos="60">Retoque de raíz · Desde Bs 50</option>
-          <!-- Base de color: conserva el precio publicado en su catálogo. -->
           <option value="base-color" data-precio="Desde Bs 90" data-minutos="90">Base de color · Desde Bs 90</option>
         </optgroup>
         <optgroup label="Diseños">
-          <!-- Línea lateral: conserva el precio publicado en su catálogo. -->
           <option value="linea-lateral" data-precio="Bs 10 adicional" data-minutos="30">Línea lateral · Bs 10 adicional</option>
-          <!-- Diseño tribal: conserva el precio publicado en su catálogo. -->
           <option value="diseno-tribal" data-precio="Bs 20 adicional" data-minutos="40">Diseño tribal · Bs 20 adicional</option>
-          <!-- Diseño personalizado: conserva el precio publicado en su catálogo. -->
           <option value="diseno-personalizado" data-precio="Desde Bs 25 adicional" data-minutos="40">Diseño personalizado · Desde Bs 25 adicional</option>
         </optgroup>
         <optgroup label="Barbeados">
-          <!-- Perfilado clásico: conserva el precio publicado en su catálogo. -->
           <option value="perfilado-clasico" data-precio="Bs 35" data-minutos="30">Perfilado clásico · Bs 35</option>
-          <!-- Afeitado completo: conserva el precio publicado en su catálogo. -->
           <option value="afeitado-completo" data-precio="Bs 40" data-minutos="30">Afeitado completo · Bs 40</option>
-          <!-- Perfilado italiano de barba: conserva el precio publicado en su catálogo. -->
           <option value="perfilado-italiano" data-precio="Bs 50" data-minutos="40">Perfilado italiano de barba · Bs 50</option>
         </optgroup>
       </select>
 
-      <!-- El cliente puede solicitar una persona o dejar que el local la asigne. -->
       <label for="barbero">Barbero de preferencia</label>
       <select id="barbero" name="barbero">
         <option value="Sin preferencia">Sin preferencia</option>
@@ -514,7 +428,6 @@
         <option>Carlitos “El Kisquilín”</option>
       </select>
 
-      <!-- La fecha y la hora se revisan antes de preparar el mensaje. -->
       <div class="fecha-hora">
         <div>
           <label for="fecha">Fecha preferida</label>
@@ -529,11 +442,9 @@
       </div>
       <p id="ayuda-horario" class="aviso">Horarios orientativos en hora de Bolivia. Consulta por WhatsApp la disponibilidad real.</p>
 
-      <!-- Aquí se pueden agregar detalles sobre el corte o una referencia. -->
       <label for="comentario">Comentario (opcional)</label>
       <textarea id="comentario" name="comentario" maxlength="500" placeholder="Cuéntanos qué estilo buscas o si quieres agregar otro servicio."></textarea>
 
-      <!-- El resumen cambia al elegir servicio, fecha, hora o barbero. -->
       <div class="resumen-reserva" aria-labelledby="titulo-resumen">
         <h2 id="titulo-resumen">Tu próxima visita</h2>
         <p id="resumen-servicio">Elige un servicio para ver su precio.</p>
@@ -542,17 +453,14 @@
         <p class="aviso">Los precios “desde” se confirman después de evaluar el cabello. Los diseños se suman al precio del corte.</p>
       </div>
 
-      <!-- Los avisos explican qué dato falta corregir, sin borrar lo escrito. -->
       <p id="estado-reserva" class="estado-reserva" role="status" aria-live="polite"></p>
       <div class="acciones-reserva">
-        <!-- Solo se habilita cuando está lista la revisión de los datos. -->
         <button id="enviar-reserva" type="submit" disabled>Solicitar cita por WhatsApp</button>
         <button class="boton-secundario" type="reset">Limpiar formulario</button>
         <a class="boton boton-secundario" href="index.html#galeria">Ver galería</a>
       </div>
       <p class="aviso">El botón abre WhatsApp con los datos completos. Revisa el mensaje y envíalo para solicitar tu cita.</p>
 
-      <!-- Ofrece una alternativa si el navegador tiene desactivadas las funciones interactivas. -->
       <noscript>
         <p class="aviso">Para solicitar tu cita, envía tu nombre, servicio, fecha y hora directamente por WhatsApp.</p>
         <a class="boton" href="https://wa.me/59174110827">Contactar por WhatsApp</a>
@@ -560,37 +468,29 @@
     </form>
   </main>
   <footer>
-    <!-- FOOTER: es la parte final. Se repite información importante como marca, redes y WhatsApp. -->
     <p><strong>CUCA Barber</strong> | TU Estilo, TU Actitud.</p>
 
-    <!-- Este bloque agrupa los botones de redes sociales. Cada red tiene un enlace y una imagen SVG. -->
     <div class="redes-sociales">
-      <!-- este icono lleva al perfil de Facebook. -->
       <a class="icono-red" href="#" aria-label="Facebook">
         <img src="assets/icons/facebook.svg" alt="Facebook">
       </a>
 
-      <!-- Este icono lleva al perfil de instagram -->
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" aria-label="Instagram">
         <img src="assets/icons/instagram.svg" alt="Instagram">
       </a>
 
-      <!-- Este enlace lleva al perfil de WhatsApp. -->
       <a class="icono-red" href="https://wa.me/59174110827" aria-label="WhatsApp">
         <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
       </a>
 
-      <!-- Este icono lleva al perfil de tiktok-->
       <a class="icono-red" href="https://www.tiktok.com/@cuca.baber?_r=1&_t=ZS-98wT7evLjPg" aria-label="TikTok">
         <img src="assets/icons/tiktok.svg" alt="TikTok">
       </a>
     </div>
-    <!-- Este párrafo finaliza el footer con el número de WhatsApp y país. -->
     <p>WhatsApp: 74110827 |Oruro - Bolivia</p>
   </footer>
 
   <script>
-    // Reúne las partes del formulario para acompañar al cliente durante la reserva.
     const formulario = document.getElementById("formulario-reserva");
     const nombre = document.getElementById("nombre");
     const telefono = document.getElementById("telefono");
@@ -602,7 +502,6 @@
     const estado = document.getElementById("estado-reserva");
     const enviar = document.getElementById("enviar-reserva");
 
-    // Lee la hora de Bolivia, incluso si el visitante está en otro país.
     function ahoraEnBolivia() {
       const partes = new Intl.DateTimeFormat("en-CA", {
         timeZone: "America/La_Paz", year: "numeric", month: "2-digit",
@@ -616,19 +515,16 @@
       };
     }
 
-    // Devuelve la opción elegida para conocer su nombre, precio y duración.
     function opcionElegida() {
       return servicio.value ? servicio.selectedOptions[0] : null;
     }
 
-    // Escribe las fechas con palabras para que sea fácil revisar la solicitud.
     function fechaLegible(dia) {
       return new Intl.DateTimeFormat("es-BO", {
         timeZone: "America/La_Paz", weekday: "long", day: "numeric", month: "long", year: "numeric"
       }).format(new Date(dia + "T12:00:00-04:00"));
     }
 
-    // Revisa que la fecha sea hoy o posterior y que el local atienda ese día.
     function problemaDeFecha(ahora) {
       if (!fecha.value) return "";
       if (fecha.value < ahora.dia) return "Elige una fecha de hoy en adelante.";
@@ -638,7 +534,6 @@
       return "";
     }
 
-    // Ofrece horarios cada media hora y deja espacio para terminar antes del cierre.
     function actualizarHorarios() {
       const ahora = ahoraEnBolivia();
       fecha.min = ahora.dia;
@@ -653,7 +548,6 @@
       estado.textContent = problema;
       if (!opcion || !fecha.value || problema) return;
 
-      // El tiempo de cada servicio es aproximado; el local confirma el turno real.
       const duracion = Number(opcion.dataset.minutos);
       for (let minutos = 600; minutos + duracion <= 1200; minutos += 30) {
         if (fecha.value === ahora.dia && minutos <= ahora.minutos) continue;
@@ -669,7 +563,6 @@
       }
     }
 
-    // Mantiene visible el resumen sin enviar ni guardar datos personales.
     function actualizarResumen() {
       const opcion = opcionElegida();
       document.getElementById("resumen-servicio").textContent = opcion ?
@@ -681,19 +574,16 @@
       document.getElementById("resumen-barbero").textContent = "Barbero: " + barbero.value + ".";
     }
 
-    // La galería envía solamente el nombre del estilo; los precios vienen de esta lista.
     const elegidoEnGaleria = new URLSearchParams(window.location.search).get("corte");
     if ([...servicio.options].some(function (opcion) { return opcion.value === elegidoEnGaleria; })) {
       servicio.value = elegidoEnGaleria;
     }
 
-    // Cada cambio vuelve a revisar las horas y actualiza el resumen.
     servicio.addEventListener("change", function () { actualizarHorarios(); actualizarResumen(); });
     fecha.addEventListener("change", function () { actualizarHorarios(); actualizarResumen(); });
     hora.addEventListener("change", actualizarResumen);
     barbero.addEventListener("change", actualizarResumen);
 
-    // Comprueba datos completos y prepara el mensaje real con lo escrito por el cliente.
     formulario.addEventListener("submit", function (evento) {
       evento.preventDefault();
       nombre.setCustomValidity("");
@@ -703,7 +593,6 @@
         telefono.setCustomValidity("Escribe un teléfono con al menos 7 dígitos.");
       }
 
-      // Revisa nuevamente la hora porque el cliente pudo dejar la página abierta.
       const horaSolicitada = hora.value;
       actualizarHorarios();
       actualizarResumen();
@@ -726,16 +615,13 @@
         "¿Pueden confirmar la disponibilidad y el precio final?"
       ].filter(Boolean).join("\n");
 
-      // Abre WhatsApp con el texto completo. El cliente decide cuándo enviarlo.
       estado.textContent = "Tu solicitud está preparada. Envía el mensaje en WhatsApp para recibir la confirmación.";
       window.location.assign("https://wa.me/59174110827?text=" + encodeURIComponent(mensaje));
     });
 
-    // Cuando se corrige el nombre o el teléfono, permite volver a revisarlos.
     nombre.addEventListener("input", function () { nombre.setCustomValidity(""); });
     telefono.addEventListener("input", function () { telefono.setCustomValidity(""); });
 
-    // Limpiar espera a que se vacíen los campos y después renueva el resumen.
     formulario.addEventListener("reset", function () {
       setTimeout(function () {
         nombre.setCustomValidity("");
@@ -746,7 +632,6 @@
       }, 0);
     });
 
-    // Al regresar de WhatsApp, renueva las horas orientativas del día.
     window.addEventListener("pageshow", function () { actualizarHorarios(); actualizarResumen(); });
     actualizarHorarios();
     actualizarResumen();

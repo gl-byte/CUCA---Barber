@@ -2,7 +2,9 @@
 
 Generadas con la herramienta integrada de imágenes. Son ilustrativas: no son fotografías reales del negocio ni de trabajos realizados por sus barberos.
 
-Para reemplazarlas, guarda tu fotografía JPG con el mismo nombre dentro de esta carpeta. Los HTML ya apuntan a estos archivos. En Nosotros cambia también el texto y los comentarios que identifican las imágenes como ilustrativas cuando introduzcas fotos reales.
+Para reemplazar las imágenes de cortes, guarda tu fotografía JPG con el mismo nombre dentro de esta carpeta. La galería de Inicio apunta a los archivos `galeria-*.jpg`.
+
+La galería de Nosotros ya utiliza las diez fotografías reales recibidas por WhatsApp, renombradas como `barberia-01-fachada.jpeg` hasta `barberia-10-sillones-espejos.jpeg`. Las tres imágenes generadas del local (`barberia-ambiente.jpg`, `barberia-detalles.jpg` y `barberia-sillon.jpg`) se conservan como recursos anteriores y ya no aparecen en esa galería.
 
 Las imágenes de estilos son cuadradas y las del local son horizontales. Se guardaron en JPG, con lado máximo de 960 píxeles para aligerar la página.
 

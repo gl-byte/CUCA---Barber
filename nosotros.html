@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<!-- Indica que el documento usa la versión moderna de HTML. -->
 <html lang="es">
 <head>
-  <!-- Permite mostrar correctamente acentos, eñes y símbolos. -->
   <meta charset="UTF-8">
-  <!-- Adapta el diseño al ancho de celulares, tabletas y computadoras. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Usa el logo de CUCA Barber como icono de la pestaña del navegador. -->
   <link rel="icon" type="image/png" href="assets/img/logo-cuca-barber.png">
-  <!-- Resume el contenido para buscadores y enlaces compartidos. -->
   <meta name="description" content="Conoce la historia, el equipo y la forma de trabajar de CUCA Barber en Oruro.">
-  <!-- Este texto se muestra en la pestaña del navegador. -->
   <title>Nosotros | CUCA Barber</title>
 
   <style>
-    /* GUÍA DE ESTILOS: aquí se define la apariencia, el espacio y la adaptación móvil de esta página. */
-    /* VARIABLES: guardan los colores para poder cambiarlos fácilmente. */
     :root {
       --rojo: #ef233c;
       --negro: #070708;
@@ -25,13 +17,10 @@
       --borde: #2b2b31;
     }
 
-    /* Hace que el relleno y los bordes formen parte del tamaño de cada elemento. */
     * { box-sizing: border-box; }
 
-    /* Activa un desplazamiento suave al navegar dentro de la página. */
     html { scroll-behavior: smooth; }
 
-    /* Define el aspecto general y crea luces decorativas solo con CSS. */
     body {
       min-height: 100vh;
       margin: 0;
@@ -44,7 +33,6 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* Dibuja una franja superior inspirada en el poste clásico de barbería. */
     body::before {
       content: "";
       position: fixed;
@@ -54,7 +42,6 @@
       background: repeating-linear-gradient(120deg, var(--rojo) 0 30px, white 30px 60px, #1515a8 60px 90px);
     }
 
-    /* Mantiene el encabezado visible y le da transparencia tipo vidrio. */
     header {
       position: sticky;
       top: 0;
@@ -65,7 +52,6 @@
       backdrop-filter: blur(12px);
     }
 
-    /* Acomoda el logo y los enlaces dentro de un ancho cómodo. */
     nav {
       max-width: 1200px;
       margin: auto;
@@ -75,7 +61,6 @@
       gap: 18px;
     }
 
-    /* Controla el tamaño del logo sin deformarlo. */
     nav img {
       width: 108px;
       height: 58px;
@@ -84,13 +69,10 @@
       transition: transform .25s;
     }
 
-    /* Inclina el logo cuando pasa el puntero. */
     nav img:hover { transform: rotate(-3deg) scale(1.04); }
 
-    /* Oculta la casilla que guarda el estado del menú móvil. */
     .menu-toggle { display: none; }
 
-    /* El símbolo de menú permanece oculto en pantallas grandes. */
     .menu-icon {
       display: none;
       padding: 5px 10px;
@@ -100,7 +82,6 @@
       font-size: 28px;
     }
 
-    /* Agrupa y alinea los enlaces del menú principal. */
     .menu-links {
       display: flex;
       flex-wrap: wrap;
@@ -108,7 +89,6 @@
       gap: 5px;
     }
 
-    /* Convierte cada enlace del menú en una pequeña píldora. */
     .menu-links a {
       padding: 9px 11px;
       border-radius: 999px;
@@ -119,7 +99,6 @@
       transition: color .25s, background .25s, transform .25s;
     }
 
-    /* Resalta el enlace actual y el enlace señalado. */
     .menu-links a:hover,
     .menu-links a:focus-visible,
     .menu-links a[aria-current="page"] {
@@ -128,13 +107,11 @@
       transform: translateY(-2px);
     }
 
-    /* Mantiene cada bloque centrado y con espacio lateral. */
     .contenedor {
       width: min(1180px, calc(100% - 40px));
       margin: auto;
     }
 
-    /* Presenta la página con un título grande y un adorno circular. */
     .hero-nosotros {
       position: relative;
       isolation: isolate;
@@ -143,7 +120,6 @@
       border-bottom: 1px solid var(--borde);
     }
 
-    /* Crea un círculo decorativo sin usar imágenes. */
     .hero-nosotros::after {
       content: "";
       position: absolute;
@@ -157,7 +133,6 @@
       box-shadow: 0 0 80px rgba(239, 35, 60, .16);
     }
 
-    /* Da estilo de etiqueta al texto pequeño que antecede a los títulos. */
     .etiqueta {
       display: inline-block;
       margin: 0 0 16px;
@@ -170,7 +145,6 @@
       font-weight: bold;
     }
 
-    /* Hace que el título se adapte a cada pantalla. */
     h1 {
       max-width: 850px;
       margin: 0;
@@ -181,13 +155,11 @@
       animation: entrada .75s ease both;
     }
 
-    /* Pinta una parte del título con el color de la marca. */
     h1 span {
       color: var(--rojo);
       text-shadow: 0 0 35px rgba(239, 35, 60, .28);
     }
 
-    /* Limita el ancho del texto introductorio. */
     .bajada,
     .texto-seccion {
       max-width: 760px;
@@ -198,17 +170,14 @@
     .bajada { margin: 24px 0 0; font-size: 18px; }
     .texto-seccion { margin: 0 0 32px; }
 
-    /* Da el mismo espacio vertical a las secciones principales. */
     .seccion { padding: 76px 0; }
 
-    /* Crea títulos de sección claros y modernos. */
     .titulo-seccion {
       margin: 0 0 12px;
       font-size: clamp(32px, 5vw, 52px);
       line-height: 1;
     }
 
-    /* Agrega una línea roja debajo de los títulos de sección. */
     .titulo-seccion::after {
       content: "";
       display: block;
@@ -219,14 +188,12 @@
       background: var(--rojo);
     }
 
-    /* Coloca la historia y sus cifras en dos columnas. */
     .historia-grid {
       display: grid;
       grid-template-columns: 1.35fr .65fr;
       gap: 28px;
     }
 
-    /* Forma una caja común para historia y cifras. */
     .caja {
       padding: 30px;
       border: 1px solid var(--borde);
@@ -237,14 +204,12 @@
 
     .caja p { color: var(--gris); line-height: 1.75; }
 
-    /* Ordena las cifras rápidas en una pequeña cuadrícula. */
     .datos {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    /* Resalta cada dato con borde y fondo propios. */
     .dato {
       min-height: 125px;
       display: grid;
@@ -259,7 +224,6 @@
     .dato strong { color: var(--rojo); font-size: 27px; }
     .dato span { margin-top: 5px; color: var(--gris); font-size: 13px; }
 
-    /* Organiza las tarjetas de valores y del equipo automáticamente. */
     .valores,
     .personal {
       display: grid;
@@ -267,7 +231,6 @@
       gap: 22px;
     }
 
-    /* Crea tarjetas con movimiento al pasar el puntero. */
     .valor,
     .empleado {
       position: relative;
@@ -285,13 +248,11 @@
       box-shadow: 0 20px 45px rgba(239, 35, 60, .16);
     }
 
-    /* Separa el contenido interno de cada valor. */
     .valor { padding: 26px; }
     .valor-icono { font-size: 34px; }
     .valor h3 { margin: 18px 0 8px; font-size: 21px; }
     .valor p { margin: 0; color: var(--gris); line-height: 1.6; }
 
-    /* Muestra la fotografía real de cada integrante sin deformarla. */
     .empleado > img {
       width: 100%;
       height: 260px;
@@ -303,13 +264,11 @@
       transition: transform .4s, filter .4s;
     }
 
-    /* Acerca suavemente la fotografía cuando el puntero pasa por la tarjeta. */
     .empleado:hover > img {
       transform: scale(1.04);
       filter: contrast(1.06) saturate(1.08);
     }
 
-    /* Separa los datos del equipo del borde de las tarjetas. */
     .empleado-info { padding: 22px; }
     .empleado h3 { margin: 0 0 6px; font-size: 22px; }
 
@@ -322,7 +281,6 @@
       text-transform: uppercase;
     }
 
-    /* Muestra las especialidades como etiquetas pequeñas. */
     .habilidades { display: flex; flex-wrap: wrap; gap: 7px; }
     .habilidades span {
       padding: 6px 9px;
@@ -333,7 +291,6 @@
       font-size: 12px;
     }
 
-    /* Crea el bloque final que invita a reservar. */
     .llamada {
       display: flex;
       align-items: center;
@@ -349,7 +306,6 @@
     .llamada h2 { margin: 0 0 7px; font-size: clamp(27px, 4vw, 40px); }
     .llamada p { margin: 0; color: var(--gris); }
 
-    /* Convierte los enlaces importantes en botones visibles. */
     .boton {
       display: inline-block;
       flex: 0 0 auto;
@@ -370,7 +326,6 @@
       box-shadow: 0 16px 35px rgba(239, 35, 60, .38);
     }
 
-    /* Forma el pie de página y alinea los iconos sociales. */
     footer {
       padding: 34px 20px;
       border-top: 1px solid var(--borde);
@@ -381,7 +336,6 @@
 
     .redes-sociales { display: flex; justify-content: center; gap: 14px; margin: 18px 0; }
 
-    /* Coloca cada red social dentro de un círculo interactivo. */
     .icono-red {
       width: 48px;
       height: 48px;
@@ -397,13 +351,11 @@
     .icono-red:focus-visible { transform: translateY(-4px) rotate(-4deg); border-color: var(--rojo); background: var(--rojo); }
     .icono-red img { width: 25px; height: 25px; }
 
-    /* Anima suavemente el título al cargar la página. */
     @keyframes entrada {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cambia las columnas y el menú en celulares. */
     @media (max-width: 760px) {
       nav { flex-wrap: wrap; }
       .menu-icon { display: block; }
@@ -414,14 +366,12 @@
       .llamada { align-items: flex-start; flex-direction: column; }
       h1 { letter-spacing: -2px; }
 
-      /* Coloca dos integrantes por fila para aprovechar mejor el ancho del celular. */
       .personal,
       .valores {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
 
-      /* Compacta también las tarjetas que explican los valores de la barbería. */
       .valor {
         padding: 15px;
       }
@@ -440,17 +390,14 @@
         line-height: 1.45;
       }
 
-      /* Reduce la altura de las fotos para crear tarjetas móviles compactas. */
       .empleado > img {
         height: 165px;
       }
 
-      /* Reduce los espacios internos sin pegar el contenido a los bordes. */
       .empleado-info {
         padding: 13px;
       }
 
-      /* Ajusta el nombre para que los apodos largos puedan ocupar dos líneas. */
       .empleado h3 {
         min-height: 38px;
         margin-bottom: 4px;
@@ -458,7 +405,6 @@
         line-height: 1.2;
       }
 
-      /* Hace más pequeños el cargo y las etiquetas de especialidad. */
       .cargo {
         margin-bottom: 10px;
         font-size: 10px;
@@ -474,15 +420,12 @@
       }
     }
 
-    /* Deja las cifras en una columna en celulares estrechos. */
     @media (max-width: 420px) {
-      /* Conserva dos datos por fila incluso en celulares estrechos. */
       .datos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
       .dato { min-height: 105px; padding: 10px; }
       .dato strong { font-size: 22px; }
       .contenedor { width: min(100% - 20px, 1180px); }
 
-      /* En celulares estrechos conserva dos tarjetas y reduce un poco más las fotos. */
       .personal,
       .valores { gap: 9px; }
       .empleado > img { height: 145px; }
@@ -490,25 +433,23 @@
       .empleado h3 { font-size: 15px; }
     }
 
-    /* Desactiva movimientos si el visitante prefiere menos animaciones. */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
 
-    /* FOTOS DEL LOCAL: el marco conserva el mismo aspecto oscuro del sitio. */
     .espacio-barberia { padding-top: 20px; }
     .secuencia-local { overflow: hidden; border: 1px solid #333; border-radius: 22px; background: #111114; }
     .fotos-local { display: grid; gap: 18px; padding: 18px; }
     .foto-local { margin: 0; }
-    .foto-local img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
+    .foto-local img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; border-radius: 12px; background: #080809; }
     .foto-local figcaption { padding: 20px 5px 8px; }
     .foto-local h3 { margin: 0 0 8px; font-size: 25px; }
     .foto-local p { margin: 0; color: #b9bac1; line-height: 1.6; }
     .foto-local[hidden], .controles-local[hidden] { display: none; }
 
-    /* Los controles permiten recorrer las fotos al ritmo del visitante. */
     .controles-local { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 0 23px 23px; }
     .botones-local, .puntos-local { display: flex; align-items: center; gap: 8px; }
+    .puntos-local { flex-wrap: wrap; min-width: 0; max-width: 100%; }
     .controles-local button { border: 1px solid #555; border-radius: 8px; padding: 11px 14px; color: white; background: #18181d; font: inherit; cursor: pointer; min-height: 44px; }
     .controles-local button:hover { border-color: #ef233c; }
     .puntos-local button { width: 44px; padding: 8px; }
@@ -516,7 +457,6 @@
     .secuencia-local :focus-visible { outline: 3px solid #ffe7bc; outline-offset: 3px; }
     #estado-local { margin: 0; color: #b9bac1; font-size: 13px; }
 
-    /* En móvil las imágenes siguen siendo grandes y los controles se acomodan debajo. */
     @media (max-width: 600px) {
       .fotos-local { padding: 10px; }
       .foto-local img { aspect-ratio: 4 / 3; }
@@ -529,18 +469,12 @@
 </head>
 
 <body>
-  <!-- GUÍA EDUCATIVA: el encabezado contiene la navegación; main contiene el contenido principal; footer cierra la página con datos y redes. -->
-  <!-- ENCABEZADO: permite visitar todas las páginas sin JavaScript. -->
   <header>
     <nav aria-label="Navegación principal">
-      <!-- El logo regresa a la página de inicio. -->
       <a href="index.html"><img src="assets/img/logo-cuca-barber.png" alt="Logo de CUCA Barber"></a>
-      <!-- Esta casilla invisible abre y cierra el menú móvil con HTML y CSS. -->
       <input type="checkbox" id="menu-principal" class="menu-toggle">
       <label for="menu-principal" class="menu-icon" aria-label="Abrir o cerrar menú">☰</label>
-      <!-- Los enlaces conservan las rutas originales del proyecto. -->
       <div class="menu-links">
-        <!-- La galería reúne estilos de todas las categorías. -->
         <a href="index.html#galeria">Galería</a>
         <a href="cortes-varones.html">Varones</a>
         <a href="cortes-ninos.html">Niños</a>
@@ -554,9 +488,7 @@
     </nav>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL: reúne historia, valores, equipo y llamada a la acción. -->
   <main>
-    <!-- PORTADA: presenta la personalidad de la barbería con adornos CSS. -->
     <section class="hero-nosotros">
       <div class="contenedor">
         <p class="etiqueta">CONOCE A LA CREW</p>
@@ -565,7 +497,6 @@
       </div>
     </section>
 
-    <!-- HISTORIA: explica de forma breve qué busca ofrecer CUCA Barber. -->
     <section class="seccion contenedor">
       <div class="historia-grid">
         <article class="caja">
@@ -574,7 +505,6 @@
           <p>CUCA Barber nace con una meta sencilla: crear un lugar donde cualquier persona pueda sentirse cómoda, conversar y salir con un estilo que realmente la represente.</p>
           <p>Combinamos cortes clásicos con tendencias actuales, cuidando los detalles y explicando cada paso. Aquí no se trata de copiar un look: se trata de adaptarlo a tu rostro, tu cabello y tu personalidad.</p>
         </article>
-        <!-- Estas cifras describen la variedad actual sin inventar años o clientes. -->
         <aside class="caja datos" aria-label="Datos de CUCA Barber">
           <div class="dato"><strong>5</strong><span>barberos en la crew</span></div>
           <div class="dato"><strong>5</strong><span>tipos de servicio</span></div>
@@ -584,69 +514,79 @@
       </div>
     </section>
 
-    <!-- VALORES: comunica cómo se atiende al cliente. -->
     <section class="seccion contenedor">
       <h2 class="titulo-seccion">Nuestra forma de trabajar</h2>
       <p class="texto-seccion">Cada servicio comienza escuchando lo que buscas y termina revisando juntos el resultado.</p>
       <div class="valores">
-        <!-- Primer valor: explica que cada corte se adapta a la persona. -->
         <article class="valor">
-          <!-- Símbolo decorativo que representa una idea o destello de estilo. -->
           <span class="valor-icono" aria-hidden="true">✦</span>
-          <!-- Nombre corto del valor que representa la barbería. -->
           <h3>Estilo personal</h3>
-          <!-- Texto educativo que explica cómo se aplica este valor. -->
           <p>Recomendamos opciones que encajen con tus gustos y sean fáciles de mantener.</p>
         </article>
 
-        <!-- Segundo valor: destaca el cuidado de los detalles del servicio. -->
         <article class="valor">
-          <!-- El círculo representa precisión y atención. -->
           <span class="valor-icono" aria-hidden="true">◎</span>
-          <!-- Título visible de la tarjeta. -->
           <h3>Detalle y limpieza</h3>
-          <!-- Descripción sencilla para el visitante. -->
           <p>Cuidamos líneas, contornos y acabados para entregar un resultado ordenado.</p>
         </article>
 
-        <!-- Tercer valor: muestra el ambiente cercano de CUCA Barber. -->
         <article class="valor">
-          <!-- El rayo comunica energía y una experiencia dinámica. -->
           <span class="valor-icono" aria-hidden="true">⚡</span>
-          <!-- Título visible de la tarjeta. -->
           <h3>Buena energía</h3>
-          <!-- Descripción de la experiencia que se quiere ofrecer. -->
           <p>Queremos que la visita sea cómoda, relajada y con una atención cercana.</p>
         </article>
       </div>
     </section>
 
 
-    <!-- SECUENCIA DEL LOCAL: estas imágenes generadas sirven como presentación ilustrativa. -->
     <section class="seccion contenedor espacio-barberia" aria-labelledby="titulo-local">
       <p class="etiqueta">UN ESPACIO CON ACTITUD</p>
       <h2 id="titulo-local" class="titulo-seccion">Un vistazo a la barbería</h2>
-      <p class="texto-seccion">Recorre esta propuesta visual del ambiente. Imágenes ilustrativas generadas, pendientes de reemplazar por fotos reales del local.</p>
-      <div class="secuencia-local" role="region" aria-label="Fotografías ilustrativas de la barbería">
+      <p class="texto-seccion">Conoce CUCA Barber por dentro y por fuera: nuestro espacio, las estaciones de trabajo y la crew en acción, en diez fotografías reales del local.</p>
+      <div class="secuencia-local" role="region" aria-label="Fotografías de CUCA Barber">
         <div class="fotos-local">
-          <!-- Para poner una foto real, reemplaza assets/img/barberia-ambiente.jpg. -->
           <figure class="foto-local">
-            <img src="assets/img/barberia-ambiente.jpg" alt="Vista ilustrativa de una barbería con sillones negros, espejos y detalles rojos" loading="lazy" width="960" height="640">
-            <figcaption><h3>El ambiente</h3><p>Una propuesta de espacio urbano, cálido y con personalidad.</p></figcaption>
+            <img src="assets/img/barberia-01-fachada.jpeg" alt="Entrada de CUCA Barber de noche, con puertas de vidrio y un poste de barbería iluminado" loading="lazy" width="1472" height="1472">
+            <figcaption><h3>Bienvenido a CUCA</h3><p>La fachada y el poste iluminado marcan el comienzo de tu próximo cambio de look.</p></figcaption>
           </figure>
-          <!-- Para poner una foto real, reemplaza assets/img/barberia-detalles.jpg. -->
           <figure class="foto-local">
-            <img src="assets/img/barberia-detalles.jpg" alt="Imagen ilustrativa de tijeras, máquinas y toallas sobre una estación de trabajo" loading="lazy" width="960" height="640">
-            <figcaption><h3>Los detalles</h3><p>Herramientas, texturas y pequeños elementos que cuentan la experiencia.</p></figcaption>
+            <img src="assets/img/barberia-02-zona-espera.jpeg" alt="Zona de espera con sofás grises, clientes y un espejo que refleja las estaciones de trabajo" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Un momento para relajarte</h3><p>La zona de espera comparte el ambiente del local, entre conversaciones y nuevos estilos.</p></figcaption>
           </figure>
-          <!-- Para poner una foto real, reemplaza assets/img/barberia-sillon.jpg. -->
           <figure class="foto-local">
-            <img src="assets/img/barberia-sillon.jpg" alt="Imagen ilustrativa de un sillón de barbería junto a un espejo y una zona de espera" loading="lazy" width="960" height="640">
-            <figcaption><h3>Tu próximo cambio de look</h3><p>Un recorrido visual pensado para acompañar el estilo de CUCA.</p></figcaption>
+            <img src="assets/img/barberia-03-estaciones-barberia.jpeg" alt="Fila de sillones y espejos iluminados, con barberos trabajando y una bandera de Bolivia" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Donde nace tu estilo</h3><p>Sillones, espejos y luces acompañan el trabajo de la crew en cada estación.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-04-vista-interior.jpeg" alt="Vista del interior de la barbería con luces geométricas en el techo y servicios en proceso" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>El ambiente de CUCA</h3><p>Una vista del espacio completo, con iluminación geométrica y la barbería en movimiento.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-05-acabado-peinado.jpeg" alt="Barbero dando forma al cabello de un cliente con un cepillo y un secador frente al espejo" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>El toque final</h3><p>El cepillo y el secador ayudan a dar forma al peinado después del corte.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-06-estacion-trabajo.jpeg" alt="Estación de trabajo con espejo iluminado, sillón, tijeras, máquinas y una toalla azul" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Cada estación, su historia</h3><p>Un vistazo cercano al sillón, el espejo y las herramientas que acompañan cada servicio.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-07-tratamiento-rizos.jpeg" alt="Barbero trabajando en el cabello de un cliente con rulos verdes colocados" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Texturas con personalidad</h3><p>Los rulos forman parte de un trabajo en proceso para transformar la textura del cabello.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-08-corte-en-proceso.jpeg" alt="Barbero recortando el lateral del cabello de un cliente con una máquina y un peine" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>La crew en acción</h3><p>Máquina y peine trabajan juntos para definir el corte, paso a paso.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-09-herramientas-productos.jpeg" alt="Mueble de barbería con máquinas, cepillos, productos para el cabello y una toalla azul" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Las herramientas del oficio</h3><p>Máquinas, cepillos y productos de peinado reunidos en una de nuestras estaciones.</p></figcaption>
+          </figure>
+          <figure class="foto-local">
+            <img src="assets/img/barberia-10-sillones-espejos.jpeg" alt="Sillones con capas de barbería frente a espejos iluminados y muebles de trabajo" loading="lazy" width="1600" height="1600">
+            <figcaption><h3>Tu lugar para renovar el look</h3><p>Los sillones y los espejos cierran este recorrido por los rincones de CUCA Barber.</p></figcaption>
           </figure>
         </div>
 
-        <!-- Estos botones aparecen cuando ya pueden cambiar las fotografías. -->
         <div class="controles-local" hidden>
           <div class="botones-local">
             <button id="foto-anterior" type="button" aria-label="Ver fotografía anterior">←</button>
@@ -654,30 +594,31 @@
             <button id="reproducir-local" type="button" aria-pressed="false">Reproducir</button>
           </div>
           <div class="puntos-local" role="group" aria-label="Elegir fotografía">
-            <button type="button" data-foto="0" aria-label="Ver el ambiente" aria-pressed="true">1</button>
-            <button type="button" data-foto="1" aria-label="Ver los detalles" aria-pressed="false">2</button>
-            <button type="button" data-foto="2" aria-label="Ver el sillón" aria-pressed="false">3</button>
+            <button type="button" data-foto="0" aria-label="Ver la fachada" aria-pressed="true">1</button>
+            <button type="button" data-foto="1" aria-label="Ver la zona de espera" aria-pressed="false">2</button>
+            <button type="button" data-foto="2" aria-label="Ver las estaciones de barbería" aria-pressed="false">3</button>
+            <button type="button" data-foto="3" aria-label="Ver el interior" aria-pressed="false">4</button>
+            <button type="button" data-foto="4" aria-label="Ver el acabado y peinado" aria-pressed="false">5</button>
+            <button type="button" data-foto="5" aria-label="Ver una estación de trabajo" aria-pressed="false">6</button>
+            <button type="button" data-foto="6" aria-label="Ver el trabajo con rulos" aria-pressed="false">7</button>
+            <button type="button" data-foto="7" aria-label="Ver un corte en proceso" aria-pressed="false">8</button>
+            <button type="button" data-foto="8" aria-label="Ver las herramientas y productos" aria-pressed="false">9</button>
+            <button type="button" data-foto="9" aria-label="Ver los sillones y espejos" aria-pressed="false">10</button>
           </div>
-          <p id="estado-local" aria-live="polite">Foto 1 de 3</p>
+          <p id="estado-local" aria-live="polite">Foto 1 de 10</p>
         </div>
       </div>
     </section>
 
-    <!-- EQUIPO: presenta nombres y especialidades sin imágenes inexistentes. -->
     <section class="seccion contenedor" id="equipo">
       <h2 class="titulo-seccion">La crew de CUCA</h2>
       <p class="texto-seccion">Cinco estilos, una misma meta: que salgas sintiéndote increíble.</p>
       <div class="personal">
         <article class="empleado">
-          <!-- Fotografía real del primer integrante del equipo. -->
           <img src="assets/img/Empleado_1.jpg" alt="Luis El Pupi">
-          <!-- Información que aparece debajo de la fotografía. -->
           <div class="empleado-info">
-            <!-- Nombre o apodo que identifica al integrante. -->
             <h3>Luis “El Pupi”</h3>
-            <!-- Cargo dentro de la barbería. -->
             <p class="cargo">Barbero</p>
-            <!-- Estas etiquetas resumen los trabajos que realiza mejor. -->
             <div class="habilidades">
               <span>Fades</span>
               <span>Perfilado</span>
@@ -686,15 +627,10 @@
           </div>
         </article>
         <article class="empleado">
-          <!-- Fotografía real del segundo integrante del equipo. -->
           <img src="assets/img/Empleado_2.jpg" alt="David El Chivolín">
-          <!-- Información que aparece debajo de la fotografía. -->
           <div class="empleado-info">
-            <!-- Nombre o apodo que identifica al integrante. -->
             <h3>David “El Chivolín”</h3>
-            <!-- Cargo dentro de la barbería. -->
             <p class="cargo">Barbero</p>
-            <!-- Estas etiquetas resumen sus especialidades. -->
             <div class="habilidades">
               <span>Corte clásico</span>
               <span>Tijera</span>
@@ -703,15 +639,10 @@
           </div>
         </article>
         <article class="empleado">
-          <!-- Fotografía real del tercer integrante del equipo. -->
           <img src="assets/img/Empleado_3.jpg" alt="Brayan El Camba">
-          <!-- Información que aparece debajo de la fotografía. -->
           <div class="empleado-info">
-            <!-- Nombre o apodo que identifica al integrante. -->
             <h3>Brayan “El Camba”</h3>
-            <!-- Cargo dentro de la barbería. -->
             <p class="cargo">Barbero</p>
-            <!-- Estas etiquetas resumen sus especialidades. -->
             <div class="habilidades">
               <span>Diseños</span>
               <span>Líneas</span>
@@ -720,15 +651,10 @@
           </div>
         </article>
         <article class="empleado">
-          <!-- Fotografía real del cuarto integrante del equipo. -->
           <img src="assets/img/Empleado_4.jpg" alt="Epi El Poter">
-          <!-- Información que aparece debajo de la fotografía. -->
           <div class="empleado-info">
-            <!-- Nombre o apodo que identifica al integrante. -->
             <h3>Epi “El Poter”</h3>
-            <!-- Cargo dentro de la barbería. -->
             <p class="cargo">Barbero</p>
-            <!-- Estas etiquetas resumen sus especialidades. -->
             <div class="habilidades">
               <span>Barba</span>
               <span>Navaja</span>
@@ -737,15 +663,10 @@
           </div>
         </article>
         <article class="empleado">
-          <!-- Fotografía real del quinto integrante del equipo. -->
           <img src="assets/img/Empleado_5.jpg" alt="Carlitos El Kisquilín">
-          <!-- Información que aparece debajo de la fotografía. -->
           <div class="empleado-info">
-            <!-- Nombre o apodo que identifica al integrante. -->
             <h3>Carlitos “El Kisquilín”</h3>
-            <!-- Cargo dentro de la barbería. -->
             <p class="cargo">Barbero</p>
-            <!-- Estas etiquetas resumen sus especialidades. -->
             <div class="habilidades">
               <span>Corte infantil</span>
               <span>Fade</span>
@@ -756,18 +677,15 @@
       </div>
     </section>
 
-    <!-- LLAMADA FINAL: el botón abre la página de reservas. -->
     <section class="llamada contenedor">
       <div><h2>¿Listo para un nuevo look?</h2><p>Elige tu servicio y reserva tu espacio con la crew.</p></div>
       <a class="boton" href="reservar.html">Reservar mi cita</a>
     </section>
   </main>
 
-  <!-- PIE DE PÁGINA: repite los datos y redes importantes. -->
   <footer>
     <p><strong>CUCA Barber</strong> | Tu estilo, tu actitud.</p>
     <div class="redes-sociales">
-      <!-- Este enlace de Facebook se conserva en blanco tal como fue solicitado. -->
       <a class="icono-red" href="#" aria-label="Facebook"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
       <a class="icono-red" href="https://www.instagram.com/_cucabarber?igsh=MWEweXdrczJ6Y2JucA==" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
       <a class="icono-red" href="https://wa.me/59174110827" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"></a>
@@ -777,7 +695,6 @@
   </footer>
 
   <script>
-    // Localiza las fotografías y los botones de la secuencia del local.
     const secuencia = document.querySelector(".secuencia-local");
     const fotografias = [...secuencia.querySelectorAll(".foto-local")];
     const controles = secuencia.querySelector(".controles-local");
@@ -786,7 +703,6 @@
     let fotoActual = 0;
     let reloj = null;
 
-    // Muestra una foto y actualiza su número para que el visitante se ubique.
     function mostrarFoto(numero) {
       fotoActual = (numero + fotografias.length) % fotografias.length;
       fotografias.forEach(function (foto, posicion) { foto.hidden = posicion !== fotoActual; });
@@ -794,7 +710,6 @@
       document.getElementById("estado-local").textContent = "Foto " + (fotoActual + 1) + " de " + fotografias.length;
     }
 
-    // Detiene el recorrido automático cuando el visitante quiere controlar las fotos.
     function pausarFotos() {
       clearInterval(reloj);
       reloj = null;
@@ -802,14 +717,12 @@
       reproducir.setAttribute("aria-pressed", "false");
     }
 
-    // Las flechas y los números permiten ir directamente a la imagen deseada.
     document.getElementById("foto-anterior").addEventListener("click", function () { pausarFotos(); mostrarFoto(fotoActual - 1); });
     document.getElementById("foto-siguiente").addEventListener("click", function () { pausarFotos(); mostrarFoto(fotoActual + 1); });
     puntos.forEach(function (boton) {
       boton.addEventListener("click", function () { pausarFotos(); mostrarFoto(Number(boton.dataset.foto)); });
     });
 
-    // El recorrido automático empieza solo si el visitante pulsa Reproducir.
     reproducir.addEventListener("click", function () {
       if (reloj !== null) { pausarFotos(); return; }
       reproducir.textContent = "Pausar";
@@ -817,10 +730,8 @@
       reloj = setInterval(function () { mostrarFoto(fotoActual + 1); }, 6000);
     });
 
-    // Pausa cuando la pestaña queda oculta para no perder el lugar de la visita.
     document.addEventListener("visibilitychange", function () { if (document.hidden) pausarFotos(); });
 
-    // Permite cambiar de foto deslizando el dedo sobre la imagen en móvil.
     let inicioDeslizamiento = null;
     secuencia.querySelector(".fotos-local").addEventListener("pointerdown", function (evento) {
       if (evento.pointerType === "touch") inicioDeslizamiento = evento.clientX;
@@ -833,7 +744,6 @@
     });
     secuencia.querySelector(".fotos-local").addEventListener("pointercancel", function () { inicioDeslizamiento = null; });
 
-    // Si las funciones interactivas no están activas, todas las fotos se ven una debajo de otra.
     mostrarFoto(0);
     controles.hidden = false;
   </script>
